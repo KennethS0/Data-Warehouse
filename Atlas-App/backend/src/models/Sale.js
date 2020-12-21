@@ -26,15 +26,22 @@ const saleSchema = new Schema (
                     type: Number,
                     required: true
                 },
-                total: {
+                item_total: {
                     type: Number,
                     required: true
                 }
             }
-        ]
+        ],
+
+        sale_total: {
+            type: Number,
+            required: true
+        }
     },
     {
         versionKey: false, 
         timestamps: true, // createdAt and updatedAt 
     }
 );
+
+module.exports = mongoose.model("Sale", saleSchema);
