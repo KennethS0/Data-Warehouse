@@ -15,4 +15,7 @@ app.use(express.json());
 // Print JSONS
 app.use( express.urlencoded({ extended: true }) );
 
+// Routing
+app.use("/", require("./routes/sales"));
+
 module.exports = app;

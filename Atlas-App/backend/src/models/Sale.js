@@ -10,13 +10,17 @@ const saleSchema = new Schema (
         client: {
             type: String,
             required: true,
+            minlength: 7,
+            maxlength: 7
         },
 
         items: [
             {
                 item: {
                     type: String,
-                    required: true
+                    required: true,
+                    minlength: 7,
+                    maxlength: 7
                 },
                 unitPrice: {
                     type: Number,
