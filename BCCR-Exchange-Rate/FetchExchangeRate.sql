@@ -12,11 +12,8 @@ USE DWH_BD2
 GO
 
 /* Exchange Rates (CRC, Banco Central de Costa Rica) */ 
--- Dollar Purchase
-DECLARE @DollarPurchaseIndicatorId INT = 317
-GO
--- Dollar Sell
-DECLARE @DollarSellIndicatorId INT = 318
+DECLARE @DollarPurchaseIndicatorId INT = 317; -- Dollar Purchase
+DECLARE @DollarSellIndicatorId INT = 318 -- Dollar Sell
 GO
 
 -- utils for HTTP requests settings...
@@ -32,11 +29,27 @@ AS
 	RECONFIGURE;
 GO
 
+-- xml utils
+CREATE PROCEDURE getDataFromXML
+	@Data XML,
+	@LastUpdatedDate DATETIME OUTPUT,
+	@IndicatorValue DECIMAL(12, 4) OUTPUT
+AS
+	;WITH XMLNAMESPACES('http://ws.sdde.bccr.fi.cr' AS ns, 
+                    'urn:schemas-microsoft-com:xml-diffgram-v1' AS dg)
+	SELECT 
+		@LastUpdatedDate = CAST(St.value('(DES_FECHA)[1]', 'datetime') AS DATETIME),
+		@IndicatorValue  = CAST(St.value('(NUM_VALOR)[1]','decimal') AS DECIMAL)
+	FROM 
+	@Data.nodes('/ns:DataSet/dg:diffgram/Datos_de_INGC011_CAT_INDICADORECONOMIC/INGC011_CAT_INDICADORECONOMIC')
+	AS T(St);
+GO
+
 -- main procedure
 CREATE PROCEDURE getExchangeRateFromBCCR 
 	@IdIndicator INT,
-	@LastUpdateDate DATE OUT, -- from web service (BCCR)
-	@IndicatorValue DECIMAL(12, 4) OUT -- from web service (BCCR)
+	@LastUpdateDate DATETIME OUTPUT, -- from web service (BCCR)
+	@IndicatorValue DECIMAL(12, 4) OUTPUT -- from web service (BCCR)
 AS
 BEGIN TRY
         DECLARE @postData VARCHAR(500) = CONCAT(
@@ -63,9 +76,9 @@ BEGIN TRY
 		EXEC sp_OAMethod @Object, 'send'
 		EXEC sp_OAMethod @Object, 'responseText', @ResponseText OUTPUT
 
-		SELECT CAST(@ResponseText as XML)
+		DECLARE @Data XML = CAST(@ResponseText AS XML);
+		EXEC getDataFromXML @Data, @LastUpdateDate OUTPUT, @IndicatorValue OUTPUT
 		EXEC sp_OADestroy @Object
-
     END TRY
     BEGIN CATCH
         SELECT  
@@ -78,9 +91,11 @@ BEGIN TRY
     END CATCH
 GO
 
--- testing....
-DECLARE @LastUpdateAt DATE;
+-- testing...
+DECLARE @LastUpdateAt DATETIME;
 DECLARE @IndicatorValue DECIMAL(12, 4);
 DECLARE @IndicatorId INT = 317; 
 
-EXEC getExchangeRateFromBCCR @IndicatorId, @LastUpdateAt, @IndicatorValue;
+EXEC getExchangeRateFromBCCR @IndicatorId, @LastUpdateAt OUTPUT, @IndicatorValue OUTPUT;
+
+SELECT @LastUpdateAt as LastUpdatedDate, @IndicatorValue as IndicatorPrice
