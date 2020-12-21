@@ -148,3 +148,6 @@ Thumbs.db
 
 # Project files
 Atlas-App/backend/node_modules
+
+# .vs
+.vs
