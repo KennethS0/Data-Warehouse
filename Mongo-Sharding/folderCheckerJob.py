@@ -1,6 +1,8 @@
 import os.path
 import threading
 import time
+import subprocess
+import json
 
 def checking():
     csvProcessed = False
@@ -27,11 +29,27 @@ def checking():
             if f.endswith('.csv') and not csvProcessed:
                 os.replace(filePath, pathToMove+"//"+f)
                 csvProcessed = True
-            elif f.endswith('.txt') and not jsonProcessed:
+                callMongoImport(pathToMove+"//"+f)
+            elif (f.endswith('.txt') or f.endswith('.json')) and not jsonProcessed:
+                modifyJSON(filePath)
                 os.replace(filePath, pathToMove+"//"+f)
                 jsonProcessed = True
+                callMongoImport(pathToMove+"//"+f)
 
 
-t = threading.Thread(target=checking)
-t.start()
+# t = threading.Thread(target=checking)
+# t.start()
+def modifyJSON(filePath):
+    with open(filePath, "r") as jsonFile:
+        data = json.load(jsonFile)
+        data = data["Data"]
+    with open(filePath, "w") as jsonFile:
+        json.dump(data, jsonFile)   
 
+def callMongoImport(filePath):
+    process = subprocess.run(["mongoimport"
+                            ,"--db", "users"
+                            ,"--collection", "contacts"
+                            ,"--file", filePath
+                            ,"--jsonArray"], capture_output=True).stderr
+    print(process)
