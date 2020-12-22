@@ -3,12 +3,12 @@ import './SalesForm.css';
 class SalesForm extends Component {
     constructor(props) {
         super(props);
-        this.state = {values: []}; // Initializes a list of values
+        this.state = {values: [{}]}; // Initializes a list of values
     }
     
     // Adds a new item to the list
     addNewItem() {
-        this.setState(state => ({values: [...state.values, '']}))
+        this.setState(state => ({values: [...state.values, {}]}))
     }
 
     // Removes a specific item from the list
@@ -21,7 +21,8 @@ class SalesForm extends Component {
     // Changes the value of a specific item
     handleChange(index, event) {
         let values = [...this.state.values]; // Gets every value
-        values[index] = event.target.value; 
+        const {name, value} = event.target;
+        values[index][name] = value; 
         this.setState({ values }); // Updates every value
     }
 
@@ -30,16 +31,16 @@ class SalesForm extends Component {
         return this.state.values.map((data, index) =>
             <div key={index}>
                 <p>Item Code</p> 
-                <input type="text" value={data.itemCode || ""} onChange={this.handleChange.bind(this, index)}></input>
+                <input name="itemCode" type="text" value={data.itemCode || ""} onChange={this.handleChange.bind(this, index)}></input>
 
                 <p>Unit Price</p>
-                <input type="text" value={data.unitPrice || ""} onChange={this.handleChange.bind(this, index)}></input>
+                <input name="unitPrice" type="text" value={data.unitPrice || ""} onChange={this.handleChange.bind(this, index)}></input>
 
                 <p>Amount</p>
-                <input type="text" value={data.amount || ""} onChange={this.handleChange.bind(this, index)}></input>
+                <input name="amount" type="text" value={data.amount || ""} onChange={this.handleChange.bind(this, index)}></input>
 
                 <p>Tax</p>
-                <input type="text" value={data.tax || ""} onChange={this.handleChange.bind(this, index)}></input>
+                <input name="tax" type="text" value={data.tax || ""} onChange={this.handleChange.bind(this, index)}></input>
 
                 <p>Line Total</p>
 
@@ -65,12 +66,11 @@ class SalesForm extends Component {
                 
                 {this.loadData()}
                 
+                
                 <input type="button" value="Add Item" onClick={this.addNewItem.bind(this)}></input>
                 
                 <p>Total</p>
 
-
-                
                 <input type="submit"></input>
             </form>
         );
