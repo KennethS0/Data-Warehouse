@@ -29,12 +29,12 @@ def checking():
             if f.endswith('.csv') and not csvProcessed:
                 os.replace(filePath, pathToMove+"//"+f)
                 csvProcessed = True
-                callMongoImport(pathToMove+"//"+f)
+                callMongoImport(pathToMove+"//"+f, "--headerline","json")
             elif (f.endswith('.txt') or f.endswith('.json')) and not jsonProcessed:
                 modifyJSON(filePath)
                 os.replace(filePath, pathToMove+"//"+f)
                 jsonProcessed = True
-                callMongoImport(pathToMove+"//"+f)
+                callMongoImport(pathToMove+"//"+f,"--jsonArray","json")
 
 
 # t = threading.Thread(target=checking)
@@ -46,10 +46,14 @@ def modifyJSON(filePath):
     with open(filePath, "w") as jsonFile:
         json.dump(data, jsonFile)   
 
-def callMongoImport(filePath):
+def callMongoImport(filePath, readType, fileType):
     process = subprocess.run(["mongoimport"
                             ,"--db", "users"
                             ,"--collection", "contacts"
+                            ,"--type", fileType
                             ,"--file", filePath
-                            ,"--jsonArray"], capture_output=True).stderr
+                            ,readType], capture_output=True).stderr
     print(process)
+
+callMongoImport("C://Users//emema//Desktop//CSV_301-400.csv","--headerline", "csv")
+callMongoImport("C://Users//emema//Desktop//ContactsNew.json","--jsonArray", "json")
