@@ -26,6 +26,10 @@ const saleSchema = new Schema (
                     type: Number,
                     required: true
                 },
+                amount: {
+                    type: Number,
+                    required: true
+                },
                 tax: {
                     type: Number,
                     required: true
