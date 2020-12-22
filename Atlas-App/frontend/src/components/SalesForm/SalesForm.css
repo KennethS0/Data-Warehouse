@@ -1,0 +1,9 @@
+/* Division of components */
+main { 
+    margin-left: 5rem;
+    padding: 0px 1rem;
+}
+
+.clientInfo {
+  background-color: aqua;
+}
