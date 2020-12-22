@@ -84,21 +84,29 @@ class SalesForm extends Component {
 
     // Uploads the information
     onSubmit(event) {
+        // event.preventDefault();
+
         let items = [...this.state.items];
         let final_amount = 0;
 
+        const clientCode = 'C' + (this.state.client+'').padStart(6,'0');
+
         // Calculate item_total and sale_total
         items.forEach(data => {
+            // Code
+            data["item"] = 'A' + (data.item+'').padStart(6,'0');
+
+            // Line total
             let total = data.amount * data.unitPrice * data.tax;
             data["item_total"] = total;
             final_amount += total;
         });
 
         // Once the state is changed the data is uploaded to the database
-        this.setState({items, sale_total: final_amount}, () => {
+        this.setState({client: clientCode, items, sale_total: final_amount}, () => {
             axios.post(this.server + this.port + '/sales', this.state)
             .then(res => console.log(res.data));
-        });    
+        });   
     }
 
 
@@ -130,7 +138,7 @@ class SalesForm extends Component {
     // Shows the component on screen
     render() {
         return (
-            <form>
+            <form onSubmit={this.onSubmit}>
                 <div className="clientInfo"> 
                     <p>Client</p> 
                     <input required 
@@ -149,7 +157,7 @@ class SalesForm extends Component {
                 
                 <p>Total</p>
 
-                <input type="button" value="Submit" onClick={this.onSubmit.bind(this)}></input>
+                <button type="submit">Submit</button>
             </form>
         );
     }
