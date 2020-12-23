@@ -32,6 +32,7 @@ def checking():
         for f in directory:
             filePath = pathToCheck+"//"+f
             if f.endswith('.csv') and not csvProcessed:
+                fm.modifyCSV(filePath)
                 os.replace(filePath, pathToMove+"//"+f)
                 csvProcessed = True
                 callMongoImport(pathToMove+"//"+f, "--headerline","json")
@@ -45,8 +46,9 @@ def checking():
 # to import the content into the sharding 
 def callMongoImport(filePath, readType, fileType):
     process = subprocess.run(["mongoimport"
-                            ,"--db", "users"
-                            ,"--collection", "contacts"
+                            ,"--host=localhost:20006"
+                            ,"--db", "test"
+                            ,"--collection", "blog_posts"
                             ,"--type", fileType
                             ,"--file", filePath
                             ,readType], capture_output=True, check=False)
@@ -56,9 +58,8 @@ def callMongoImport(filePath, readType, fileType):
         logging.error(process.stderr.decode("utf-8"))
     print(process.stderr.decode("utf-8"))
 
-# t = threading.Thread(target=checking)
-# t.start()
+t = threading.Thread(target=checking)
+t.start()
 
-callMongoImport("C://Users//emema//Desktop//CSV_301-400.csv", "--headerline", "csv")
+# callMongoImport("C://Users//emema//Desktop//CSV_301-400.csv", "--headerline", "csv")
 # callMongoImport("C://Users//emema//Desktop//ContactsNew.json","--jsonArray", "json")
-#modifyCSV("C://Users//emema//Desktop//CSV_301-400.csv")

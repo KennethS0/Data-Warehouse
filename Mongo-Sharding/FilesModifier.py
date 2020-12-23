@@ -1,7 +1,7 @@
 import json
 import csv
 
-numDeMes = {"ene":"01", "feb":"02", "mar":"03", "abr":"04", "may":"05", "jun":"06"
+numOfMonth = {"ene":"01", "feb":"02", "mar":"03", "abr":"04", "may":"05", "jun":"06"
            ,"jul":"07", "ago":"08", "sep":"09", "oct":"10", "nov":"11", "dic":"12"}
 
 # Modifys the JSON that is passed by parameter
@@ -29,8 +29,8 @@ def modifyClientCSV(client):
     newClient = []
 
     newClient.append( str(f"{int(client[0][3:]):09d}") ) # Add receipt without "FA " 
-    newClient.append( str("20"+client[2][4:] + numDeMes[client[2][:3]] + f"{int(client[1]):02d}") ) # Add date with the right format
-    newClient.append( str("20"+client[4][4:] + numDeMes[client[4][:3]] + f"{int(client[3]):02d}") ) # # Add expiration date with the right format
+    newClient.append( str("20"+client[2][4:] + numOfMonth[client[2][:3]] + f"{int(client[1]):02d}") ) # Add date with the right format
+    newClient.append( str("20"+client[4][4:] + numOfMonth[client[4][:3]] + f"{int(client[3]):02d}") ) # # Add expiration date with the right format
     newClient.append( str("C"+f"{int(client[5]):06d}") ) # Add client with the right format
     newClient.append( str("A"+f"{int(client[6]):06d}") ) # Add articule with the right format
     for data in range(7,len(client)):
