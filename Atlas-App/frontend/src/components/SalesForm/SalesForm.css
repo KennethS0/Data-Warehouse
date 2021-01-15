@@ -1,9 +1,46 @@
-/* Division of components */
-main { 
-    margin-left: 5rem;
-    padding: 0px 1rem;
+/*
+  GENERAL ATTRIBUTES
+*/
+
+p{
+  margin-top: 0px;
 }
 
-.clientInfo {
-  background-color: aqua;
+hr {
+  margin-bottom: 0;
+  height: 1px;
+  background-color: rgba(127, 182, 199, 0.568);
+  border: none;
+} 
+
+body {
+  background-color: #f1f3f5;
+}
+
+/* 
+  BAR AT THE TOP
+*/
+.header {
+  width: 100%;
+  background: #41b6ec;
+  position: fixed;
+  color: white;
+}
+
+.headerField {
+  float: left;
+  margin-left: 0;
+  margin-right: 3%;
+}
+
+/* 
+  BODY OF THE FORM
+*/
+
+.main {
+  padding-top: 4rem;
+}
+
+.itemData {
+  background-color: #ffffff;
 }

@@ -16,6 +16,6 @@ app.use(express.json());
 app.use( express.urlencoded({ extended: true }) );
 
 // Routing
-app.use("/", require("./routes/sales"));
+app.use("/sales", require("./routes/sales"));
 
 module.exports = app;
