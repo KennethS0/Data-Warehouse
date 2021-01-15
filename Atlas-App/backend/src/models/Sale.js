@@ -14,6 +14,13 @@ const saleSchema = new Schema (
             maxlength: 7
         },
 
+        currency: {
+            type: String,
+            required: true,
+            minlength: 3,
+            maxlength: 3
+        },
+
         items: [
             {
                 item: {

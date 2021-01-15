@@ -8,12 +8,18 @@ class SalesForm extends Component {
     
     constructor(props) {
         super(props);
-        this.state = {client: "", items: [{}]}; // Initializes a list of items
+        this.state = {client: "", currency: "", items: [{}]}; // Initializes a list of items
 
         this.server = 'http://localhost:';
         this.port = '3000';
 
         this.onSubmit = this.onSubmit.bind(this);
+
+
+        this.currencyOptions = [
+            {value: "USD", key: 1},
+            {value: "CRC", key: 2}
+        ];
     }
     
     
@@ -82,9 +88,18 @@ class SalesForm extends Component {
     }
 
 
+    handleCurrencyChange(event) {
+        this.setState({currency: event.target.value});
+    }
+
+
     // Uploads the information
     onSubmit(event) {
-        // event.preventDefault();
+        if (this.state.items.length < 1) {
+            // TODO - ADD ALERT
+            
+            return
+        };
 
         let items = [...this.state.items];
         let final_amount = 0;
@@ -97,15 +112,15 @@ class SalesForm extends Component {
             data["item"] = 'A' + (data.item+'').padStart(6,'0');
 
             // Line total
-            let total = data.amount * data.unitPrice * data.tax;
+            let total = data.amount * data.unitPrice * (1 + data.tax / 100);
             data["item_total"] = total;
             final_amount += total;
         });
 
         // Once the state is changed the data is uploaded to the database
         this.setState({client: clientCode, items, sale_total: final_amount}, () => {
-            axios.post(this.server + this.port + '/sales', this.state)
-            .then(res => console.log(res.data));
+                axios.post(this.server + this.port + '/sales', this.state)
+                .then(res => console.log(res.data));
         });   
     }
 
@@ -113,7 +128,7 @@ class SalesForm extends Component {
     // Returns all item elements
     loadItems() {
         return this.state.items.map((data, index) =>
-            <div key={index}>
+            <div key={index} className="itemData">
                 <p>Item Code</p> 
                 <input required name="item" type="text" value={data.item || ""} onChange={this.handleItemCodeChange.bind(this, index)}></input>
 
@@ -126,38 +141,51 @@ class SalesForm extends Component {
                 <p>Tax</p>
                 <input required name="tax" type="text" value={data.tax || ""} onChange={this.handleItemFloatChange.bind(this, index)}></input>
 
-                <p>Line Total</p>
-
                 <input required type="button" value="Remove" onClick={this.removeItem.bind(this, index)}></input>
                 <hr />
             </div>
         )
     }
 
-    
+
     // Shows the component on screen
     render() {
         return (
             <form onSubmit={this.onSubmit}>
-                <div className="clientInfo"> 
-                    <p>Client</p> 
-                    <input required 
-                        name="client" 
-                        type="text" 
-                        value={this.state.client} 
-                        onChange={this.handleClientChange.bind(this)}></input>
-                    <hr />
+            
+                <div className="header"> 
+                    
+                    <div className="headerField">
+                        <p>Client</p> 
+                        <input required 
+                            name="client" 
+                            type="text" 
+                            value={this.state.client} 
+                            onChange={this.handleClientChange.bind(this)}></input>
+                    </div>
+
+                    <div className="headerField">
+                        <p>Currency</p>
+
+                        <select value={this.state.currency} onChange={this.handleCurrencyChange.bind(this)}>
+                            {this.currencyOptions.map((opt) => (
+                                <option value={opt.value}>{opt.value}</option>
+                            ))}
+                        </select>
+                    </div>
+                    
                 </div>
+                
+                <div className="main">
+                    <p>Items</p>
+                    <hr></hr>
+                    
+                    {this.loadItems()} 
+                    
+                    <input type="button" value="Add Item" onClick={this.addNewItem.bind(this)}></input>
 
-                <p>Items</p>
-                
-                {this.loadItems()} 
-                
-                <input type="button" value="Add Item" onClick={this.addNewItem.bind(this)}></input>
-                
-                <p>Total</p>
-
-                <button type="submit">Submit</button>
+                    <button type="submit">Submit</button>
+                </div>
             </form>
         );
     }

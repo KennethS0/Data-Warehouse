@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const URI = process.env.DB_CONNECTION || "mongodb://localhost/dynamic_forms"; // cluster or local database for testing
+const URI = process.env.DB_CONNECTION; // cluster or local database for testing
 
 
 mongoose.connect(
