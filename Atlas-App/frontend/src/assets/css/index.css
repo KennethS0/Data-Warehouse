@@ -6,6 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background: #1e1e24; */
 }
 
 code {
@@ -17,15 +18,16 @@ code {
     SCROLL BAR
 */  
 body::-webkit-scrollbar { 
-  width: 0.25rem;
+  width: 0.40rem;
 }
 
 body::-webkit-scrollbar-track {
-  background: #1e1e24;
+  background: #ffffff;
 }
 
 body::-webkit-scrollbar-thumb {
-  background: #3b9c9c;
+  border-radius: 10px;
+  background: #5fbee4;
 }
 
 

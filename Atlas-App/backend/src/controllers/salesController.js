@@ -18,26 +18,5 @@ salesController.addSale = async(req, res) => {
     }
 }
 
-// Gets all sales in the database.
-salesController.getAll = async(req, res) => {
-    
-    try {
-        const sales = await Sale.find();
-        res.status(202).send(sales);
-    } catch (error) {
-        res.status(404).send(error);
-    }
-}
-
-// Gets all the items bought by one customer
-salesController.getCostumerItems = async(req, res) => {
-    try {
-        const sales = await Sale.find({client: req.params.client});
-        res.status(202).send(sales);
-    } catch (error) {
-        res.status(404).send(error);
-    }
-}
-
 
 module.exports = salesController;
