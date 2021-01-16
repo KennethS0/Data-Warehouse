@@ -48,18 +48,23 @@ GO
 -- main procedure
 CREATE PROCEDURE getExchangeRateFromBCCR 
 	@IdIndicator INT,
-	@LastUpdateDate DATETIME OUTPUT, -- from web service (BCCR)
-	@IndicatorValue DECIMAL(12, 4) OUTPUT -- from web service (BCCR)
+	@StartDate DATE,
+	@EndDate DATE,
+
+	-- from web service (BCCR)
+	@LastUpdateDate DATETIME OUTPUT,
+	@IndicatorValue DECIMAL(12, 4) OUTPUT 
 AS
-BEGIN TRY
+BEGIN 
+	TRY
         DECLARE @postData VARCHAR(500) = CONCAT(
 			'Indicador=',			CAST(@IdIndicator AS NVARCHAR(10)),
-			'&FechaInicio=',		FORMAT(getdate(), 'dd/MM/yyyy'),
-			'&FechaFinal=',			FORMAT(getdate(), 'dd/MM/yyyy'),
-			'&Nombre=',				'<registered_name>',
+			'&FechaInicio=',		FORMAT(@StartDate, 'dd/MM/yyyy'),
+			'&FechaFinal=',			FORMAT(@EndDate, 'dd/MM/yyyy'),
+			'&Nombre=',				'Josue Rojas Vega',
 			'&SubNiveles=',			'Si',
-			'&CorreoElectronico=',  '<our_email>',
-			'&Token=',				'<bccr_token>'
+			'&CorreoElectronico=',  'basesdedatos2.2020@gmail.com',
+			'&Token=',				'2STA4UR0LM'
 		);
 
 		DECLARE @url AS NVARCHAR(300) = 
@@ -77,6 +82,7 @@ BEGIN TRY
 		EXEC sp_OAMethod @Object, 'responseText', @ResponseText OUTPUT
 
 		DECLARE @Data XML = CAST(@ResponseText AS XML);
+
 		EXEC getDataFromXML @Data, @LastUpdateDate OUTPUT, @IndicatorValue OUTPUT
 		EXEC sp_OADestroy @Object
     END TRY
@@ -91,11 +97,21 @@ BEGIN TRY
     END CATCH
 GO
 
+/*
 -- testing...
-DECLARE @LastUpdateAt DATETIME;
+DECLARE @LastUpdateAt   DATETIME;
 DECLARE @IndicatorValue DECIMAL(12, 4);
-DECLARE @IndicatorId INT = 317; 
+DECLARE @IndicatorId    INT = 317;
+DECLARE @StartDate      DATE = GETDATE();
+DECLARE @EndDate        DATE = GETDATE();
 
-EXEC getExchangeRateFromBCCR @IndicatorId, @LastUpdateAt OUTPUT, @IndicatorValue OUTPUT;
+EXEC getExchangeRateFromBCCR 
+	@IndicatorId, 
+	@StartDate,
+	@EndDate,
+	@LastUpdateAt OUTPUT, 
+	@IndicatorValue OUTPUT;
 
-SELECT @LastUpdateAt as LastUpdatedDate, @IndicatorValue as IndicatorPrice
+SELECT  @LastUpdateAt as LastUpdatedDate, 
+		@IndicatorValue as IndicatorPrice;
+*/
