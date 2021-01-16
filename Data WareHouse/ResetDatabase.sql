@@ -25,7 +25,7 @@ BEGIN
 			-- sql to reset the identity value and delete all the rows for any table
 			DECLARE @statement NVARCHAR(200) = 
 				CONCAT(
-					'DBCC CHECKIDENT ('+CHAR(39)+@table_name+CHAR(39)+', RESEED, 1);',
+					'DBCC CHECKIDENT ('+CHAR(39)+@table_name+CHAR(39)+', RESEED, 0);',
 					'DELETE FROM ', @table_name, ';'
 				);
 		
@@ -47,7 +47,7 @@ BEGIN
 	BEGIN TRY
 		DECLARE @sql NVARCHAR(MAX) =
 			CONCAT('DELETE FROM ', @TableName, ';',
-				   'DBCC CHECKIDENT(', CHAR(39), @TableName, CHAR(39), ', RESEED, 1);'
+				   'DBCC CHECKIDENT(', CHAR(39), @TableName, CHAR(39), ', RESEED, 0);'
 			);
 
 		EXEC sp_sqlexec @sql;
