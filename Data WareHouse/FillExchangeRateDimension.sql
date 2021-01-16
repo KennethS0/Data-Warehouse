@@ -1,51 +1,53 @@
 
+USE [ROCKET-BD2]
+GO
 
 -- filling exchange dimension table with data from BCCR
-DECLARE @StartDate DATE = '01/01/2017';
-DECLARE @EndDate DATE = GETDATE();
+CREATE PROCEDURE FillExchangeDimension
+AS
+BEGIN
 
-DECLARE @UpdateDate DATE;
-DECLARE @Value DECIMAL(16, 4); -- dollar purchase and sale (317, 318)
-DECLARE @IndicatorId INT = 317; 
+	SET NOCOUNT ON
 
-DECLARE @Progress DECIMAL(6, 2) = 0.00;
-DECLARE @DateDiff_Days INT = 
-	ABS(DATEDIFF(day, @EndDate, @StartDate));
-DECLARE @Current DECIMAL(6, 2) = 0.00;
+	DELETE FROM DIM_EXCHANGE_RATE;
+	DBCC CHECKIDENT('DIM_EXCHANGE_RATE', Reseed, 1)
 
-DECLARE @CurrentDate DATE = @StartDate;
-WHILE DATEDIFF(day, @CurrentDate, @EndDate) != 0 
-	BEGIN
-		-- call the BCCR 
-		EXEC getExchangeRateFromBCCR 
-			@IndicatorId, 
-			@CurrentDate, 
-			@CurrentDate, 
-			@UpdateDate OUT, 
-			@Value OUT;
+	DECLARE @StartDate DATE = '01/01/2017';
+	DECLARE @EndDate DATE = GETDATE();
 
-		-- to avoid DOS alerts!?
-		WAITFOR DELAY '00:00:01'
+	DECLARE @UpdateDate DATE;
+	DECLARE @Purchase DECIMAL(10, 4), @Sell DECIMAL(10, 4); -- dollar purchase and sale (317, 318)
+	DECLARE @IndicatorId INT = 317; 
 
-		-- update progress
-		SET @Progress = ( @Current / @DateDiff_Days ) * 100.00;
-		PRINT( CAST(@Progress as NVARCHAR(MAX)) + '%\n');
-		SET @Current = @Current + 1;
+	DECLARE @CurrentDate DATE = @StartDate;
+	WHILE DATEDIFF(day, @CurrentDate, @EndDate) != 0 
+		BEGIN
+			-- call the BCCR for purchase
+			EXEC getExchangeRateFromBCCR 
+				317, 
+				@CurrentDate, 
+				@CurrentDate, 
+				@UpdateDate OUT, 
+				@Purchase OUT;
 
-		-- next one
-		SET @CurrentDate = DATEADD(day, 1, @CurrentDate);
-	END
+			WAITFOR DELAY '00:00:00.100'
 
-print(' Ready!');
+			-- call the BCCR for sell
+			EXEC getExchangeRateFromBCCR 
+				318, 
+				@CurrentDate, 
+				@CurrentDate, 
+				@UpdateDate OUT, 
+				@Sell OUT;
+		
+			INSERT INTO DIM_EXCHANGE_RATE(update_date, dollar_purchase_crc, dollar_sell_crc)
+			VALUES (@CurrentDate, @Purchase, @Sell)
 
-
-
-
-
-
-
-
-
+			-- next one
+			SET @CurrentDate = DATEADD(day, 1, @CurrentDate);
+		END
+	print(' Exchange Rate Dimension loaded!');
+END
 
 
 
