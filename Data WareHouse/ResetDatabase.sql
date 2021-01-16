@@ -38,3 +38,22 @@ BEGIN
 	CLOSE tbl_cursor
 	DEALLOCATE tbl_cursor
 END
+GO
+
+CREATE PROCEDURE ResetTable
+	@TableName NVARCHAR(40)
+AS
+BEGIN
+	BEGIN TRY
+		DECLARE @sql NVARCHAR(MAX) =
+			CONCAT('DELETE FROM ', @TableName, ';',
+				   'DBCC CHECKIDENT(', CHAR(39), @TableName, CHAR(39), ', RESEED, 1);'
+			);
+
+		EXEC sp_sqlexec @sql;
+		SELECT '(TABLE '+@TableName+' was resetted)'
+	END TRY
+	BEGIN CATCH
+		SELECT '(TABLE '+@TableName+' was not resetted, the action cannot be performed)'
+	END CATCH
+END
