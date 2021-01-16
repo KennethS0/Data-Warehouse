@@ -1,38 +1,33 @@
 USE [ROCKET-BD2]
 GO
 
-CREATE PROCEDURE TimeDimensionGeneration
-	@InitialDate DATE,
+CREATE PROCEDURE FillTimeDimension
+	@InitialDate DATE
 AS
+BEGIN
 
-INSERT INTO [DW_VENTAS_JOINS].[dbo].[DIM_TIME]
-SELECT 
-	T0.number+1
-	, DATEADD(DAY, T0.number, '2020-01-01')
-	, MONTH(DATEADD(DAY, T0.number, '2020-01-01'))
-	, RIGHT('0' + CAST(MONTH(DATEADD(DAY, T0.number, '2020-01-01')) as nvarchar(2)), 2)
-	, YEAR(DATEADD(DAY, T0.number, '2020-01-01') )
-	, DAY(DATEADD(DAY, T0.number, '2020-01-01') )
-	, DATEPART(qq, DATEADD(day, T0.number, '2020-01-01') )
-FROM master.dbo.spt_values T0 
-WHERE T0.type = 'P'
-ORDER BY T0.number
+	EXEC ResetTable 'DIM_TIME'
+
+	INSERT INTO DIM_TIME
+	SELECT
+		--T0.number+1
+		DATEADD(DAY, T0.number, @InitialDate)
+		, MONTH(DATEADD(DAY, T0.number, @InitialDate))
+		, RIGHT('0' + CAST(MONTH(DATEADD(DAY, T0.number, @InitialDate)) as nvarchar(2)), 2)
+		, YEAR(DATEADD(DAY, T0.number, @InitialDate) )
+		, DAY(DATEADD(DAY, T0.number, @InitialDate) )
+		, DATEPART(qq, DATEADD(day, T0.number, @InitialDate) )
+	FROM master.dbo.spt_values T0 
+	WHERE T0.type = 'P'
+	ORDER BY T0.number
+END
 
 
+EXEC FillTimeDimension '2017-01-01'
 
-CREATE TABLE test (
-	id INT
-)
+SELECT * FROM DIM_TIME ORDER BY DATE_VALUE ASC
 
-INSERT INTO test SELECT 
-T0.number + 1,
-MAX(T0.number + 1), MIN(T0.number + 1)
-FROM master.dbo.spt_values T0 
-WHERE T0.type = 'P' GROUP BY T0.type
 
-SELECT COUNT(T0.number), MAX(T0.number), MIN(T0.number) from master.dbo.spt_values T0 
-
-delete from test
 
 
 
