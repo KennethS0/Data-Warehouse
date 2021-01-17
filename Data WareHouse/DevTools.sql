@@ -20,7 +20,7 @@ BEGIN
 			BEGIN
 				-- sql to reset the identity value and delete all the rows for any table
 				DECLARE @statement NVARCHAR(200) = 
-						'SELECT count(*) from '+@table_name+';'
+						'SELECT '+CHAR(39)+@table_name+CHAR(39)+' as TableName, count(*) as Rows from '+@table_name+';'
 		
 				EXECUTE sp_executesql @statement;
 			END
