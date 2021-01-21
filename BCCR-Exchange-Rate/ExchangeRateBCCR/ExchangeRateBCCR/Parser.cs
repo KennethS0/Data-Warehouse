@@ -13,7 +13,10 @@ namespace ExchangeRateBCCR
         public Decimal value { get; set; }
 
         public Parser(String data) { this.data = data; }
-
+        
+        /// <summary>
+        ///     Extract the update date and the indicator value from the xml response from the web service
+        /// </summary>
         public void extract() {
 
             var xmlDocument = new XmlDocument();

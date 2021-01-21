@@ -20,6 +20,12 @@ namespace ExchangeRateBCCR
             this.date = date;
         }
 
+        /// <summary>
+        ///     Consume API to get the exchange rate values
+        ///     using the date, indicator id, token, email, name, ....
+        ///     from web service (BCCR)
+        /// </summary>
+        /// <returns></returns>
         public String consumeWebService()
         {
             try
