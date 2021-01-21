@@ -8,7 +8,7 @@ class SalesForm extends Component {
     
     constructor(props) {
         super(props);
-        this.state = {client: "", currency: "", items: [{}]}; // Initializes a list of items
+        this.state = {client: "", currency: "USD", items: [{}]}; // Initializes a list of items
 
         this.server = 'http://localhost:';
         this.port = '3000';
