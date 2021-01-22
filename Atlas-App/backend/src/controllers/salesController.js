@@ -9,7 +9,6 @@ const salesController = {};
 // Adds a new sale to the database.
 salesController.addSale = async(req, res) => {
     const newSale = new Sale(req.body);
-
     try {
         await newSale.save();
         res.status(201).send({newSale});
