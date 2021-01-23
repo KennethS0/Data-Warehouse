@@ -8,7 +8,7 @@ class SalesForm extends Component {
     
     constructor(props) {
         super(props);
-        this.state = {client: "", currency: "", items: [{}]}; // Initializes a list of items
+        this.state = {client: "", salesman: '', currency: "USD", items: [{}]}; // Initializes a list of items
 
         this.server = 'http://localhost:';
         this.port = '3000';
@@ -52,8 +52,8 @@ class SalesForm extends Component {
 
     // Changes the value of a specific item (FLOAT)
     handleItemFloatChange(index, event) {
-        // Allows numbers with only two decimal points
-        const re =  /^\d*\.?(?:\d{1,2})?$/;
+        // Allows numbers with only four decimal points
+        const re =  /^\d*\.?(?:\d{1,4})?$/;
 
         let items = [...this.state.items]; // Gets every value
         const {name, value} = event.target;
@@ -78,7 +78,7 @@ class SalesForm extends Component {
     }
 
 
-    // Client code
+    // Client Code
     handleClientChange(event) {
         const re = /^[0-9\b]+$/;
 
@@ -87,7 +87,16 @@ class SalesForm extends Component {
         }
     }
 
+    // Salesman Code
+    handleSalesmanChange(event) {
+        const re = /^[0-9\b]+$/;
 
+        if ((event.target.value === '' || re.test(event.target.value))) {
+            this.setState({salesman: event.target.value});
+        }
+    }
+
+    // Currency
     handleCurrencyChange(event) {
         this.setState({currency: event.target.value});
     }
@@ -102,23 +111,29 @@ class SalesForm extends Component {
         };
 
         let items = [...this.state.items];
-        let final_amount = 0;
 
         const clientCode = 'C' + (this.state.client+'').padStart(6,'0');
+        
+        // Changes salesman if its not found
+        if (this.state.salesman === '') this.setState({salesman: -1});
 
         // Calculate item_total and sale_total
         items.forEach(data => {
             // Code
-            data["item"] = 'A' + (data.item+'').padStart(6,'0');
+            data["item_code"] = 'A' + (data.item_code+'').padStart(6,'0');
 
-            // Line total
-            let total = data.amount * data.unitPrice * (1 + data.tax / 100);
-            data["item_total"] = total;
-            final_amount += total;
+            // Tax Correction
+            data["tax_percentage"] = data.tax_percentage / 100;
+
+            // Untaxed Item Total
+            data["untaxed_item_total"] = data.amount * data.unit_price;
+
+            // Total Tax Amount
+            data["tax_total"] = data.untaxed_item_total * data.tax_percentage;
         });
 
         // Once the state is changed the data is uploaded to the database
-        this.setState({client: clientCode, items, sale_total: final_amount}, () => {
+        this.setState({client: clientCode, items}, () => {
                 axios.post(this.server + this.port + '/sales', this.state)
                 .then(res => console.log(res.data));
         });   
@@ -130,16 +145,16 @@ class SalesForm extends Component {
         return this.state.items.map((data, index) =>
             <div key={index} className="itemData">
                 <p>Item Code</p> 
-                <input required name="item" type="text" value={data.item || ""} onChange={this.handleItemCodeChange.bind(this, index)}></input>
+                <input required name="item_code" type="text" value={data.item_code || ""} onChange={this.handleItemCodeChange.bind(this, index)}></input>
 
                 <p>Unit Price</p>
-                <input required name="unitPrice" type="text" value={data.unitPrice || ""} onChange={this.handleItemFloatChange.bind(this, index)}></input>
+                <input required name="unit_price" type="text" value={data.unit_price || ""} onChange={this.handleItemFloatChange.bind(this, index)}></input>
 
                 <p>Amount</p>
                 <input required name="amount" type="text" value={data.amount || ""} onChange={this.handleItemIntChange.bind(this, index)}></input>
 
-                <p>Tax</p>
-                <input required name="tax" type="text" value={data.tax || ""} onChange={this.handleItemFloatChange.bind(this, index)}></input>
+                <p>Tax Percentage</p>
+                <input required name="tax_percentage" type="text" value={data.tax_percentage || ""} onChange={this.handleItemFloatChange.bind(this, index)}></input>
 
                 <input required type="button" value="Remove" onClick={this.removeItem.bind(this, index)}></input>
                 <hr />
@@ -165,6 +180,15 @@ class SalesForm extends Component {
                     </div>
 
                     <div className="headerField">
+                        <p>Salesman</p> 
+                        <input
+                            name="salesman" 
+                            type="text" 
+                            value={this.state.salesman} 
+                            onChange={this.handleSalesmanChange.bind(this)}></input>
+                    </div>
+                    
+                    <div className="headerField">
                         <p>Currency</p>
 
                         <select value={this.state.currency} onChange={this.handleCurrencyChange.bind(this)}>
@@ -173,7 +197,7 @@ class SalesForm extends Component {
                             ))}
                         </select>
                     </div>
-                    
+
                 </div>
                 
                 <div className="main">

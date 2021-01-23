@@ -20,16 +20,21 @@ const saleSchema = new Schema (
             minlength: 3,
             maxlength: 3
         },
+        
+        salesman: {
+            type: Number,
+            required: true
+        },
 
         items: [
             {
-                item: {
+                item_code: {
                     type: String,
                     required: true,
                     minlength: 7,
                     maxlength: 7
                 },
-                unitPrice: {
+                unit_price: {
                     type: Number,
                     required: true
                 },
@@ -37,21 +42,20 @@ const saleSchema = new Schema (
                     type: Number,
                     required: true
                 },
-                tax: {
+                tax_percentage: { // Percentage
                     type: Number,
                     required: true
                 },
-                item_total: {
+                untaxed_item_total: { // unitPrice * amount
+                    type: Number,
+                    required: true
+                },
+                tax_total: { // untaxed_item_total * (1 + tax_percentage/100)
                     type: Number,
                     required: true
                 }
             }
-        ],
-
-        sale_total: {
-            type: Number,
-            required: true
-        }
+        ]
     },
     {
         versionKey: false, 
