@@ -1,7 +1,7 @@
 SELECT 
 	T1.client,
 	T1.salesman,
-	T1.createdAt,
+	CAST(T1.createdAt as DATE) date,
 	T1.currency,
 	T3.item_code,
 	T3.unit_price,
@@ -16,3 +16,4 @@ FROM [dbo].[sales] T1
 
 	INNER JOIN [dbo].sales_items_Object T3
 	ON T3.ID = T2.Object_fk
+
