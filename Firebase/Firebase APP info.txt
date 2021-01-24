@@ -21,3 +21,10 @@
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 </script>
+
+
+**** instalation commmands on the terminal 
+
+npm i firebase-tools -g
+
+firebase init
