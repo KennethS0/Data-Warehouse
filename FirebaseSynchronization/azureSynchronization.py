@@ -1,6 +1,53 @@
-import pyodbc
+
+
+try:
+    import pyrebase
+    import pyodbc
+except:
+    import os
+    os.system("pip install pyrebase")
+    os.system("pip install pyodbc")
+    import pyrebase
+    import pyodbc
+
+
+#------------ Firebase configuration info and variables
+    
+firebaseConfig = {
+    "apiKey": "AIzaSyDqNnwTFcJRajoYDqpLpG723BlES4AWuZA",
+    "authDomain": "projecto-bd2.firebaseapp.com",
+    "databaseURL": "https://projecto-bd2-default-rtdb.firebaseio.com",
+    "projectId": "projecto-bd2",
+    "storageBucket": "projecto-bd2.appspot.com",
+    "messagingSenderId": "685931296708",
+    "appId": "1:685931296708:web:d8f2df56f1db2352de5691",
+    "measurementId": "G-JEQ8WF6L2J"
+};
+
+firebase = pyrebase.initialize_app(firebaseConfig)
+db = firebase.database()
+
+rootRef = db.child('/salesgoal_col/');
+
+#------------ Methods
+
+def getFirebaseData():
+
+    data = {}
+    info = rootRef.get()
+
+    for task in info.each():
+        data[task.key()] = task.val()
+
+    return data
+
+#------------ Azure configuration info and variables
 
 connection_string = 'Driver=ODBC Driver 17 for SQL Server;Server=tcp:rocket-bd2.database.windows.net,1433;Database=ROCKET-BD2;Uid=rocket-admin;Pwd=2020-bd2-2020;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
+
+sales_goals = getFirebaseData()
+
+#------------ Methods
 
 def try_upload_sales_goal( sales_goal_rows ):
     
@@ -63,18 +110,6 @@ def try_upload_sales_goal( sales_goal_rows ):
     except Exception as e:
         print(f"\nSomething went wrong with database connection: \n{e}")
 
-# test
-obj = {
-    "20207Bombillo25" : 
-        {
-            "amount": "3000.98", 
-            "brand": "aaaaaaaaaaaa", 
-            "code": "20207Bombillo25", 
-            "month": "12", 
-            "salesperson": "-1", 
-            "year": "2020"
-        }
-    }
 
-data = obj
-try_upload_sales_goal(data)
+
+try_upload_sales_goal(sales_goals)
