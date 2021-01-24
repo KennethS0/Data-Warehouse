@@ -10,12 +10,10 @@ logging.basicConfig(filename=os.getcwd()+'//Mongo-Sharding//uploadedData.log', l
 # Thread that is checking if there is a CSV or JSON file into dataFiles folder
 # if there is a file then is processed, imported and moved to processedFiles folder
 def checking():
-    csvProcessed = False
-    jsonProcessed = False
     pathToCheck = os.getcwd()+"//Mongo-Sharding//dataFiles"
     pathToMove = os.getcwd()+"//Mongo-Sharding//processedFiles"
     
-    while not csvProcessed or not jsonProcessed:
+    while True:
 
         directory = os.listdir(pathToCheck) 
 
@@ -31,15 +29,13 @@ def checking():
 
         for f in directory:
             filePath = pathToCheck+"//"+f
-            if f.endswith('.csv') and not csvProcessed:
+            if f.endswith('.csv'):
                 fm.modifyCSV(filePath)
                 os.replace(filePath, pathToMove+"//"+f)
-                csvProcessed = True
                 callMongoImport(pathToMove+"//"+f, "--headerline","json")
-            elif (f.endswith('.txt') or f.endswith('.json')) and not jsonProcessed:
+            elif (f.endswith('.txt') or f.endswith('.json')):
                 fm.modifyJSON(filePath)
                 os.replace(filePath, pathToMove+"//"+f)
-                jsonProcessed = True
                 callMongoImport(pathToMove+"//"+f,"--jsonArray","json")
 
 # Calls the MongoImport command with the corresponding parameters and data
