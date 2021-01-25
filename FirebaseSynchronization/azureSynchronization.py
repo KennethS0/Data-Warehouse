@@ -22,9 +22,6 @@ def try_upload_sales_goal( sales_goal_rows ):
         cursor = conn.cursor()
         successful_uploads = 0
     
-        print(sales_goal_rows.items())
-        pass
-    
         # for each row insert in db
         for _, sg in sales_goal_rows.items():
             
@@ -41,13 +38,7 @@ def try_upload_sales_goal( sales_goal_rows ):
                 sales_goal = Decimal(sg["amount"])
                 sales_goal_code = sg["code"]
                 
-                # upsert into sales goal fact table (crud app)
-                command  = f"IF EXISTS (SELECT * from FACT_SALES_GOAL where sales_goal_code='{sales_goal_code}')\n"
-                command += f"UPDATE FACT_SALES_GOAL\n"
-                command += f"SET year={year}, month_numeric={month_numeric}, sales_person_id='{sales_person_id}', brand_code='{brand_code}', sales_goal={sales_goal}, sales_goal_code='{sales_goal_code}'\n"
-                command += f"WHERE sales_goal_code='{sales_goal_code}';\n"
-                command += f"ELSE \n"
-                command += f"INSERT INTO FACT_SALES_GOAL(year, month_numeric, sales_person_id, brand_code, sales_goal, sales_goal_code) \n"
+                command = f"INSERT INTO FACT_SALES_GOAL(year, month_numeric, sales_person_id, brand_code, sales_goal, sales_goal_code) \n"
                 command += f"VALUES({year}, {month_numeric}, '{sales_person_id}', '{brand_code}', {sales_goal}, '{sales_goal_code}');\n"
                 
                 cursor.execute(command)
@@ -55,9 +46,9 @@ def try_upload_sales_goal( sales_goal_rows ):
                 successful_uploads += 1
                 
             except Exception as e:
-                print(f"Error with {sg}:\n{e}")
+                pass
                     
-        print (f"Synchronization {float(successful_uploads)/float(len(sales_goal_rows))*100.0} %\n")
+        print (f"Synchronization {float(successful_uploads)/float(len(sales_goal_rows))*100.0} % => {successful_uploads} of {len(data)}\n")
         conn.close()
         
     except Exception as e:
