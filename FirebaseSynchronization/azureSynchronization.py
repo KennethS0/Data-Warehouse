@@ -95,7 +95,7 @@ def try_upload_sales_goal( sales_goal_rows ):
             except Exception as e:
                 pass
                     
-        print (f"Synchronization {float(successful_uploads)/float(len(sales_goal_rows))*100.0} % => {successful_uploads} of {len(data)}\n")
+        print (f"Synchronization {float(successful_uploads)/float(len(sales_goal_rows))*100.0} % => {successful_uploads} of {len(sales_goal_rows)}\n")
         conn.close()
         
     except Exception as e:
