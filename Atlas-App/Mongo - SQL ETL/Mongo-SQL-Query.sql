@@ -8,7 +8,8 @@ SELECT
 	T3.amount,
 	T3.tax_percentage,
 	T3.untaxed_item_total,
-	T3.tax_total
+	T3.tax_total,
+	T3.profit
 FROM [dbo].[sales] T1
 
 	INNER JOIN [dbo].sales_items T2

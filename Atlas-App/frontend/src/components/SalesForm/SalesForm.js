@@ -156,6 +156,9 @@ class SalesForm extends Component {
                 <p>Tax Percentage</p>
                 <input required name="tax_percentage" type="text" value={data.tax_percentage || ""} onChange={this.handleItemFloatChange.bind(this, index)}></input>
 
+                <p>Profit</p>
+                <input required name="profit" type="text" value={data.profit || ""} onChange={this.handleItemFloatChange.bind(this, index)}></input>
+
                 <input required type="button" value="Remove" onClick={this.removeItem.bind(this, index)}></input>
                 <hr />
             </div>
