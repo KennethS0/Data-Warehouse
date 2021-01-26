@@ -35,7 +35,7 @@ const saleSchema = new Schema (
                     maxlength: 7
                 },
                 unit_price: {
-                    type: Number,
+                    type: mongoose.Types.Decimal128,
                     required: true
                 },
                 amount: {
@@ -43,15 +43,19 @@ const saleSchema = new Schema (
                     required: true
                 },
                 tax_percentage: { // Percentage
-                    type: Number,
+                    type: mongoose.Types.Decimal128,
                     required: true
                 },
                 untaxed_item_total: { // unitPrice * amount
-                    type: Number,
+                    type: mongoose.Types.Decimal128,
                     required: true
                 },
                 tax_total: { // untaxed_item_total * (1 + tax_percentage/100)
-                    type: Number,
+                    type: mongoose.Types.Decimal128,
+                    required: true
+                },
+                profit: {
+                    type: mongoose.Types.Decimal128,
                     required: true
                 }
             }

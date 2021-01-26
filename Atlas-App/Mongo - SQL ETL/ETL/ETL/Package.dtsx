@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="36"
-  DTS:VersionGUID="{2F2D1A5C-2B33-418A-8828-4DA9F3447055}">
+  DTS:VersionBuild="41"
+  DTS:VersionGUID="{1F728140-AB0F-47E1-B439-DB7F6056BEAF}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -27,16 +27,6 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[DESKTOP-UURQJSC.ROCKET-BD2]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{3BD09A12-7152-4474-829D-E1D3E93A50E4}"
-      DTS:ObjectName="DESKTOP-UURQJSC.ROCKET-BD2">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=DESKTOP-UURQJSC;Initial Catalog=ROCKET-BD2;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[tcp:rocket-bd2.database.windows.net,1433.ROCKET-BD2.rocket-admin]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{A8342E9D-ABAB-43A9-B73D-CCF867E1E516}"
@@ -47,7 +37,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZEesLlMJA0WNkk8Dvuo//AAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACYhG0rhsZOYuwEgzbfTFxMfNEqtboPcfIXsj+IWMgkmwAAAAAOgAAAAAIAACAAAAB77VssW5POFIkbk54+/Cpt7gIKWLSKv+RykZDIA8G2niAAAADRae6ZigwvlQGl9QnoNSVqq/Kp0M7EhOL2lGvsEBiI6EAAAAAWTYnRPE74JQ14EWhLHx/vULDcND3LbmLMLynBUbuwEzDsqyB8jxh7ad0NF46uR5FXmr07IUV2l5/R6qc5Yj4J</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZEesLlMJA0WNkk8Dvuo//AAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADsiS1q/2VYGD0S3+6sH/BWJFz2uh2lH7Yr7Gy3oXMUbAAAAAAOgAAAAAIAACAAAAAi95xUVNTbvlOYEkrCrDJFAyrgp4U2YvrUfFIBNeqHqyAAAABL6mWfVeE6h+d6UQ2PZp9Ctpo5Jp5VQpqeJLi/Gu47i0AAAAAdqTNv8uImz4AWAYAz3f2JNGO4bRDuV7isPziwRLPIYyVwGf1+yIJ3Gah4/HhVKEr4KYqli/1KN7eWFwvraoEm</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -138,8 +128,8 @@ where [refTable].[sn_code] = ?</property>
               <connections>
                 <connection
                   refId="Package\Data Insertion\CLIENT Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-UURQJSC.ROCKET-BD2]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-UURQJSC.ROCKET-BD2]"
+                  connectionManagerID="Package.ConnectionManagers[tcp:rocket-bd2.database.windows.net,1433.ROCKET-BD2.rocket-admin]"
+                  connectionManagerRefId="Package.ConnectionManagers[tcp:rocket-bd2.database.windows.net,1433.ROCKET-BD2.rocket-admin]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -228,6 +218,124 @@ where [refTable].[sn_code] = ?</property>
               </outputs>
             </component>
             <component
+              refId="Package\Data Insertion\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Insertion\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Insertion\Conditional Split.Inputs[Conditional Split Input].Columns[currency_corrected]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="currency_corrected"
+                      lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[currency_corrected]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Insertion\Conditional Split.Outputs[CRC]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="CRC"
+                  synchronousInputId="Package\Data Insertion\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[currency_corrected]} == "CRC"</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">currency_corrected == "CRC"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Insertion\Conditional Split.Outputs[USD]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="USD"
+                  synchronousInputId="Package\Data Insertion\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[currency_corrected]} == "USD"</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">currency_corrected == "USD"</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Insertion\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Data Insertion\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Insertion\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Data Insertion\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Insertion\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Insertion\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Insertion\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Insertion\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Data Insertion\CRC Calc"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
@@ -254,9 +362,14 @@ where [refTable].[sn_code] = ?</property>
                       lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[tax_total]" />
                     <inputColumn
                       refId="Package\Data Insertion\CRC Calc.Inputs[Derived Column Input].Columns[untaxed_item_total]"
-                      cachedDataType="i4"
+                      cachedDataType="r8"
                       cachedName="untaxed_item_total"
                       lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[untaxed_item_total]" />
+                    <inputColumn
+                      refId="Package\Data Insertion\CRC Calc.Inputs[Derived Column Input].Columns[profit]"
+                      cachedDataType="r8"
+                      cachedName="profit"
+                      lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[profit]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -315,6 +428,28 @@ where [refTable].[sn_code] = ?</property>
                           name="FriendlyExpression">untaxed_item_total * dollar_sell_crc</property>
                       </properties>
                     </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Insertion\CRC Calc.Outputs[Derived Column Output].Columns[CRC_PROFIT]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Insertion\CRC Calc.Outputs[Derived Column Output].Columns[CRC_PROFIT]"
+                      name="CRC_PROFIT"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[profit]} * #{Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[dollar_sell_crc]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">profit * dollar_sell_crc</property>
+                      </properties>
+                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -336,124 +471,6 @@ where [refTable].[sn_code] = ?</property>
                       refId="Package\Data Insertion\CRC Calc.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Data Insertion\CRC Calc.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Data Insertion\Currency Split"
-              componentClassID="Microsoft.ConditionalSplit"
-              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
-              name="Currency Split"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\Data Insertion\Currency Split.Inputs[Conditional Split Input]"
-                  description="Input to the Conditional Split Transformation"
-                  name="Conditional Split Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Data Insertion\Currency Split.Inputs[Conditional Split Input].Columns[currency_corrected]"
-                      cachedDataType="wstr"
-                      cachedLength="3"
-                      cachedName="currency_corrected"
-                      lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[currency_corrected]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Data Insertion\Currency Split.Outputs[USD]"
-                  description="Output 1 of the Conditional Split Transformation"
-                  errorOrTruncationOperation="Computation"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="USD"
-                  synchronousInputId="Package\Data Insertion\Currency Split.Inputs[Conditional Split Input]"
-                  truncationRowDisposition="FailComponent">
-                  <properties>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[currency_corrected]} == "USD"</property>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the friendly version of the expression. This expression version uses column names."
-                      expressionType="Notify"
-                      name="FriendlyExpression">currency_corrected == "USD"</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
-                      name="EvaluationOrder">0</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Data Insertion\Currency Split.Outputs[CRC]"
-                  description="Output 2 of the Conditional Split Transformation"
-                  errorOrTruncationOperation="Computation"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="CRC"
-                  synchronousInputId="Package\Data Insertion\Currency Split.Inputs[Conditional Split Input]"
-                  truncationRowDisposition="FailComponent">
-                  <properties>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[currency_corrected]} == "CRC"</property>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the friendly version of the expression. This expression version uses column names."
-                      expressionType="Notify"
-                      name="FriendlyExpression">currency_corrected == "CRC"</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
-                      name="EvaluationOrder">1</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Data Insertion\Currency Split.Outputs[Conditional Split Default Output]"
-                  description="Default Output of the Conditional Split Transformation"
-                  exclusionGroup="1"
-                  name="Conditional Split Default Output"
-                  synchronousInputId="Package\Data Insertion\Currency Split.Inputs[Conditional Split Input]">
-                  <properties>
-                    <property
-                      dataType="System.Boolean"
-                      name="IsDefaultOut">true</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Data Insertion\Currency Split.Outputs[Conditional Split Error Output]"
-                  description="Error Output of the Conditional Split Transformation"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Conditional Split Error Output"
-                  synchronousInputId="Package\Data Insertion\Currency Split.Inputs[Conditional Split Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Data Insertion\Currency Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Data Insertion\Currency Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Data Insertion\Currency Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Data Insertion\Currency Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -488,6 +505,11 @@ where [refTable].[sn_code] = ?</property>
                       cachedDataType="nText"
                       cachedName="currency"
                       lineageId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].Columns[currency]" />
+                    <inputColumn
+                      refId="Package\Data Insertion\DATA CORRECTION.Inputs[Data Conversion Input].Columns[salesman]"
+                      cachedDataType="i4"
+                      cachedName="salesman"
+                      lineageId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].Columns[salesman]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -556,6 +578,27 @@ where [refTable].[sn_code] = ?</property>
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
                           name="SourceInputColumnLineageID">#{Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].Columns[currency]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Insertion\DATA CORRECTION.Outputs[Data Conversion Output].Columns[corrected_salesman]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Data Insertion\DATA CORRECTION.Outputs[Data Conversion Output].Columns[corrected_salesman]"
+                      name="corrected_salesman"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].Columns[salesman]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -678,7 +721,7 @@ where [refTable].[sn_code] = ?</property>
                     </inputColumn>
                     <inputColumn
                       refId="Package\Data Insertion\DATA Date Sort.Inputs[Sort Input].Columns[unit_price]"
-                      cachedDataType="i4"
+                      cachedDataType="r8"
                       cachedName="unit_price"
                       lineageId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].Columns[unit_price]">
                       <properties>
@@ -726,7 +769,7 @@ where [refTable].[sn_code] = ?</property>
                     </inputColumn>
                     <inputColumn
                       refId="Package\Data Insertion\DATA Date Sort.Inputs[Sort Input].Columns[untaxed_item_total]"
-                      cachedDataType="i4"
+                      cachedDataType="r8"
                       cachedName="untaxed_item_total"
                       lineageId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].Columns[untaxed_item_total]">
                       <properties>
@@ -887,6 +930,22 @@ where [refTable].[sn_code] = ?</property>
                           name="NewSortKeyPosition">0</property>
                       </properties>
                     </inputColumn>
+                    <inputColumn
+                      refId="Package\Data Insertion\DATA Date Sort.Inputs[Sort Input].Columns[profit]"
+                      cachedDataType="r8"
+                      cachedName="profit"
+                      lineageId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].Columns[profit]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -951,7 +1010,7 @@ where [refTable].[sn_code] = ?</property>
                     </outputColumn>
                     <outputColumn
                       refId="Package\Data Insertion\DATA Date Sort.Outputs[Sort Output].Columns[unit_price]"
-                      dataType="i4"
+                      dataType="r8"
                       lineageId="Package\Data Insertion\DATA Date Sort.Outputs[Sort Output].Columns[unit_price]"
                       name="unit_price">
                       <properties>
@@ -990,7 +1049,7 @@ where [refTable].[sn_code] = ?</property>
                     </outputColumn>
                     <outputColumn
                       refId="Package\Data Insertion\DATA Date Sort.Outputs[Sort Output].Columns[untaxed_item_total]"
-                      dataType="i4"
+                      dataType="r8"
                       lineageId="Package\Data Insertion\DATA Date Sort.Outputs[Sort Output].Columns[untaxed_item_total]"
                       name="untaxed_item_total">
                       <properties>
@@ -1120,6 +1179,19 @@ where [refTable].[sn_code] = ?</property>
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
                           name="SortColumnId">#{Package\Data Insertion\SALESMAN Lookup.Outputs[Lookup Match Output].Columns[salesman_dim_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Insertion\DATA Date Sort.Outputs[Sort Output].Columns[profit]"
+                      dataType="r8"
+                      lineageId="Package\Data Insertion\DATA Date Sort.Outputs[Sort Output].Columns[profit]"
+                      name="profit">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].Columns[profit]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -1481,8 +1553,8 @@ where [refTable].[aditional_id] = ?</property>
               <connections>
                 <connection
                   refId="Package\Data Insertion\ITEM Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-UURQJSC.ROCKET-BD2]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-UURQJSC.ROCKET-BD2]"
+                  connectionManagerID="Package.ConnectionManagers[tcp:rocket-bd2.database.windows.net,1433.ROCKET-BD2.rocket-admin]"
+                  connectionManagerRefId="Package.ConnectionManagers[tcp:rocket-bd2.database.windows.net,1433.ROCKET-BD2.rocket-admin]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -1609,6 +1681,11 @@ where [refTable].[aditional_id] = ?</property>
                       cachedSortKeyPosition="1"
                       lineageId="Package\Data Insertion\DATA Date Sort.Outputs[Sort Output].Columns[date]" />
                     <inputColumn
+                      refId="Package\Data Insertion\Merge Join.Inputs[Merge Join Left Input].Columns[profit]"
+                      cachedDataType="r8"
+                      cachedName="profit"
+                      lineageId="Package\Data Insertion\DATA Date Sort.Outputs[Sort Output].Columns[profit]" />
+                    <inputColumn
                       refId="Package\Data Insertion\Merge Join.Inputs[Merge Join Left Input].Columns[salesman_dim_id]"
                       cachedDataType="i4"
                       cachedName="salesman_dim_id"
@@ -1641,14 +1718,9 @@ where [refTable].[aditional_id] = ?</property>
                       lineageId="Package\Data Insertion\DATA Date Sort.Outputs[Sort Output].Columns[tax_total]" />
                     <inputColumn
                       refId="Package\Data Insertion\Merge Join.Inputs[Merge Join Left Input].Columns[untaxed_item_total]"
-                      cachedDataType="i4"
+                      cachedDataType="r8"
                       cachedName="untaxed_item_total"
                       lineageId="Package\Data Insertion\DATA Date Sort.Outputs[Sort Output].Columns[untaxed_item_total]" />
-                    <inputColumn
-                      refId="Package\Data Insertion\Merge Join.Inputs[Merge Join Left Input].Columns[tax_percentage]"
-                      cachedDataType="r8"
-                      cachedName="tax_percentage"
-                      lineageId="Package\Data Insertion\DATA Date Sort.Outputs[Sort Output].Columns[tax_percentage]" />
                     <inputColumn
                       refId="Package\Data Insertion\Merge Join.Inputs[Merge Join Left Input].Columns[amount]"
                       cachedDataType="i4"
@@ -1656,7 +1728,7 @@ where [refTable].[aditional_id] = ?</property>
                       lineageId="Package\Data Insertion\DATA Date Sort.Outputs[Sort Output].Columns[amount]" />
                     <inputColumn
                       refId="Package\Data Insertion\Merge Join.Inputs[Merge Join Left Input].Columns[unit_price]"
-                      cachedDataType="i4"
+                      cachedDataType="r8"
                       cachedName="unit_price"
                       lineageId="Package\Data Insertion\DATA Date Sort.Outputs[Sort Output].Columns[unit_price]" />
                   </inputColumns>
@@ -1674,17 +1746,17 @@ where [refTable].[aditional_id] = ?</property>
                       cachedSortKeyPosition="1"
                       lineageId="Package\Data Insertion\Date Sort.Outputs[Sort Output].Columns[update_date]" />
                     <inputColumn
+                      refId="Package\Data Insertion\Merge Join.Inputs[Merge Join Right Input].Columns[dim_id]"
+                      cachedDataType="i4"
+                      cachedName="dim_id"
+                      lineageId="Package\Data Insertion\Date Sort.Outputs[Sort Output].Columns[dim_id]" />
+                    <inputColumn
                       refId="Package\Data Insertion\Merge Join.Inputs[Merge Join Right Input].Columns[dollar_sell_crc]"
                       cachedDataType="numeric"
                       cachedName="dollar_sell_crc"
                       cachedPrecision="20"
                       cachedScale="4"
                       lineageId="Package\Data Insertion\Date Sort.Outputs[Sort Output].Columns[dollar_sell_crc]" />
-                    <inputColumn
-                      refId="Package\Data Insertion\Merge Join.Inputs[Merge Join Right Input].Columns[dim_id]"
-                      cachedDataType="i4"
-                      cachedName="dim_id"
-                      lineageId="Package\Data Insertion\Date Sort.Outputs[Sort Output].Columns[dim_id]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -1695,31 +1767,16 @@ where [refTable].[aditional_id] = ?</property>
                   name="Merge Join Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[dollar_sell_crc]"
-                      dataType="numeric"
-                      lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[dollar_sell_crc]"
-                      name="dollar_sell_crc"
-                      precision="20"
-                      scale="4">
+                      refId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[profit]"
+                      dataType="r8"
+                      lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[profit]"
+                      name="profit">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Data Insertion\Merge Join.Inputs[Merge Join Right Input].Columns[dollar_sell_crc]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[exchange_dim_id]"
-                      dataType="i4"
-                      lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[exchange_dim_id]"
-                      name="exchange_dim_id">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Data Insertion\Merge Join.Inputs[Merge Join Right Input].Columns[dim_id]}</property>
+                          name="InputColumnID">#{Package\Data Insertion\Merge Join.Inputs[Merge Join Left Input].Columns[profit]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -1803,7 +1860,7 @@ where [refTable].[aditional_id] = ?</property>
                     </outputColumn>
                     <outputColumn
                       refId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[untaxed_item_total]"
-                      dataType="i4"
+                      dataType="r8"
                       lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[untaxed_item_total]"
                       name="untaxed_item_total">
                       <properties>
@@ -1812,19 +1869,6 @@ where [refTable].[aditional_id] = ?</property>
                           dataType="System.Int32"
                           description="The input column associated with this output column"
                           name="InputColumnID">#{Package\Data Insertion\Merge Join.Inputs[Merge Join Left Input].Columns[untaxed_item_total]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[tax_percentage]"
-                      dataType="r8"
-                      lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[tax_percentage]"
-                      name="tax_percentage">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="The input column associated with this output column"
-                          name="InputColumnID">#{Package\Data Insertion\Merge Join.Inputs[Merge Join Left Input].Columns[tax_percentage]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -1842,7 +1886,7 @@ where [refTable].[aditional_id] = ?</property>
                     </outputColumn>
                     <outputColumn
                       refId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[unit_price]"
-                      dataType="i4"
+                      dataType="r8"
                       lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[unit_price]"
                       name="unit_price">
                       <properties>
@@ -1851,6 +1895,34 @@ where [refTable].[aditional_id] = ?</property>
                           dataType="System.Int32"
                           description="The input column associated with this output column"
                           name="InputColumnID">#{Package\Data Insertion\Merge Join.Inputs[Merge Join Left Input].Columns[unit_price]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[exchange_dim_id]"
+                      dataType="i4"
+                      lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[exchange_dim_id]"
+                      name="exchange_dim_id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Insertion\Merge Join.Inputs[Merge Join Right Input].Columns[dim_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[dollar_sell_crc]"
+                      dataType="numeric"
+                      lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[dollar_sell_crc]"
+                      name="dollar_sell_crc"
+                      precision="20"
+                      scale="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Data Insertion\Merge Join.Inputs[Merge Join Right Input].Columns[dollar_sell_crc]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -1893,7 +1965,8 @@ where [refTable].[aditional_id] = ?</property>
 	T3.amount,
 	T3.tax_percentage,
 	T3.untaxed_item_total,
-	T3.tax_total
+	T3.tax_total,
+	T3.profit
 FROM [dbo].[sales] T1
 
 	INNER JOIN [dbo].sales_items T2
@@ -1974,7 +2047,7 @@ FROM [dbo].[sales] T1
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].Columns[unit_price]"
-                      dataType="i4"
+                      dataType="r8"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].ExternalColumns[unit_price]"
@@ -2001,7 +2074,7 @@ FROM [dbo].[sales] T1
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].Columns[untaxed_item_total]"
-                      dataType="i4"
+                      dataType="r8"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].ExternalColumns[untaxed_item_total]"
@@ -2026,6 +2099,15 @@ FROM [dbo].[sales] T1
                       lineageId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].Columns[date]"
                       name="date"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].Columns[profit]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].ExternalColumns[profit]"
+                      lineageId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].Columns[profit]"
+                      name="profit"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -2047,7 +2129,7 @@ FROM [dbo].[sales] T1
                       name="item_code" />
                     <externalMetadataColumn
                       refId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].ExternalColumns[unit_price]"
-                      dataType="i4"
+                      dataType="r8"
                       name="unit_price" />
                     <externalMetadataColumn
                       refId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].ExternalColumns[amount]"
@@ -2059,16 +2141,20 @@ FROM [dbo].[sales] T1
                       name="tax_percentage" />
                     <externalMetadataColumn
                       refId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].ExternalColumns[untaxed_item_total]"
-                      dataType="i4"
+                      dataType="r8"
                       name="untaxed_item_total" />
                     <externalMetadataColumn
                       refId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].ExternalColumns[tax_total]"
-                      dataType="i4"
+                      dataType="r8"
                       name="tax_total" />
                     <externalMetadataColumn
                       refId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].ExternalColumns[date]"
                       dataType="dbDate"
                       name="date" />
+                    <externalMetadataColumn
+                      refId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].ExternalColumns[profit]"
+                      dataType="r8"
+                      name="profit" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -2103,7 +2189,7 @@ FROM [dbo].[sales] T1
                       name="item_code" />
                     <outputColumn
                       refId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Error Output].Columns[unit_price]"
-                      dataType="i4"
+                      dataType="r8"
                       lineageId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Error Output].Columns[unit_price]"
                       name="unit_price" />
                     <outputColumn
@@ -2118,14 +2204,19 @@ FROM [dbo].[sales] T1
                       name="tax_percentage" />
                     <outputColumn
                       refId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Error Output].Columns[untaxed_item_total]"
-                      dataType="i4"
+                      dataType="r8"
                       lineageId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Error Output].Columns[untaxed_item_total]"
                       name="untaxed_item_total" />
                     <outputColumn
                       refId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Error Output].Columns[tax_total]"
-                      dataType="i4"
+                      dataType="r8"
                       lineageId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Error Output].Columns[tax_total]"
                       name="tax_total" />
+                    <outputColumn
+                      refId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Error Output].Columns[profit]"
+                      dataType="r8"
+                      lineageId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Error Output].Columns[profit]"
+                      name="profit" />
                     <outputColumn
                       refId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -2240,14 +2331,8 @@ FROM [dbo].[sales] T1
                       externalMetadataColumnId="Package\Data Insertion\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sales_person_id]"
                       lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[salesman_dim_id]" />
                     <inputColumn
-                      refId="Package\Data Insertion\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[exchange_dim_id]"
-                      cachedDataType="i4"
-                      cachedName="exchange_dim_id"
-                      externalMetadataColumnId="Package\Data Insertion\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[exchange_rate_id]"
-                      lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[exchange_dim_id]" />
-                    <inputColumn
                       refId="Package\Data Insertion\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[untaxed_item_total]"
-                      cachedDataType="i4"
+                      cachedDataType="r8"
                       cachedName="untaxed_item_total"
                       externalMetadataColumnId="Package\Data Insertion\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sales_total]"
                       lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[untaxed_item_total]" />
@@ -2259,7 +2344,7 @@ FROM [dbo].[sales] T1
                       lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[tax_total]" />
                     <inputColumn
                       refId="Package\Data Insertion\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[unit_price]"
-                      cachedDataType="i4"
+                      cachedDataType="r8"
                       cachedName="unit_price"
                       externalMetadataColumnId="Package\Data Insertion\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sales_price]"
                       lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[unit_price]" />
@@ -2290,6 +2375,24 @@ FROM [dbo].[sales] T1
                       cachedScale="21"
                       externalMetadataColumnId="Package\Data Insertion\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sales_total_usd]"
                       lineageId="Package\Data Insertion\USD Calc.Outputs[Derived Column Output].Columns[USD_TOTAL]" />
+                    <inputColumn
+                      refId="Package\Data Insertion\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[USD_PROFIT]"
+                      cachedDataType="r8"
+                      cachedName="USD_PROFIT"
+                      externalMetadataColumnId="Package\Data Insertion\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sales_profit_usd]"
+                      lineageId="Package\Data Insertion\USD Calc.Outputs[Derived Column Output].Columns[USD_PROFIT]" />
+                    <inputColumn
+                      refId="Package\Data Insertion\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[profit]"
+                      cachedDataType="r8"
+                      cachedName="profit"
+                      externalMetadataColumnId="Package\Data Insertion\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sales_profit]"
+                      lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[profit]" />
+                    <inputColumn
+                      refId="Package\Data Insertion\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[exchange_dim_id]"
+                      cachedDataType="i4"
+                      cachedName="exchange_dim_id"
+                      externalMetadataColumnId="Package\Data Insertion\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[exchange_rate_id]"
+                      lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[exchange_dim_id]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -2498,7 +2601,7 @@ FROM [dbo].[sales] T1
                       lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[exchange_dim_id]" />
                     <inputColumn
                       refId="Package\Data Insertion\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[untaxed_item_total]"
-                      cachedDataType="i4"
+                      cachedDataType="r8"
                       cachedName="untaxed_item_total"
                       externalMetadataColumnId="Package\Data Insertion\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sales_total_usd]"
                       lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[untaxed_item_total]" />
@@ -2510,7 +2613,7 @@ FROM [dbo].[sales] T1
                       lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[tax_total]" />
                     <inputColumn
                       refId="Package\Data Insertion\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[unit_price]"
-                      cachedDataType="i4"
+                      cachedDataType="r8"
                       cachedName="unit_price"
                       externalMetadataColumnId="Package\Data Insertion\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sales_price]"
                       lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[unit_price]" />
@@ -2541,6 +2644,18 @@ FROM [dbo].[sales] T1
                       cachedScale="4"
                       externalMetadataColumnId="Package\Data Insertion\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sales_total]"
                       lineageId="Package\Data Insertion\CRC Calc.Outputs[Derived Column Output].Columns[CRC_TOTAL]" />
+                    <inputColumn
+                      refId="Package\Data Insertion\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[CRC_PROFIT]"
+                      cachedDataType="r8"
+                      cachedName="CRC_PROFIT"
+                      externalMetadataColumnId="Package\Data Insertion\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sales_profit]"
+                      lineageId="Package\Data Insertion\CRC Calc.Outputs[Derived Column Output].Columns[CRC_PROFIT]" />
+                    <inputColumn
+                      refId="Package\Data Insertion\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[profit]"
+                      cachedDataType="r8"
+                      cachedName="profit"
+                      externalMetadataColumnId="Package\Data Insertion\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sales_profit_usd]"
+                      lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[profit]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -2697,12 +2812,12 @@ where [refTable].[sales_person_code] = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="sales_person_code" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sales_person_name" dataType="DT_WSTR" length="150" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="commission_percentage" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="block_status" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="active_status" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sales_person_email" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="collector_status" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="promoter_status" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sales_person_type" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sales_channel" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="dim_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="sales_person_code" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sales_person_name" dataType="DT_WSTR" length="150" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="commission_percentage" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="block_status" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="active_status" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sales_person_email" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="collector_status" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="promoter_status" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sales_person_type" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="sales_channel" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="dim_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].Columns[salesman]};</property>
+                  name="ParameterMap">#{Package\Data Insertion\DATA CORRECTION.Outputs[Data Conversion Output].Columns[corrected_salesman]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -2715,8 +2830,8 @@ where [refTable].[sales_person_code] = ?</property>
               <connections>
                 <connection
                   refId="Package\Data Insertion\SALESMAN Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-UURQJSC.ROCKET-BD2]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-UURQJSC.ROCKET-BD2]"
+                  connectionManagerID="Package.ConnectionManagers[tcp:rocket-bd2.database.windows.net,1433.ROCKET-BD2.rocket-admin]"
+                  connectionManagerRefId="Package.ConnectionManagers[tcp:rocket-bd2.database.windows.net,1433.ROCKET-BD2.rocket-admin]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -2726,10 +2841,11 @@ where [refTable].[sales_person_code] = ?</property>
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Insertion\SALESMAN Lookup.Inputs[Lookup Input].Columns[salesman]"
-                      cachedDataType="i4"
-                      cachedName="salesman"
-                      lineageId="Package\Data Insertion\MONGO_MIGRATION DB Query.Outputs[OLE DB Source Output].Columns[salesman]">
+                      refId="Package\Data Insertion\SALESMAN Lookup.Inputs[Lookup Input].Columns[corrected_salesman]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="corrected_salesman"
+                      lineageId="Package\Data Insertion\DATA CORRECTION.Outputs[Data Conversion Output].Columns[corrected_salesman]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -2873,8 +2989,8 @@ where [refTable].[date_value] = ?</property>
               <connections>
                 <connection
                   refId="Package\Data Insertion\TIME Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-UURQJSC.ROCKET-BD2]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-UURQJSC.ROCKET-BD2]"
+                  connectionManagerID="Package.ConnectionManagers[tcp:rocket-bd2.database.windows.net,1433.ROCKET-BD2.rocket-admin]"
+                  connectionManagerRefId="Package.ConnectionManagers[tcp:rocket-bd2.database.windows.net,1433.ROCKET-BD2.rocket-admin]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -2975,22 +3091,27 @@ where [refTable].[date_value] = ?</property>
                   name="Derived Column Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Insertion\USD Calc.Inputs[Derived Column Input].Columns[dollar_sell_crc]"
-                      cachedDataType="numeric"
-                      cachedName="dollar_sell_crc"
-                      cachedPrecision="20"
-                      cachedScale="4"
-                      lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[dollar_sell_crc]" />
-                    <inputColumn
                       refId="Package\Data Insertion\USD Calc.Inputs[Derived Column Input].Columns[tax_total]"
                       cachedDataType="r8"
                       cachedName="tax_total"
                       lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[tax_total]" />
                     <inputColumn
                       refId="Package\Data Insertion\USD Calc.Inputs[Derived Column Input].Columns[untaxed_item_total]"
-                      cachedDataType="i4"
+                      cachedDataType="r8"
                       cachedName="untaxed_item_total"
                       lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[untaxed_item_total]" />
+                    <inputColumn
+                      refId="Package\Data Insertion\USD Calc.Inputs[Derived Column Input].Columns[profit]"
+                      cachedDataType="r8"
+                      cachedName="profit"
+                      lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[profit]" />
+                    <inputColumn
+                      refId="Package\Data Insertion\USD Calc.Inputs[Derived Column Input].Columns[dollar_sell_crc]"
+                      cachedDataType="numeric"
+                      cachedName="dollar_sell_crc"
+                      cachedPrecision="20"
+                      cachedScale="4"
+                      lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[dollar_sell_crc]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -3049,6 +3170,28 @@ where [refTable].[date_value] = ?</property>
                           name="FriendlyExpression">untaxed_item_total / dollar_sell_crc</property>
                       </properties>
                     </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Insertion\USD Calc.Outputs[Derived Column Output].Columns[USD_PROFIT]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Insertion\USD Calc.Outputs[Derived Column Output].Columns[USD_PROFIT]"
+                      name="USD_PROFIT"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[profit]} / #{Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[dollar_sell_crc]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">profit / dollar_sell_crc</property>
+                      </properties>
+                    </outputColumn>
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -3083,7 +3226,7 @@ where [refTable].[date_value] = ?</property>
               refId="Package\Data Insertion.Paths[CRC]"
               endId="Package\Data Insertion\USD Calc.Inputs[Derived Column Input]"
               name="CRC"
-              startId="Package\Data Insertion\Currency Split.Outputs[CRC]" />
+              startId="Package\Data Insertion\Conditional Split.Outputs[CRC]" />
             <path
               refId="Package\Data Insertion.Paths[Data Conversion Output]"
               endId="Package\Data Insertion\CLIENT Lookup.Inputs[Lookup Input]"
@@ -3101,19 +3244,19 @@ where [refTable].[date_value] = ?</property>
               startId="Package\Data Insertion\CRC Calc.Outputs[Derived Column Output]" />
             <path
               refId="Package\Data Insertion.Paths[Lookup Match Output]"
+              endId="Package\Data Insertion\TIME Lookup.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Insertion\CLIENT Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Data Insertion.Paths[Lookup Match Output1]"
               endId="Package\Data Insertion\ITEM Lookup.Inputs[Lookup Input]"
               name="Lookup Match Output"
               startId="Package\Data Insertion\TIME Lookup.Outputs[Lookup Match Output]" />
             <path
-              refId="Package\Data Insertion.Paths[Lookup Match Output1]"
+              refId="Package\Data Insertion.Paths[Lookup Match Output2]"
               endId="Package\Data Insertion\SALESMAN Lookup.Inputs[Lookup Input]"
               name="Lookup Match Output"
               startId="Package\Data Insertion\ITEM Lookup.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Data Insertion.Paths[Lookup Match Output2]"
-              endId="Package\Data Insertion\TIME Lookup.Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Data Insertion\CLIENT Lookup.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Data Insertion.Paths[Lookup Match Output3]"
               endId="Package\Data Insertion\DATA Date Sort.Inputs[Sort Input]"
@@ -3121,7 +3264,7 @@ where [refTable].[date_value] = ?</property>
               startId="Package\Data Insertion\SALESMAN Lookup.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Data Insertion.Paths[Merge Join Output]"
-              endId="Package\Data Insertion\Currency Split.Inputs[Conditional Split Input]"
+              endId="Package\Data Insertion\Conditional Split.Inputs[Conditional Split Input]"
               name="Merge Join Output"
               startId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output]" />
             <path
@@ -3148,7 +3291,7 @@ where [refTable].[date_value] = ?</property>
               refId="Package\Data Insertion.Paths[USD]"
               endId="Package\Data Insertion\CRC Calc.Inputs[Derived Column Input]"
               name="USD"
-              startId="Package\Data Insertion\Currency Split.Outputs[USD]" />
+              startId="Package\Data Insertion\Conditional Split.Outputs[USD]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -3179,305 +3322,17 @@ where [refTable].[date_value] = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="148,42"
-          Id="Package\Data Insertion\Currency Split"
-          TopLeft="567.833333333334,778.261904761909" />
-        <NodeLayout
-          Size="241,42"
-          Id="Package\Data Insertion\MONGO_MIGRATION DB Query"
-          TopLeft="327.880952380952,59.1904761904762" />
-        <NodeLayout
-          Size="185,42"
-          Id="Package\Data Insertion\DATA CORRECTION"
-          TopLeft="354.285714285714,137.142857142857" />
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[OLE DB Source Output]"
-          TopLeft="447.583333333333,101.190476190476">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,35.9523809523809"
-              Start="0,0"
-              End="0,28.4523809523809">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,28.4523809523809" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="157,42"
-          Id="Package\Data Insertion\CLIENT Lookup"
-          TopLeft="364.285714285714,222.857142857143" />
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[Data Conversion Output]"
-          TopLeft="444.785714285714,179.142857142857">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43.7142857142858"
-              Start="0,0"
-              End="0,36.2142857142858">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,36.2142857142858" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="144,42"
-          Id="Package\Data Insertion\TIME Lookup"
-          TopLeft="374.285714285714,311.428571428571" />
-        <NodeLayout
-          Size="144,42"
-          Id="Package\Data Insertion\ITEM Lookup"
-          TopLeft="374.285714285714,398.571428571429" />
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[Lookup Match Output]"
-          TopLeft="446.285714285714,353.428571428571">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,45.1428571428571"
-              Start="0,0"
-              End="0,37.6428571428571">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,37.6428571428571" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,13.0167410714286,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
           Size="178,42"
           Id="Package\Data Insertion\SALESMAN Lookup"
-          TopLeft="361.190476190476,489.047619047619" />
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[Lookup Match Output1]"
-          TopLeft="448.238095238095,440.571428571429">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,48.4761904761904"
-              Start="0,0"
-              End="0,40.9761904761904">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,40.9761904761904" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,14.6834077380952,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="199,42"
-          Id="Package\Data Insertion\EXCHANGE RATE Data"
-          TopLeft="755,488.333333333333" />
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[Lookup Match Output2]"
-          TopLeft="444.535714285714,264.857142857143">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,46.5714285714286"
-              Start="0,0"
-              End="0,39.0714285714286">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,39.0714285714286" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,13.7310267857143,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="133,42"
-          Id="Package\Data Insertion\Merge Join"
-          TopLeft="576.666666666667,693.333333333333" />
+          TopLeft="365,465" />
         <NodeLayout
           Size="158,42"
           Id="Package\Data Insertion\DATA Date Sort"
           TopLeft="368.333333333333,578.333333333333" />
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[Lookup Match Output3]"
-          TopLeft="448.761904761905,531.047619047619">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,47.2857142857144"
-              Start="0,0"
-              End="0,39.7857142857144">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,39.7857142857144" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,14.0881696428572,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <NodeLayout
-          Size="125,42"
-          Id="Package\Data Insertion\Date Sort"
-          TopLeft="800,568.333333333333" />
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[OLE DB Source Output1]"
-          TopLeft="858.5,530.333333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,38"
-              Start="0,0"
-              End="0,30.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,30.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[Sort Output]"
-          TopLeft="447.333333333333,620.333333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="195.833333333333,73"
-              Start="0,0"
-              End="195.833333333333,65.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,32.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,32.5"
-                    Point2="0,36.5"
-                    Point3="4,36.5" />
-                  <mssgle:LineSegment
-                    End="191.833333333333,36.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="191.833333333333,36.5"
-                    Point2="195.833333333333,36.5"
-                    Point3="195.833333333333,40.5" />
-                  <mssgle:LineSegment
-                    End="195.833333333333,65.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[Sort Output1]"
-          TopLeft="862.5,610.333333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-198.5,83"
-              Start="0,0"
-              End="-198.5,75.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,45.2080237741456" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,45.2080237741456"
-                    Point2="0,49.2080237741456"
-                    Point3="-4,49.2080237741456" />
-                  <mssgle:LineSegment
-                    End="-194.5,49.2080237741456" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-194.5,49.2080237741456"
-                    Point2="-198.5,49.2080237741456"
-                    Point3="-198.5,53.2080237741456" />
-                  <mssgle:LineSegment
-                    End="-198.5,75.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[Merge Join Output]"
-          TopLeft="642.500000000001,735.333333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,42.9285714285757"
-              Start="0,0"
-              End="0,35.4285714285757">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.4285714285757" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="177,42"
-          Id="Package\Data Insertion\OLE DB Destination"
-          TopLeft="258.333333333333,1013.75" />
+          Size="199,42"
+          Id="Package\Data Insertion\EXCHANGE RATE Data"
+          TopLeft="755,488.333333333333" />
         <NodeLayout
           Size="186,42"
           Id="Package\Data Insertion\OLE DB Destination 1"
@@ -3486,80 +3341,86 @@ where [refTable].[date_value] = ?</property>
           Size="128,42"
           Id="Package\Data Insertion\CRC Calc"
           TopLeft="871.25,880" />
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[USD]"
-          TopLeft="665.166666666668,820.261904761909">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="270.083333333332,59.738095238091"
-              Start="0,0"
-              End="270.083333333332,52.238095238091">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20.2785841609354" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.2785841609354"
-                    Point2="0,24.2785841609354"
-                    Point3="4,24.2785841609354" />
-                  <mssgle:LineSegment
-                    End="266.083333333332,24.2785841609354" />
-                  <mssgle:CubicBezierSegment
-                    Point1="266.083333333332,24.2785841609354"
-                    Point2="270.083333333332,24.2785841609354"
-                    Point3="270.083333333332,28.2785841609354" />
-                  <mssgle:LineSegment
-                    End="270.083333333332,52.238095238091" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="125.066510416666,29.2785841609354,19.9503125,9.5537109375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Data Insertion\TIME Lookup"
+          TopLeft="378,288" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Data Insertion\OLE DB Destination"
+          TopLeft="258.333333333333,1013.75" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Data Insertion\ITEM Lookup"
+          TopLeft="376,369" />
+        <NodeLayout
+          Size="125,42"
+          Id="Package\Data Insertion\Date Sort"
+          TopLeft="800,568.333333333333" />
+        <NodeLayout
+          Size="241,42"
+          Id="Package\Data Insertion\MONGO_MIGRATION DB Query"
+          TopLeft="327.880952380952,59.1904761904762" />
+        <NodeLayout
+          Size="133,42"
+          Id="Package\Data Insertion\Merge Join"
+          TopLeft="577,684" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\Data Insertion\DATA CORRECTION"
+          TopLeft="354.285714285714,137.142857142857" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\Data Insertion\CLIENT Lookup"
+          TopLeft="366,218" />
         <NodeLayout
           Size="127,42"
           Id="Package\Data Insertion\USD Calc"
           TopLeft="285,882.5" />
         <EdgeLayout
-          Id="Package\Data Insertion.Paths[CRC]"
-          TopLeft="618.500000000001,820.261904761909">
+          Id="Package\Data Insertion.Paths[Lookup Match Output]"
+          TopLeft="447.25,260">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-270.000000000001,62.238095238091"
+              EndConnector="0,28"
               Start="0,0"
-              End="-270.000000000001,54.738095238091">
+              End="0,20.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.294626941684" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,21.294626941684"
-                    Point2="0,25.294626941684"
-                    Point3="-4,25.294626941684" />
-                  <mssgle:LineSegment
-                    End="-266.000000000001,25.294626941684" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-266.000000000001,25.294626941684"
-                    Point2="-270.000000000001,25.294626941684"
-                    Point3="-270.000000000001,29.294626941684" />
-                  <mssgle:LineSegment
-                    End="-270.000000000001,54.738095238091" />
+                    End="0,20.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-144.868789062501,30.294626941684,19.737578125,9.5341796875"
+              BoundingBox="-48.19138671875,4.4453125,96.3827734375,11.609375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[Derived Column Output1]"
+          TopLeft="937.041666666667,922">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,92.1666666666667"
+              Start="0,0"
+              End="0,84.6666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,84.6666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -3585,19 +3446,19 @@ where [refTable].[date_value] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Insertion.Paths[Derived Column Output1]"
-          TopLeft="937.041666666667,922">
+          Id="Package\Data Insertion.Paths[Data Conversion Output]"
+          TopLeft="445.642857142857,179.142857142857">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,92.1666666666667"
+              EndConnector="0,38.857142857143"
               Start="0,0"
-              End="0,84.6666666666667">
+              End="0,31.357142857143">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,84.6666666666667" />
+                    End="0,31.357142857143" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -3606,93 +3467,298 @@ where [refTable].[date_value] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[Sort Output1]"
+          TopLeft="862.5,610.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-198.166666666667,73.666666666667"
+              Start="0,0"
+              End="-198.166666666667,66.166666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.6745913818724" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39.6745913818724"
+                    Point2="0,43.6745913818724"
+                    Point3="-4,43.6745913818724" />
+                  <mssgle:LineSegment
+                    End="-194.166666666667,43.6745913818724" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-194.166666666667,43.6745913818724"
+                    Point2="-198.166666666667,43.6745913818724"
+                    Point3="-198.166666666667,47.6745913818724" />
+                  <mssgle:LineSegment
+                    End="-198.166666666667,66.166666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[Sort Output]"
+          TopLeft="447.333333333333,620.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="196.166666666667,63.666666666667"
+              Start="0,0"
+              End="196.166666666667,56.166666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.8333333333335" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.8333333333335"
+                    Point2="0,31.8333333333335"
+                    Point3="4,31.8333333333335" />
+                  <mssgle:LineSegment
+                    End="192.166666666667,31.8333333333335" />
+                  <mssgle:CubicBezierSegment
+                    Point1="192.166666666667,31.8333333333335"
+                    Point2="196.166666666667,31.8333333333335"
+                    Point3="196.166666666667,35.8333333333335" />
+                  <mssgle:LineSegment
+                    End="196.166666666667,56.166666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[OLE DB Source Output1]"
+          TopLeft="858.5,530.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[OLE DB Source Output]"
+          TopLeft="447.583333333333,101.190476190476">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35.9523809523808"
+              Start="0,0"
+              End="0,28.4523809523808">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.4523809523808" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[Lookup Match Output3]"
+          TopLeft="450.666666666667,507">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71.333333333333"
+              Start="0,0"
+              End="0,63.833333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.833333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,26.1119791666665,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[Lookup Match Output2]"
+          TopLeft="451,411">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,17.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[Lookup Match Output1]"
+          TopLeft="449,330">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39"
+              Start="0,0"
+              End="0,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,9.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Data Insertion\Conditional Split"
+          TopLeft="565,768" />
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[Merge Join Output]"
+          TopLeft="644,726">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42"
+              Start="0,0"
+              End="0,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[CRC]"
+          TopLeft="644.5,810">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-296,72.5"
+              Start="0,0"
+              End="-296,65">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.25"
+                    Point2="0,36.25"
+                    Point3="-4,36.25" />
+                  <mssgle:LineSegment
+                    End="-292,36.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-292,36.25"
+                    Point2="-296,36.25"
+                    Point3="-296,40.25" />
+                  <mssgle:LineSegment
+                    End="-296,65" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-157.8687890625,41.25,19.737578125,9.5341796875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[USD]"
+          TopLeft="669.666666666667,810">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="265.583333333333,70"
+              Start="0,0"
+              End="265.583333333333,62.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.4184308841843" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.4184308841843"
+                    Point2="0,28.4184308841843"
+                    Point3="4,28.4184308841843" />
+                  <mssgle:LineSegment
+                    End="261.583333333333,28.4184308841843" />
+                  <mssgle:CubicBezierSegment
+                    Point1="261.583333333333,28.4184308841843"
+                    Point2="265.583333333333,28.4184308841843"
+                    Point3="265.583333333333,32.4184308841843" />
+                  <mssgle:LineSegment
+                    End="265.583333333333,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="122.816510416667,33.4184308841843,19.9503125,9.5537109375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Insertion\MONGO_MIGRATION DB Query">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Insertion\CLIENT Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DIM_CLIENT]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Insertion\TIME Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DIM_TIME]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Insertion\ITEM Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DIM_ITEM]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Data Insertion\SALESMAN Lookup">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -3702,7 +3768,7 @@ where [refTable].[date_value] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3711,19 +3777,6 @@ where [refTable].[date_value] = ?</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Data Insertion\EXCHANGE RATE Data">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Insertion\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -3745,6 +3798,96 @@ where [refTable].[date_value] = ?</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Insertion\TIME Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DIM_TIME]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Insertion\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Insertion\ITEM Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DIM_ITEM]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Insertion\MONGO_MIGRATION DB Query">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Insertion\CLIENT Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DIM_CLIENT]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

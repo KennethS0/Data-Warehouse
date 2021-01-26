@@ -1,0 +1,19 @@
+LEFT([Precio_Sin_Coma],FINDSTRING([Precio_Sin_Coma],".",LEN([Precio_Sin_Coma]) - LEN(REPLACE([Precio_Sin_Coma],".",""))) - 1) + SUBSTRING([Precio_Sin_Coma],FINDSTRING([Precio_Sin_Coma],".",LEN([Precio_Sin_Coma]) - LEN(REPLACE([Precio_Sin_Coma],".",""))) + 1,LEN([Precio_Sin_Coma]))
+
+
+LEFT([ImpuestoUSD_Sin_Coma],FINDSTRING([ImpuestoUSD_Sin_Coma],".",LEN([ImpuestoUSD_Sin_Coma]) - LEN(REPLACE([ImpuestoUSD_Sin_Coma],".",""))) - 1) + SUBSTRING([ImpuestoUSD_Sin_Coma],FINDSTRING([ImpuestoUSD_Sin_Coma],".",LEN([ImpuestoUSD_Sin_Coma]) - LEN(REPLACE([ImpuestoUSD_Sin_Coma],".",""))) + 1,LEN([ImpuestoUSD_Sin_Coma]))
+
+
+LEFT([Ganancia_Sin_Coma],FINDSTRING([Ganancia_Sin_Coma],".",LEN([Ganancia_Sin_Coma]) - LEN(REPLACE([Ganancia_Sin_Coma],".",""))) - 1) + SUBSTRING([Ganancia_Sin_Coma],FINDSTRING([Ganancia_Sin_Coma],".",LEN([Ganancia_Sin_Coma]) - LEN(REPLACE([Ganancia_Sin_Coma],".",""))) + 1,LEN([Ganancia_Sin_Coma]))
+
+
+LEFT([TotalUSD_Sin_Coma],FINDSTRING([TotalUSD_Sin_Coma],".",LEN([TotalUSD_Sin_Coma]) - LEN(REPLACE([TotalUSD_Sin_Coma],".",""))) - 1) + SUBSTRING([TotalUSD_Sin_Coma],FINDSTRING([TotalUSD_Sin_Coma],".",LEN([TotalUSD_Sin_Coma]) - LEN(REPLACE([TotalUSD_Sin_Coma],".",""))) + 1,LEN([TotalUSD_Sin_Coma]))
+
+
+LEFT([Ganancia_Sin_Coma],FINDSTRING([Ganancia_Sin_Coma],".",LEN([Ganancia_Sin_Coma]) - LEN(REPLACE([Ganancia_Sin_Coma],".",""))) - 1) + SUBSTRING([Ganancia_Sin_Coma],FINDSTRING([Ganancia_Sin_Coma],".",LEN([Ganancia_Sin_Coma]) - LEN(REPLACE([Ganancia_Sin_Coma],".",""))) + 1,LEN([Ganancia_Sin_Coma]))
+
+
+LEFT([ImpuestoUSD_Sin_Coma],FINDSTRING([ImpuestoUSD_Sin_Coma],".",LEN([ImpuestoUSD_Sin_Coma]) - LEN(REPLACE([ImpuestoUSD_Sin_Coma],".",""))) - 1) + SUBSTRING([ImpuestoUSD_Sin_Coma],FINDSTRING([ImpuestoUSD_Sin_Coma],".",LEN([ImpuestoUSD_Sin_Coma]) - LEN(REPLACE([ImpuestoUSD_Sin_Coma],".",""))) + 1,LEN([ImpuestoUSD_Sin_Coma]))
+
+
+LEFT([[Cantidad_Sin_Coma],FINDSTRING([Cantidad_Sin_Coma],".",LEN([Cantidad_Sin_Coma]) - LEN(REPLACE([Cantidad_Sin_Coma],".",""))) - 1) + SUBSTRING([Cantidad_Sin_Coma],FINDSTRING([Cantidad_Sin_Coma],".",LEN([Cantidad_Sin_Coma]) - LEN(REPLACE([Cantidad_Sin_Coma],".",""))) + 1,LEN([Cantidad_Sin_Coma]))
