@@ -12,8 +12,8 @@
   DTS:LocaleID="5130"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="162"
-  DTS:VersionGUID="{62C21D4A-3907-4CA9-8D1E-1039FF3F11F5}">
+  DTS:VersionBuild="178"
+  DTS:VersionGUID="{A51172EE-885A-43D7-98F3-1A45E4EBE921}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -35,7 +35,17 @@
       DTS:ObjectName="Excel Connection Manager">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\Documentos\Ing en Computacion\Semestre IV\Bases de Datos ll\Progra 2\Codigo\DB2-Final-Project\MS-SQL\Read-Files\New-Files\excel-test-format1.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\Documentos\Ing en Computacion\Semestre IV\Bases de Datos ll\Progra 2\Codigo\DB2-Final-Project\MS-SQL\Read-Files\EXCEL_000-100.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 1]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{18CB2226-115B-4F1E-B644-79E74BA1F792}"
+      DTS:ObjectName="Excel Connection Manager 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\Documentos\Ing en Computacion\Semestre IV\Bases de Datos ll\Progra 2\Codigo\DB2-Final-Project\MS-SQL\Read-Files\EXCEL_000-100.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -429,9 +439,7 @@
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Total]" />
                         <inputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Inputs[Derived Column Input].Columns[TotalUSD]"
-                          cachedCodepage="1252"
-                          cachedDataType="str"
-                          cachedLength="50"
+                          cachedDataType="r8"
                           cachedName="TotalUSD"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[TotalUSD]" />
                         <inputColumn
@@ -442,9 +450,7 @@
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Impuesto]" />
                         <inputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Inputs[Derived Column Input].Columns[ImpuestoUSD]"
-                          cachedCodepage="1252"
-                          cachedDataType="str"
-                          cachedLength="50"
+                          cachedDataType="r8"
                           cachedName="ImpuestoUSD"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[ImpuestoUSD]" />
                         <inputColumn
@@ -461,8 +467,7 @@
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Ganacia]" />
                         <inputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Inputs[Derived Column Input].Columns[GananciaUSD]"
-                          cachedDataType="wstr"
-                          cachedLength="255"
+                          cachedDataType="r8"
                           cachedName="GananciaUSD"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[GananciaUSD]" />
                       </inputColumns>
@@ -548,10 +553,9 @@
                         </outputColumn>
                         <outputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[TotalUSD_sin_comas]"
-                          dataType="wstr"
+                          dataType="r8"
                           errorOrTruncationOperation="Computation"
                           errorRowDisposition="FailComponent"
-                          length="50"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[TotalUSD_sin_comas]"
                           name="TotalUSD_sin_comas"
                           truncationRowDisposition="FailComponent">
@@ -560,13 +564,13 @@
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">[REPLACE]([REPLACE](#{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[TotalUSD]},",","")," ","")</property>
+                              name="Expression">#{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[TotalUSD]}</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">REPLACE(REPLACE(TotalUSD,",","")," ","")</property>
+                              name="FriendlyExpression">TotalUSD</property>
                           </properties>
                         </outputColumn>
                         <outputColumn
@@ -594,10 +598,9 @@
                         </outputColumn>
                         <outputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[ImpuestoUSD_sin_comas]"
-                          dataType="wstr"
+                          dataType="r8"
                           errorOrTruncationOperation="Computation"
                           errorRowDisposition="FailComponent"
-                          length="50"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[ImpuestoUSD_sin_comas]"
                           name="ImpuestoUSD_sin_comas"
                           truncationRowDisposition="FailComponent">
@@ -606,13 +609,13 @@
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">[REPLACE]([REPLACE](#{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[ImpuestoUSD]},",","")," ","")</property>
+                              name="Expression">#{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[ImpuestoUSD]}</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">REPLACE(REPLACE(ImpuestoUSD,",","")," ","")</property>
+                              name="FriendlyExpression">ImpuestoUSD</property>
                           </properties>
                         </outputColumn>
                         <outputColumn
@@ -663,10 +666,9 @@
                         </outputColumn>
                         <outputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[GananciaUSD_sin_comas]"
-                          dataType="wstr"
+                          dataType="r8"
                           errorOrTruncationOperation="Computation"
                           errorRowDisposition="FailComponent"
-                          length="255"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[GananciaUSD_sin_comas]"
                           name="GananciaUSD_sin_comas"
                           truncationRowDisposition="FailComponent">
@@ -675,13 +677,13 @@
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">[REPLACE]([REPLACE](#{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[GananciaUSD]},",","")," ","")</property>
+                              name="Expression">#{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[GananciaUSD]}</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">REPLACE(REPLACE(GananciaUSD,",","")," ","")</property>
+                              name="FriendlyExpression">GananciaUSD</property>
                           </properties>
                         </outputColumn>
                       </outputColumns>
@@ -731,18 +733,6 @@
                           cachedName="Factura"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Factura]" />
                         <inputColumn
-                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Inputs[Data Conversion Input].Columns[Cliente]"
-                          cachedDataType="wstr"
-                          cachedLength="255"
-                          cachedName="Cliente"
-                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Cliente]" />
-                        <inputColumn
-                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Inputs[Data Conversion Input].Columns[Producto]"
-                          cachedDataType="wstr"
-                          cachedLength="255"
-                          cachedName="Producto"
-                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Producto]" />
-                        <inputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Inputs[Data Conversion Input].Columns[Moneda]"
                           cachedDataType="wstr"
                           cachedLength="255"
@@ -756,9 +746,7 @@
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Almacén]" />
                         <inputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Inputs[Data Conversion Input].Columns[Vendedor]"
-                          cachedCodepage="1252"
-                          cachedDataType="str"
-                          cachedLength="50"
+                          cachedDataType="r8"
                           cachedName="Vendedor"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Vendedor]" />
                         <inputColumn
@@ -781,8 +769,7 @@
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[Total_sin_comas]" />
                         <inputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Inputs[Data Conversion Input].Columns[TotalUSD_sin_comas]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
+                          cachedDataType="r8"
                           cachedName="TotalUSD_sin_comas"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[TotalUSD_sin_comas]" />
                         <inputColumn
@@ -793,8 +780,7 @@
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[Impuesto_sin_comas]" />
                         <inputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Inputs[Data Conversion Input].Columns[ImpuestoUSD_sin_comas]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
+                          cachedDataType="r8"
                           cachedName="ImpuestoUSD_sin_comas"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[ImpuestoUSD_sin_comas]" />
                         <inputColumn
@@ -805,8 +791,7 @@
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[TipoCambio_sin_comas]" />
                         <inputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Inputs[Data Conversion Input].Columns[GananciaUSD_sin_comas]"
-                          cachedDataType="wstr"
-                          cachedLength="255"
+                          cachedDataType="r8"
                           cachedName="GananciaUSD_sin_comas"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[GananciaUSD_sin_comas]" />
                         <inputColumn
@@ -814,7 +799,19 @@
                           cachedDataType="wstr"
                           cachedLength="255"
                           cachedName="Ganancia_sin_comas"
-                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column.Outputs[Derived Column Output].Columns[Ganancia_sin_comas]" />
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Output].Columns[Ganancia_sin_comas]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Inputs[Data Conversion Input].Columns[Cliente_Formateado]"
+                          cachedDataType="wstr"
+                          cachedLength="51"
+                          cachedName="Cliente_Formateado"
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Output].Columns[Cliente_Formateado]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Inputs[Data Conversion Input].Columns[Producto_Formateado]"
+                          cachedDataType="wstr"
+                          cachedLength="51"
+                          cachedName="Producto_Formateado"
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Output].Columns[Producto_Formateado]" />
                       </inputColumns>
                       <externalMetadataColumns />
                     </input>
@@ -871,21 +868,21 @@
                           </properties>
                         </outputColumn>
                         <outputColumn
-                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Outputs[Data Conversion Output].Columns[Cliente_Str50]"
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Outputs[Data Conversion Output].Columns[Cliente_Final]"
                           codePage="1252"
                           dataType="str"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           length="50"
-                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Outputs[Data Conversion Output].Columns[Cliente_Str50]"
-                          name="Cliente_Str50"
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Outputs[Data Conversion Output].Columns[Cliente_Final]"
+                          name="Cliente_Final"
                           truncationRowDisposition="FailComponent">
                           <properties>
                             <property
                               containsID="true"
                               dataType="System.Int32"
                               description="Specifies the input column used as the source of data for the conversion."
-                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Cliente]}</property>
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Output].Columns[Cliente_Formateado]}</property>
                             <property
                               dataType="System.Boolean"
                               description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -929,7 +926,7 @@
                               containsID="true"
                               dataType="System.Int32"
                               description="Specifies the input column used as the source of data for the conversion."
-                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column.Outputs[Derived Column Output].Columns[Ganancia_sin_comas]}</property>
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Output].Columns[Ganancia_sin_comas]}</property>
                             <property
                               dataType="System.Boolean"
                               description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -1061,7 +1058,7 @@
                               containsID="true"
                               dataType="System.Int32"
                               description="Specifies the input column used as the source of data for the conversion."
-                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Producto]}</property>
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Output].Columns[Producto_Formateado]}</property>
                             <property
                               dataType="System.Boolean"
                               description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -1184,88 +1181,6 @@
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column"
-                  componentClassID="Microsoft.DerivedColumn"
-                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-                  name="Derived Column"
-                  usesDispositions="true">
-                  <inputs>
-                    <input
-                      refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column.Inputs[Derived Column Input]"
-                      description="Input to the Derived Column Transformation"
-                      name="Derived Column Input">
-                      <inputColumns>
-                        <inputColumn
-                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column.Inputs[Derived Column Input].Columns[Ganancia_sin_comas_blank]"
-                          cachedDataType="wstr"
-                          cachedLength="255"
-                          cachedName="Ganancia_sin_comas_blank"
-                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[Ganancia_sin_comas_blank]" />
-                      </inputColumns>
-                      <externalMetadataColumns />
-                    </input>
-                  </inputs>
-                  <outputs>
-                    <output
-                      refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column.Outputs[Derived Column Output]"
-                      description="Default Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      name="Derived Column Output"
-                      synchronousInputId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column.Outputs[Derived Column Output].Columns[Ganancia_sin_comas]"
-                          dataType="wstr"
-                          errorOrTruncationOperation="Computation"
-                          errorRowDisposition="FailComponent"
-                          length="255"
-                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column.Outputs[Derived Column Output].Columns[Ganancia_sin_comas]"
-                          name="Ganancia_sin_comas"
-                          truncationRowDisposition="FailComponent">
-                          <properties>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Expression"
-                              name="Expression">[REPLACE](#{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[Ganancia_sin_comas_blank]}," ","")</property>
-                            <property
-                              containsID="true"
-                              dataType="System.String"
-                              description="Derived Column Friendly Expression"
-                              expressionType="Notify"
-                              name="FriendlyExpression">REPLACE(Ganancia_sin_comas_blank," ","")</property>
-                          </properties>
-                        </outputColumn>
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                    <output
-                      refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column.Outputs[Derived Column Error Output]"
-                      description="Error Output of the Derived Column Transformation"
-                      exclusionGroup="1"
-                      isErrorOut="true"
-                      name="Derived Column Error Output"
-                      synchronousInputId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column.Inputs[Derived Column Input]">
-                      <outputColumns>
-                        <outputColumn
-                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          dataType="i4"
-                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                          name="ErrorCode"
-                          specialFlags="1" />
-                        <outputColumn
-                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          dataType="i4"
-                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                          name="ErrorColumn"
-                          specialFlags="2" />
-                      </outputColumns>
-                      <externalMetadataColumns />
-                    </output>
-                  </outputs>
-                </component>
-                <component
                   refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source"
                   componentClassID="Microsoft.ExcelSource"
                   contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
@@ -1282,7 +1197,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">'001-100$'</property>
+                      name="OpenRowset"></property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -1331,19 +1246,21 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Fecha]"
-                          dataType="date"
+                          dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].ExternalColumns[Fecha]"
+                          length="255"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Fecha]"
                           name="Fecha"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[FechaVencimiento]"
-                          dataType="date"
+                          dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].ExternalColumns[FechaVencimiento]"
+                          length="255"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[FechaVencimiento]"
                           name="FechaVencimiento"
                           truncationRowDisposition="FailComponent" />
@@ -1419,23 +1336,19 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Vendedor]"
-                          codePage="1252"
-                          dataType="str"
+                          dataType="r8"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].ExternalColumns[Vendedor]"
-                          length="50"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Vendedor]"
                           name="Vendedor"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[TotalUSD]"
-                          codePage="1252"
-                          dataType="str"
+                          dataType="r8"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].ExternalColumns[TotalUSD]"
-                          length="50"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[TotalUSD]"
                           name="TotalUSD"
                           truncationRowDisposition="FailComponent" />
@@ -1451,12 +1364,10 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[ImpuestoUSD]"
-                          codePage="1252"
-                          dataType="str"
+                          dataType="r8"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].ExternalColumns[ImpuestoUSD]"
-                          length="50"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[ImpuestoUSD]"
                           name="ImpuestoUSD"
                           truncationRowDisposition="FailComponent" />
@@ -1482,11 +1393,10 @@
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[GananciaUSD]"
-                          dataType="wstr"
+                          dataType="r8"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
                           externalMetadataColumnId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].ExternalColumns[GananciaUSD]"
-                          length="255"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[GananciaUSD]"
                           name="GananciaUSD"
                           truncationRowDisposition="FailComponent" />
@@ -1574,6 +1484,21 @@
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].ExternalColumns[GananciaUSD]"
                           dataType="r8"
                           name="GananciaUSD" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].ExternalColumns[F18]"
+                          dataType="wstr"
+                          length="255"
+                          name="F18" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].ExternalColumns[F19]"
+                          dataType="wstr"
+                          length="255"
+                          name="F19" />
+                        <externalMetadataColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].ExternalColumns[F20]"
+                          dataType="wstr"
+                          length="255"
+                          name="F20" />
                       </externalMetadataColumns>
                     </output>
                     <output
@@ -1697,6 +1622,146 @@
                   </outputs>
                 </component>
                 <component
+                  refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Formateo de Str"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Inputs[Derived Column Input].Columns[Ganancia_sin_comas_blank]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Ganancia_sin_comas_blank"
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[Ganancia_sin_comas_blank]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Inputs[Derived Column Input].Columns[Cliente]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Cliente"
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Cliente]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Inputs[Derived Column Input].Columns[Producto]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Producto"
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Producto]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Output].Columns[Ganancia_sin_comas]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="255"
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Output].Columns[Ganancia_sin_comas]"
+                          name="Ganancia_sin_comas"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[REPLACE](#{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[Ganancia_sin_comas_blank]}," ","")</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">REPLACE(Ganancia_sin_comas_blank," ","")</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Output].Columns[Cliente_Formateado]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="51"
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Output].Columns[Cliente_Formateado]"
+                          name="Cliente_Formateado"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">"C" + (DT_STR,50,1252)([RIGHT]([REPLICATE]("0",6) + (DT_WSTR,6)[REPLACE](#{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Cliente]},"C",""),6))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">"C" + (DT_STR,50,1252)(RIGHT(REPLICATE("0",6) + (DT_WSTR,6)REPLACE(Cliente,"C",""),6))</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Output].Columns[Producto_Formateado]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="51"
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Output].Columns[Producto_Formateado]"
+                          name="Producto_Formateado"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">"A" + (DT_STR,50,1252)([RIGHT]([REPLICATE]("0",6) + (DT_WSTR,6)[RIGHT](#{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Producto]},[LEN](#{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Producto]}) - 1),6))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">"A" + (DT_STR,50,1252)(RIGHT(REPLICATE("0",6) + (DT_WSTR,6)RIGHT(Producto,LEN(Producto) - 1),6))</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
                   refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination"
                   componentClassID="Microsoft.OLEDBDestination"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -1770,13 +1835,15 @@
                       <inputColumns>
                         <inputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Fecha]"
-                          cachedDataType="date"
+                          cachedDataType="wstr"
+                          cachedLength="255"
                           cachedName="Fecha"
                           externalMetadataColumnId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Fecha]"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[Fecha]" />
                         <inputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FechaVencimiento]"
-                          cachedDataType="date"
+                          cachedDataType="wstr"
+                          cachedLength="255"
                           cachedName="FechaVencimiento"
                           externalMetadataColumnId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaVencimiento]"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].Columns[FechaVencimiento]" />
@@ -1788,14 +1855,6 @@
                           cachedName="Factura_Str50"
                           externalMetadataColumnId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Factura]"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Outputs[Data Conversion Output].Columns[Factura_Str50]" />
-                        <inputColumn
-                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Cliente_Str50]"
-                          cachedCodepage="1252"
-                          cachedDataType="str"
-                          cachedLength="50"
-                          cachedName="Cliente_Str50"
-                          externalMetadataColumnId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Cliente]"
-                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Outputs[Data Conversion Output].Columns[Cliente_Str50]" />
                         <inputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Producto_Str50]"
                           cachedCodepage="1252"
@@ -1900,6 +1959,14 @@
                           cachedScale="4"
                           externalMetadataColumnId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GananciaUSD]"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Outputs[Data Conversion Output].Columns[GananciaUSD_numeric]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Cliente_Final]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Cliente_Final"
+                          externalMetadataColumnId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Cliente]"
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Outputs[Data Conversion Output].Columns[Cliente_Final]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -3215,8 +3282,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                           usageType="readWrite" />
                         <inputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Script C# reemplace punto excepto el último.Inputs[Input 0].Columns[TotalUSD_sin_comas]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
+                          cachedDataType="r8"
                           cachedName="TotalUSD_sin_comas"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[TotalUSD_sin_comas]"
                           usageType="readWrite" />
@@ -3229,8 +3295,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                           usageType="readWrite" />
                         <inputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Script C# reemplace punto excepto el último.Inputs[Input 0].Columns[ImpuestoUSD_sin_comas]"
-                          cachedDataType="wstr"
-                          cachedLength="50"
+                          cachedDataType="r8"
                           cachedName="ImpuestoUSD_sin_comas"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[ImpuestoUSD_sin_comas]"
                           usageType="readWrite" />
@@ -3243,8 +3308,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                           usageType="readWrite" />
                         <inputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Script C# reemplace punto excepto el último.Inputs[Input 0].Columns[GananciaUSD_sin_comas]"
-                          cachedDataType="wstr"
-                          cachedLength="255"
+                          cachedDataType="r8"
                           cachedName="GananciaUSD_sin_comas"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[GananciaUSD_sin_comas]"
                           usageType="readWrite" />
@@ -3253,7 +3317,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                           cachedDataType="wstr"
                           cachedLength="255"
                           cachedName="Ganancia_sin_comas"
-                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column.Outputs[Derived Column Output].Columns[Ganancia_sin_comas]"
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Output].Columns[Ganancia_sin_comas]"
                           usageType="readWrite" />
                       </inputColumns>
                       <externalMetadataColumns />
@@ -3277,14 +3341,14 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                   startId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Outputs[Data Conversion Output]" />
                 <path
                   refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Derived Column Output]"
-                  endId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column.Inputs[Derived Column Input]"
+                  endId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Inputs[Derived Column Input]"
                   name="Derived Column Output"
                   startId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output]" />
                 <path
                   refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Derived Column Output1]"
                   endId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Script C# reemplace punto excepto el último.Inputs[Input 0]"
                   name="Derived Column Output"
-                  startId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column.Outputs[Derived Column Output]" />
+                  startId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Output]" />
                 <path
                   refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Excel Source Output]"
                   endId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Inputs[Derived Column Input]"
@@ -3672,6 +3736,31 @@ ELSE
                           cachedLength="50"
                           cachedName="Cliente"
                           lineageId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Flat File Source txt.Outputs[Flat File Source Output].Columns[Cliente]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Columnas Derivadas Formateo de numeros sin coma.Inputs[Derived Column Input].Columns[Producto]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Producto"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Flat File Source txt.Outputs[Flat File Source Output].Columns[Producto]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">"A" + (DT_STR,50,1252)([RIGHT]([REPLICATE]("0",6) + (DT_WSTR,6)[REPLACE](#{Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Flat File Source txt.Outputs[Flat File Source Output].Columns[Producto]},"A",""),6))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">"A" + (DT_STR,50,1252)(RIGHT(REPLICATE("0",6) + (DT_WSTR,6)REPLACE(Producto,"A",""),6))</property>
+                          </properties>
+                        </inputColumn>
                       </inputColumns>
                       <externalMetadataColumns />
                     </input>
@@ -3883,13 +3972,13 @@ ELSE
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Expression"
-                              name="Expression">"C" + (DT_STR,50,1252)([RIGHT]([REPLICATE]("0",6) + (DT_WSTR,6)[REPLACE]([REPLACE](#{Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Flat File Source txt.Outputs[Flat File Source Output].Columns[Cliente]},"C",""),"\"",""),6))</property>
+                              name="Expression">"C" + (DT_STR,50,1252)([RIGHT]([REPLICATE]("0",6) + (DT_WSTR,6)[REPLACE](#{Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Flat File Source txt.Outputs[Flat File Source Output].Columns[Cliente]},"C",""),6))</property>
                             <property
                               containsID="true"
                               dataType="System.String"
                               description="Derived Column Friendly Expression"
                               expressionType="Notify"
-                              name="FriendlyExpression">"C" + (DT_STR,50,1252)(RIGHT(REPLICATE("0",6) + (DT_WSTR,6)REPLACE(REPLACE(Cliente,"C",""),"\"",""),6))</property>
+                              name="FriendlyExpression">"C" + (DT_STR,50,1252)(RIGHT(REPLICATE("0",6) + (DT_WSTR,6)REPLACE(Cliente,"C",""),6))</property>
                           </properties>
                         </outputColumn>
                       </outputColumns>
@@ -3941,7 +4030,7 @@ ELSE
                         <inputColumn
                           refId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Conversion Columnas Derivadas sin coma a NUMERIC.Inputs[Data Conversion Input].Columns[Cantidad_Sin_Coma]"
                           cachedDataType="wstr"
-                          cachedLength="50"
+                          cachedLength="255"
                           cachedName="Cantidad_Sin_Coma"
                           lineageId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Columnas Derivadas Formateo de numeros sin coma.Outputs[Derived Column Output].Columns[Cantidad_Sin_Coma]" />
                         <inputColumn
@@ -4214,6 +4303,12 @@ ELSE
                           cachedPrecision="38"
                           cachedScale="18"
                           lineageId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Columna Derivada para el Precio.Outputs[Derived Column Output].Columns[Precio_Calculado]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Conversión de Precio derivado.Inputs[Data Conversion Input].Columns[Cliente_Sin_C]"
+                          cachedDataType="wstr"
+                          cachedLength="51"
+                          cachedName="Cliente_Sin_C"
+                          lineageId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Columnas Derivadas Formateo de numeros sin coma.Outputs[Derived Column Output].Columns[Cliente_Sin_C]" />
                       </inputColumns>
                       <externalMetadataColumns />
                     </input>
@@ -4241,6 +4336,28 @@ ELSE
                               dataType="System.Int32"
                               description="Specifies the input column used as the source of data for the conversion."
                               name="SourceInputColumnLineageID">#{Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Columna Derivada para el Precio.Outputs[Derived Column Output].Columns[Precio_Calculado]}</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Conversión de Precio derivado.Outputs[Data Conversion Output].Columns[Cliente_Con_C00]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          length="50"
+                          lineageId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Conversión de Precio derivado.Outputs[Data Conversion Output].Columns[Cliente_Con_C00]"
+                          name="Cliente_Con_C00"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the input column used as the source of data for the conversion."
+                              name="SourceInputColumnLineageID">#{Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Columnas Derivadas Formateo de numeros sin coma.Outputs[Derived Column Output].Columns[Cliente_Sin_C]}</property>
                             <property
                               dataType="System.Boolean"
                               description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -4850,14 +4967,6 @@ ELSE
                           externalMetadataColumnId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FechaVencimiento]"
                           lineageId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Flat File Source txt.Outputs[Flat File Source Output].Columns[FechaVencimiento]" />
                         <inputColumn
-                          refId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Cliente]"
-                          cachedCodepage="1252"
-                          cachedDataType="str"
-                          cachedLength="50"
-                          cachedName="Cliente"
-                          externalMetadataColumnId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Cliente]"
-                          lineageId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Flat File Source txt.Outputs[Flat File Source Output].Columns[Cliente]" />
-                        <inputColumn
                           refId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Producto]"
                           cachedCodepage="1252"
                           cachedDataType="str"
@@ -4961,6 +5070,14 @@ ELSE
                           cachedScale="4"
                           externalMetadataColumnId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GananciaUSD]"
                           lineageId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Conversion Columnas Derivadas sin coma a NUMERIC.Outputs[Data Conversion Output].Columns[Copy of GananciaUSD_Sin_Coma]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Cliente_Con_C00]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Cliente_Con_C00"
+                          externalMetadataColumnId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Cliente]"
+                          lineageId="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Conversión de Precio derivado.Outputs[Data Conversion Output].Columns[Cliente_Con_C00]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -7334,6 +7451,56 @@ ELSE
                           cachedLength="50"
                           cachedName="Copy of Tipo_de_cambio"
                           lineageId="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\Data Conversion para convertir datos en str.Outputs[Data Conversion Output].Columns[Copy of Tipo_de_cambio]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\Derived Columns sin comas.Inputs[Derived Column Input].Columns[Copy of Cliente]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of Cliente"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\Data Conversion para convertir datos en str.Outputs[Data Conversion Output].Columns[Copy of Cliente]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">"C" + (DT_STR,50,1252)([RIGHT]([REPLICATE]("0",6) + (DT_WSTR,6)[REPLACE](#{Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\Data Conversion para convertir datos en str.Outputs[Data Conversion Output].Columns[Copy of Cliente]},"C",""),6))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">"C" + (DT_STR,50,1252)(RIGHT(REPLICATE("0",6) + (DT_WSTR,6)REPLACE([Copy of Cliente],"C",""),6))</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\Derived Columns sin comas.Inputs[Derived Column Input].Columns[Copy of Producto]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="Copy of Producto"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\Data Conversion para convertir datos en str.Outputs[Data Conversion Output].Columns[Copy of Producto]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">"A" + (DT_STR,50,1252)([RIGHT]([REPLICATE]("0",6) + (DT_WSTR,6)[REPLACE](#{Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\Data Conversion para convertir datos en str.Outputs[Data Conversion Output].Columns[Copy of Producto]},"A",""),6))</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">"A" + (DT_STR,50,1252)(RIGHT(REPLICATE("0",6) + (DT_WSTR,6)REPLACE([Copy of Producto],"A",""),6))</property>
+                          </properties>
+                        </inputColumn>
                       </inputColumns>
                       <externalMetadataColumns />
                     </input>
@@ -10640,19 +10807,23 @@ ELSE
     design-time-name="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination"
-          TopLeft="304,373" />
-        <NodeLayout
-          Size="245,42"
-          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics"
-          TopLeft="292,303" />
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="139,42"
           Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source"
           TopLeft="321,27" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics"
+          TopLeft="285,303" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination"
+          TopLeft="328,380" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str"
+          TopLeft="323,162" />
         <NodeLayout
           Size="289,42"
           Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Script C# reemplace punto excepto el último"
@@ -10663,30 +10834,18 @@ ELSE
           TopLeft="286,93" />
         <EdgeLayout
           Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Output 0]"
-          TopLeft="406.5,271">
+          TopLeft="407,271">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="8,32"
+              EndConnector="0,32"
               Start="0,0"
-              End="8,24.5">
+              End="0,24.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,12" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,12"
-                    Point2="0,16"
-                    Point3="4,16" />
-                  <mssgle:LineSegment
-                    End="4,16" />
-                  <mssgle:CubicBezierSegment
-                    Point1="4,16"
-                    Point2="8,16"
-                    Point3="8,20" />
-                  <mssgle:LineSegment
-                    End="8,24.5" />
+                    End="0,24.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10718,71 +10877,19 @@ ELSE
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Data Conversion Output]"
-          TopLeft="414.5,345">
+          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Derived Column Output1]"
+          TopLeft="403.5,204">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-25,28"
+              EndConnector="0,25"
               Start="0,0"
-              End="-25,20.5">
+              End="0,17.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,10" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,10"
-                    Point2="0,14"
-                    Point3="-4,14" />
-                  <mssgle:LineSegment
-                    End="-21,14" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-21,14"
-                    Point2="-25,14"
-                    Point3="-25,18" />
-                  <mssgle:LineSegment
-                    End="-25,20.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-20.5,19,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="154,42"
-          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Derived Column"
-          TopLeft="338,164" />
-        <EdgeLayout
-          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Derived Column Output]"
-          TopLeft="397.5,135">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="17.5,29"
-              Start="0,0"
-              End="17.5,21.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,10.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,10.5"
-                    Point2="0,14.5"
-                    Point3="4,14.5" />
-                  <mssgle:LineSegment
-                    End="13.5,14.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="13.5,14.5"
-                    Point2="17.5,14.5"
-                    Point3="17.5,18.5" />
-                  <mssgle:LineSegment
-                    End="17.5,21.5" />
+                    End="0,17.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10792,31 +10899,41 @@ ELSE
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Derived Column Output1]"
-          TopLeft="415,206">
+          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Derived Column Output]"
+          TopLeft="399,135">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-8.5,23"
+              EndConnector="0,27"
               Start="0,0"
-              End="-8.5,15.5">
+              End="0,19.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,7.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,7.5"
-                    Point2="0,11.5"
-                    Point3="-4,11.5" />
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Data Conversion Output]"
+          TopLeft="410.5,345">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="-4.5,11.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-4.5,11.5"
-                    Point2="-8.5,11.5"
-                    Point3="-8.5,15.5" />
-                  <mssgle:LineSegment
-                    End="-8.5,15.5" />
+                    End="0,27.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10829,7 +10946,7 @@ ELSE
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination">
+    design-time-name="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -10842,7 +10959,7 @@ ELSE
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source">
+    design-time-name="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -10862,7 +10979,7 @@ ELSE
         <NodeLayout
           Size="171,42"
           Id="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\OLE DB Destination"
-          TopLeft="196,436" />
+          TopLeft="217,439" />
         <NodeLayout
           Size="289,42"
           Id="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Script C# reemplace punto excepto el último"
@@ -10906,9 +11023,7 @@ ELSE
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10930,9 +11045,7 @@ ELSE
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10954,9 +11067,7 @@ ELSE
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10978,44 +11089,30 @@ ELSE
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File.Paths[Data Conversion Output1]"
-          TopLeft="301.5,412">
+          TopLeft="302,412">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-20,24"
+              EndConnector="0,27"
               Start="0,0"
-              End="-20,16.5">
+              End="0,19.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,8" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,8"
-                    Point2="0,12"
-                    Point3="-4,12" />
-                  <mssgle:LineSegment
-                    End="-16,12" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-16,12"
-                    Point2="-20,12"
-                    Point3="-20,16" />
-                  <mssgle:LineSegment
-                    End="-20,16.5" />
+                    End="0,19.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-18,17,16,16"
+              BoundingBox="-8,1.75,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -11038,9 +11135,7 @@ ELSE
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -11065,207 +11160,139 @@ ELSE
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="171,42"
-          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\OLE DB Destination"
-          TopLeft="236.5,441.5" />
-        <NodeLayout
           Size="134,42"
           Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\XML Source"
-          TopLeft="265,76" />
-        <NodeLayout
-          Size="290,42"
-          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\Script C# reemplace punto excepto el último"
-          TopLeft="205,302" />
+          TopLeft="317,86" />
         <NodeLayout
           Size="208,42"
           Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\Derived Columns sin comas"
-          TopLeft="238,229" />
+          TopLeft="275,227" />
+        <NodeLayout
+          Size="290,42"
+          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\Script C# reemplace punto excepto el último"
+          TopLeft="230,296" />
         <NodeLayout
           Size="244,42"
           Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\Data Conversion fechas y numerics"
-          TopLeft="212,371" />
+          TopLeft="257,365" />
         <NodeLayout
           Size="284,42"
           Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\Data Conversion para convertir datos en str"
           TopLeft="239,158" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\OLE DB Destination"
+          TopLeft="296.5,436.5" />
         <EdgeLayout
-          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File.Paths[Data Conversion Output1]"
-          TopLeft="334,413">
+          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File.Paths[Output 0]"
+          TopLeft="377,338">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-12,28.5"
+              EndConnector="0,27"
               Start="0,0"
-              End="-12,21">
+              End="0,19.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,10.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,10.25"
-                    Point2="0,14.25"
-                    Point3="-4,14.25" />
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File.Paths[NuevaFactura]"
+          TopLeft="382.5,128">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30"
+              Start="0,0"
+              End="0,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="-8,14.25" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-8,14.25"
-                    Point2="-12,14.25"
-                    Point3="-12,18.25" />
+                    End="0,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File.Paths[Derived Column Output]"
+          TopLeft="377,269">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27"
+              Start="0,0"
+              End="0,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="-12,21" />
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File.Paths[Data Conversion Output1]"
+          TopLeft="380.5,407">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.5"
+              Start="0,0"
+              End="0,22">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-14,19.25,16,16"
+              BoundingBox="-8,3,16,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File.Paths[Data Conversion Output]"
-          TopLeft="381,200">
+          TopLeft="380,200">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-39,29"
+              EndConnector="0,27"
               Start="0,0"
-              End="-39,21.5">
+              End="0,19.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,10.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,10.5"
-                    Point2="0,14.5"
-                    Point3="-4,14.5" />
-                  <mssgle:LineSegment
-                    End="-35,14.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-35,14.5"
-                    Point2="-39,14.5"
-                    Point3="-39,18.5" />
-                  <mssgle:LineSegment
-                    End="-39,21.5" />
+                    End="0,19.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File.Paths[Output 0]"
-          TopLeft="350,344">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-16,27"
-              Start="0,0"
-              End="-16,19.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,9.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,9.5"
-                    Point2="0,13.5"
-                    Point3="-4,13.5" />
-                  <mssgle:LineSegment
-                    End="-12,13.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-12,13.5"
-                    Point2="-16,13.5"
-                    Point3="-16,17.5" />
-                  <mssgle:LineSegment
-                    End="-16,19.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File.Paths[NuevaFactura]"
-          TopLeft="332,118">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="49,40"
-              Start="0,0"
-              End="49,32.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,16" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,16"
-                    Point2="0,20"
-                    Point3="4,20" />
-                  <mssgle:LineSegment
-                    End="45,20" />
-                  <mssgle:CubicBezierSegment
-                    Point1="45,20"
-                    Point2="49,20"
-                    Point3="49,24" />
-                  <mssgle:LineSegment
-                    End="49,32.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File.Paths[Derived Column Output]"
-          TopLeft="342,271">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="8,31"
-              Start="0,0"
-              End="8,23.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,11.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,11.5"
-                    Point2="0,15.5"
-                    Point3="4,15.5" />
-                  <mssgle:LineSegment
-                    End="4,15.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="4,15.5"
-                    Point2="8,15.5"
-                    Point3="8,19.5" />
-                  <mssgle:LineSegment
-                    End="8,23.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
