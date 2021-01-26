@@ -67,7 +67,7 @@ def try_upload_sales_goal( sales_goal_rows ):
         
         # cursor to create sql commands
         cursor = conn.cursor()
-        successful_uploads = 0
+        successful_uploads, already_synchronized, data_error = 0, 0, 0
     
         # for each row insert in db
         for _, sg in sales_goal_rows.items():
@@ -92,10 +92,18 @@ def try_upload_sales_goal( sales_goal_rows ):
                 cursor.commit() # save changes
                 successful_uploads += 1
                 
-            except Exception as e:
-                pass
-                    
-        print (f"Synchronization {float(successful_uploads)/float(len(sales_goal_rows))*100.0} % => {successful_uploads} of {len(sales_goal_rows)}\n")
+            except pyodbc.IntegrityError as e:
+                already_synchronized += 1
+            except Exception as ex:
+                data_error += 1
+                
+        message  = f"\n[ Synchronization with Firebase ]\n"
+        message += f"=> Fetched data         : {len( sales_goal_rows )}\n"
+        message += f"=> Already synchronized : {already_synchronized}\n"
+        message += f"=> New synchronized     : {successful_uploads}\n"
+        message += f"=> Data error           : {data_error}\n"
+        print(message)
+        
         conn.close()
         
     except Exception as e:

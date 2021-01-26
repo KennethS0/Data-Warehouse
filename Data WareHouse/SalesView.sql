@@ -42,7 +42,7 @@ SELECT
 	,T0.sales_tax_usd as 'Impuesto de venta en dolares'
 	,T0.sales_profit as 'Ganancia de venta'
 	,T0.sales_profit_usd as 'Ganancia de venta en dolares'
-	,T0.sales_currency as 'MonedaVenta'
+	,T0.sales_currency as 'Moneda de venta'
 	,T0.sales_price as 'Precio de venta'
 	,T0.sales_product_amount as 'Cantidad de venta'
 
