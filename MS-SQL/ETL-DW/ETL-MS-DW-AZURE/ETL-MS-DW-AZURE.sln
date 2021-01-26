@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ETL-MS-DW-AZURE", "ETL-MS-DW-AZURE.dtproj", "{21F27FE6-1159-4E20-A3C4-2221E58DDA5A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21F27FE6-1159-4E20-A3C4-2221E58DDA5A}.Development|Default.ActiveCfg = Development
+		{21F27FE6-1159-4E20-A3C4-2221E58DDA5A}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {729864B8-AA77-4EBF-AD29-DF7C4D09798A}
+	EndGlobalSection
+EndGlobal
