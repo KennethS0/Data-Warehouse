@@ -1,41 +1,32 @@
-// obtener los elementos en variables
+
+// Obtain the elements in variables
 const year = document.getElementById('year');
 const month = document.getElementById('month');
 const brand = document.getElementById('brand');
 const salesperson = document.getElementById('salesperson');
 const amount = document.getElementById('amount');
 
-// en estas const para manejar f{acilemtne la base de datos.}
+// Reference to the firebase database
 const database = firebase.database();
 
-// referencia a la collection test_col para utilizar las funciones sobre esta colección
+// Reference to the goals collection
 const rootRef = database.ref('/salesgoal_col/');
 
 
+// Shows the goals registred in the database
 function showGoals(){
     rootRef.on('value', (snap) =>{
-
         var data = JSON.stringify(snap.val());
         var list = splitString(data);
         append_json(list);
     });
-
 }
-
 showGoals();
 
-
-
-
-
-
-// se le agrega el listener al botón ADD .... 
+// Add documents into the database
 addBtn.addEventListener('click', (e) => {
-    e.preventDefault(); // evita el submit 
-    // --get the autoKey rootRef.push().key: con esta instruccion se obtiene
-    let recordKey = year.value+month.value+brand.value+salesperson.value; //DMR: en este caso se construye la llave, sino se puede generar
- 
-    // se hace un set, que es un UPSERT, actualiza o inserta, segun si la llave existe o no
+    e.preventDefault();
+    let recordKey = year.value+month.value+brand.value+salesperson.value;
     rootRef.child(recordKey).set({
         code : recordKey,
         year: year.value,
@@ -46,21 +37,19 @@ addBtn.addEventListener('click', (e) => {
     });
 });
 
-// se le agrega el listener al botón update
+// Update documents
 updateBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    // forma la llave para actualizar el monto
     let recordKey = year.value+month.value+brand.value+salesperson.value; 
-    // hace update del amount
     rootRef.child(recordKey).update({
         amount : amount.value
     });
 });
 
-// se agrega el listener al botón remove
+// Delete documents
 removeBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    //forma la llave y elimina
+    
     let recordKey = year.value+month.value+brand.value+salesperson.value; 
     rootRef.child(recordKey).remove()
     .then(() => {
@@ -71,6 +60,7 @@ removeBtn.addEventListener('click', (e) => {
     });
 });
 
+// Split the JSON by elements
 function splitString(obj){
 
     var listaString = obj.split("},");
@@ -86,13 +76,10 @@ function splitString(obj){
                     listaString[i] = "{"+ens[1];
 
                     listaString[i] = listaString[i].substring(0, listaString[i].length - 1);
-
                 }
                 else{
                     listaString[i] = "{"+ens[1]+"}";
-                }
-
-                
+                } 
             }
         }
         else{
@@ -109,8 +96,7 @@ function splitString(obj){
 
 }
 
-
-
+// Add the list of documents into the html table
 function append_json(data){
     var table = document.getElementById('wtf');
 
@@ -133,12 +119,3 @@ function append_json(data){
         table.appendChild(tr);
     });
 }
-
-
-// se agrega el listener al botón show goals
-// syncBtn.addEventListener('click', (e) => {
-//     e.preventDefault();
-
-//     postData('data to process');
-
-// });
