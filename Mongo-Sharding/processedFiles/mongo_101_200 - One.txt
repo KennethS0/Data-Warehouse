@@ -1,0 +1,1 @@
+[{"Factura": 75432, "Fecha": 20190816, "FechaVencimiento": 20191016, "Cliente": "C000566", "Producto": "A000191", "Cantidad": 20.0, "Moneda": "CRC", "Precio": "273.1410", "Total": "5,462.82", "Almacen": 1, "Vendedor": -1, "TotalUSD": "9.56", "Impuesto": "710.17", "ImpuestoUSD": "1.24", "Tipo de cambio": 1.0, "Ganacia": "2,505.5600", "GananciaUSD": "43,800", "Almac\u00e9n": 1}]

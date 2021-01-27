@@ -5,13 +5,13 @@ import subprocess
 import logging
 import FilesModifier as fm
 
-logging.basicConfig(filename=os.getcwd()+'//Mongo-Sharding//uploadedData.log', level=logging.DEBUG)
+logging.basicConfig(filename=os.getcwd()+'//uploadedData.log', level=logging.DEBUG)
 
 # Thread that is checking if there is a CSV or JSON file into dataFiles folder
 # if there is a file then is processed, imported and moved to processedFiles folder
 def checking():
-    pathToCheck = os.getcwd()+"//Mongo-Sharding//dataFiles"
-    pathToMove = os.getcwd()+"//Mongo-Sharding//processedFiles"
+    pathToCheck = os.getcwd()+"//dataFiles"
+    pathToMove = os.getcwd()+"//processedFiles"
     
     while True:
 
@@ -22,8 +22,8 @@ def checking():
             directory= os.listdir(pathToCheck) 
 
         # Not empty directory
-        if not os.path.exists(os.getcwd()+"//Mongo-Sharding//processedFiles"):
-            os.makedirs(os.getcwd()+"//Mongo-Sharding//processedFiles")
+        if not os.path.exists(os.getcwd()+"//processedFiles"):
+            os.makedirs(os.getcwd()+"//processedFiles")
 
         time.sleep(1)
 
@@ -32,7 +32,7 @@ def checking():
             if f.endswith('.csv'):
                 fm.modifyCSV(filePath)
                 os.replace(filePath, pathToMove+"//"+f)
-                callMongoImport(pathToMove+"//"+f, "--headerline","json")
+                callMongoImport(pathToMove+"//"+f, "--headerline","csv")
             elif (f.endswith('.txt') or f.endswith('.json')):
                 fm.modifyJSON(filePath)
                 os.replace(filePath, pathToMove+"//"+f)
@@ -44,7 +44,7 @@ def callMongoImport(filePath, readType, fileType):
     process = subprocess.run(["mongoimport"
                             ,"--host=localhost:20006"
                             ,"--db", "test"
-                            ,"--collection", "blog_posts"
+                            ,"--collection", "ventas"
                             ,"--type", fileType
                             ,"--file", filePath
                             ,readType], capture_output=True, check=False)

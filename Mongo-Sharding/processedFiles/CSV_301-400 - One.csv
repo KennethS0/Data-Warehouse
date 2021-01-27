@@ -1,0 +1,2 @@
+Factura,Fecha,FechaVencimiento,Cliente,Producto,Cantidad,Moneda,Total,Almacen,Vendedor,TotalUSD,Impuesto,ImpuestoUSD,Tipo de cambio,Ganacia,GananciaUSD
+000066964,20190708.,20190808.,C002080,A000348,12.00,CRC,"21,443.40",1,-1,0,"2,787.64",0,0,"8,104.9000",0
