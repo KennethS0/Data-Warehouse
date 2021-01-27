@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="126"
-  DTS:VersionGUID="{0C482360-E182-4C4D-9497-2B9F59C26EFE}">
+  DTS:VersionBuild="128"
+  DTS:VersionGUID="{82350EBF-05E8-4C7F-BB24-2FF0D0E75D28}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -95,7 +95,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA/q23ADwSe0WcT6cGDrkThAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAC86fa5niatW4o6W8+0RFVZuniRG8LjRU7uwjspHXlAjAAAAAAOgAAAAAIAACAAAAC/hniGNwy9rW3O55RuKCPyXbsbga2swNAE/dx4kqee4CAAAACBf5E6qZmh5aGa2vQLLeZeo4BBNcEmTNY2CKHnt3YkK0AAAADiAWCvLaLledVHIhERXU0PN7bN+FDCl5qZ5WgG9F2tkir2Wl1zW+DR1VJGiphw5UvHDLCRI5IHmU92qneQeKcZ</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA/q23ADwSe0WcT6cGDrkThAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAPg3qWM9+RV3xzUGjQgwoqf8CBKYTj83xRLjXEHvDwFgAAAAAOgAAAAAIAACAAAACujawsUlfg3v1TYQePxHpv+NkOFj3hJxbgoJv+roL4+yAAAABFDsd5F4jn/P/HdOukRmU4+hsr6jt2cKEiYFOom4Bij0AAAADjVJwOzUjeui9dS7lTrjDnIEqfVID94veql0BnIbZ0+Du9XrhY8U2R1nLC2K4Vy3N/tHwIOhkYbH64dZHLr6v6</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -127,6 +127,189 @@
         <pipeline
           version="1">
           <components>
+            <component
+              refId="Package\Data Flow Task\Calculate price"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Calculate price"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Calculate price.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Calculate price.Inputs[Derived Column Input].Columns[sales_total]"
+                      cachedDataType="decimal"
+                      cachedName="sales_total"
+                      cachedScale="4"
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[sales_total]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Calculate price.Inputs[Derived Column Input].Columns[sales_product_amount]"
+                      cachedDataType="decimal"
+                      cachedName="sales_product_amount"
+                      cachedScale="4"
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[sales_product_amount]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Calculate price.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Data Flow Task\Calculate price.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Calculate price.Outputs[Derived Column Output].Columns[sales_price_cal]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\Calculate price.Outputs[Derived Column Output].Columns[sales_price_cal]"
+                      name="sales_price_cal"
+                      precision="38"
+                      scale="9"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[sales_total]} / #{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[sales_product_amount]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">sales_total / sales_product_amount</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Calculate price.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Data Flow Task\Calculate price.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Calculate price.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Calculate price.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Calculate price.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Calculate price.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\check date"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="check date"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\check date.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\check date.Inputs[Conditional Split Input].Columns[time_id]"
+                      cachedDataType="i4"
+                      cachedName="time_id"
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[time_id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\check date.Inputs[Conditional Split Input].Columns[exchange_rate_id]"
+                      cachedDataType="i4"
+                      cachedName="exchange_rate_id"
+                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[exchange_rate_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\check date.Outputs[Case 1]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Case 1"
+                  synchronousInputId="Package\Data Flow Task\check date.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">![ISNULL](#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[time_id]}) || ![ISNULL](#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[exchange_rate_id]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">!ISNULL(time_id) || !ISNULL(exchange_rate_id)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\check date.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Data Flow Task\check date.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\check date.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Data Flow Task\check date.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\check date.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\check date.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\check date.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\check date.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
             <component
               refId="Package\Data Flow Task\commas"
               componentClassID="Microsoft.ManagedComponentHost"
@@ -1029,189 +1212,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\Conditional Split"
-              componentClassID="Microsoft.ConditionalSplit"
-              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
-              name="Conditional Split"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
-                  description="Input to the Conditional Split Transformation"
-                  name="Conditional Split Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input].Columns[client_idDB]"
-                      cachedDataType="i4"
-                      cachedName="client_idDB"
-                      lineageId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output].Columns[client_idDB]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Data Flow Task\Conditional Split.Outputs[Case 1]"
-                  description="Output 2 of the Conditional Split Transformation"
-                  errorOrTruncationOperation="Computation"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="Case 1"
-                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
-                  truncationRowDisposition="FailComponent">
-                  <properties>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">![ISNULL](#{Package\Data Flow Task\Lookup.Outputs[Lookup Match Output].Columns[client_idDB]})</property>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the friendly version of the expression. This expression version uses column names."
-                      expressionType="Notify"
-                      name="FriendlyExpression">!ISNULL(client_idDB)</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
-                      name="EvaluationOrder">0</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Default Output]"
-                  description="Default Output of the Conditional Split Transformation"
-                  exclusionGroup="1"
-                  name="Conditional Split Default Output"
-                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]">
-                  <properties>
-                    <property
-                      dataType="System.Boolean"
-                      name="IsDefaultOut">true</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output]"
-                  description="Error Output of the Conditional Split Transformation"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Conditional Split Error Output"
-                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Data Flow Task\Conditional Split 1"
-              componentClassID="Microsoft.ConditionalSplit"
-              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
-              name="Conditional Split 1"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\Data Flow Task\Conditional Split 1.Inputs[Conditional Split Input]"
-                  description="Input to the Conditional Split Transformation"
-                  name="Conditional Split Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Data Flow Task\Conditional Split 1.Inputs[Conditional Split Input].Columns[time_id]"
-                      cachedDataType="i4"
-                      cachedName="time_id"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[time_id]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\Conditional Split 1.Inputs[Conditional Split Input].Columns[exchange_rate_id]"
-                      cachedDataType="i4"
-                      cachedName="exchange_rate_id"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[exchange_rate_id]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Data Flow Task\Conditional Split 1.Outputs[Case 1]"
-                  description="Output 1 of the Conditional Split Transformation"
-                  errorOrTruncationOperation="Computation"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="Case 1"
-                  synchronousInputId="Package\Data Flow Task\Conditional Split 1.Inputs[Conditional Split Input]"
-                  truncationRowDisposition="FailComponent">
-                  <properties>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">![ISNULL](#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[time_id]}) || ![ISNULL](#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[exchange_rate_id]})</property>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the friendly version of the expression. This expression version uses column names."
-                      expressionType="Notify"
-                      name="FriendlyExpression">!ISNULL(time_id) || !ISNULL(exchange_rate_id)</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
-                      name="EvaluationOrder">0</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Data Flow Task\Conditional Split 1.Outputs[Conditional Split Default Output]"
-                  description="Default Output of the Conditional Split Transformation"
-                  exclusionGroup="1"
-                  name="Conditional Split Default Output"
-                  synchronousInputId="Package\Data Flow Task\Conditional Split 1.Inputs[Conditional Split Input]">
-                  <properties>
-                    <property
-                      dataType="System.Boolean"
-                      name="IsDefaultOut">true</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Data Flow Task\Conditional Split 1.Outputs[Conditional Split Error Output]"
-                  description="Error Output of the Conditional Split Transformation"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Conditional Split Error Output"
-                  synchronousInputId="Package\Data Flow Task\Conditional Split 1.Inputs[Conditional Split Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Data Flow Task\Conditional Split 1.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\Conditional Split 1.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Conditional Split 1.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\Conditional Split 1.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
               refId="Package\Data Flow Task\CRC"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
@@ -1352,95 +1352,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       refId="Package\Data Flow Task\CRC.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Data Flow Task\CRC.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Data Flow Task\Derived Column"
-              componentClassID="Microsoft.DerivedColumn"
-              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-              name="Derived Column"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
-                  description="Input to the Derived Column Transformation"
-                  name="Derived Column Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[sales_total]"
-                      cachedDataType="decimal"
-                      cachedName="sales_total"
-                      cachedScale="4"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[sales_total]" />
-                    <inputColumn
-                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[sales_product_amount]"
-                      cachedDataType="decimal"
-                      cachedName="sales_product_amount"
-                      cachedScale="4"
-                      lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[sales_product_amount]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
-                  description="Default Output of the Derived Column Transformation"
-                  exclusionGroup="1"
-                  name="Derived Column Output"
-                  synchronousInputId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[sales_price_cal]"
-                      dataType="numeric"
-                      errorOrTruncationOperation="Computation"
-                      errorRowDisposition="FailComponent"
-                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[sales_price_cal]"
-                      name="sales_price_cal"
-                      precision="38"
-                      scale="9"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Expression"
-                          name="Expression">#{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[sales_total]} / #{Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[sales_product_amount]}</property>
-                        <property
-                          containsID="true"
-                          dataType="System.String"
-                          description="Derived Column Friendly Expression"
-                          expressionType="Notify"
-                          name="FriendlyExpression">sales_total / sales_product_amount</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
-                  description="Error Output of the Derived Column Transformation"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Derived Column Error Output"
-                  synchronousInputId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -2274,11 +2185,11 @@ where [refTable].[date_value] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\Lookup"
+              refId="Package\Data Flow Task\look repeated"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Lookup"
+              name="look repeated"
               usesDispositions="true"
               version="6">
               <properties>
@@ -2342,7 +2253,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\Lookup.Connections[OleDbConnection]"
+                  refId="Package\Data Flow Task\look repeated.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[tcp:rocket-bd2.database.windows.net,1433.ROCKET-BD2.rocket-admin]"
                   connectionManagerRefId="Package.ConnectionManagers[tcp:rocket-bd2.database.windows.net,1433.ROCKET-BD2.rocket-admin]"
                   description="Connection manager used to access lookup data."
@@ -2350,11 +2261,11 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
               </connections>
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]"
+                  refId="Package\Data Flow Task\look repeated.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Lookup.Inputs[Lookup Input].Columns[time_id]"
+                      refId="Package\Data Flow Task\look repeated.Inputs[Lookup Input].Columns[time_id]"
                       cachedDataType="i4"
                       cachedName="time_id"
                       lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[time_id]">
@@ -2370,7 +2281,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Lookup.Inputs[Lookup Input].Columns[client_id]"
+                      refId="Package\Data Flow Task\look repeated.Inputs[Lookup Input].Columns[client_id]"
                       cachedDataType="i4"
                       cachedName="client_id"
                       lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[client_id]">
@@ -2386,7 +2297,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Lookup.Inputs[Lookup Input].Columns[sales_person_id]"
+                      refId="Package\Data Flow Task\look repeated.Inputs[Lookup Input].Columns[sales_person_id]"
                       cachedDataType="i4"
                       cachedName="sales_person_id"
                       lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[sales_person_id]">
@@ -2402,7 +2313,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Lookup.Inputs[Lookup Input].Columns[exchange_rate_id]"
+                      refId="Package\Data Flow Task\look repeated.Inputs[Lookup Input].Columns[exchange_rate_id]"
                       cachedDataType="i4"
                       cachedName="exchange_rate_id"
                       lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[exchange_rate_id]">
@@ -2418,7 +2329,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Lookup.Inputs[Lookup Input].Columns[item_id]"
+                      refId="Package\Data Flow Task\look repeated.Inputs[Lookup Input].Columns[item_id]"
                       cachedDataType="i4"
                       cachedName="item_id"
                       lineageId="Package\Data Flow Task\Union All.Outputs[Union All Output 1].Columns[item_id]">
@@ -2439,18 +2350,18 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output]"
+                  refId="Package\Data Flow Task\look repeated.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
                   errorRowDisposition="IgnoreFailure"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Data Flow Task\look repeated.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output].Columns[client_idDB]"
+                      refId="Package\Data Flow Task\look repeated.Outputs[Lookup Match Output].Columns[client_idDB]"
                       dataType="i4"
                       errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output].Columns[client_idDB]"
+                      lineageId="Package\Data Flow Task\look repeated.Outputs[Lookup Match Output].Columns[client_idDB]"
                       name="client_idDB"
                       truncationRowDisposition="IgnoreFailure">
                       <properties>
@@ -2464,30 +2375,30 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Lookup.Outputs[Lookup No Match Output]"
+                  refId="Package\Data Flow Task\look repeated.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Data Flow Task\look repeated.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output]"
+                  refId="Package\Data Flow Task\look repeated.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Data Flow Task\look repeated.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task\look repeated.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task\look repeated.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task\look repeated.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task\look repeated.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -5256,6 +5167,95 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
                       refId="Package\Data Flow Task\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Data Flow Task\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\take no repeated"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="take no repeated"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\take no repeated.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\take no repeated.Inputs[Conditional Split Input].Columns[client_idDB]"
+                      cachedDataType="i4"
+                      cachedName="client_idDB"
+                      lineageId="Package\Data Flow Task\look repeated.Outputs[Lookup Match Output].Columns[client_idDB]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\take no repeated.Outputs[Case 1]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Case 1"
+                  synchronousInputId="Package\Data Flow Task\take no repeated.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">![ISNULL](#{Package\Data Flow Task\look repeated.Outputs[Lookup Match Output].Columns[client_idDB]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">!ISNULL(client_idDB)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\take no repeated.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Data Flow Task\take no repeated.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\take no repeated.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Data Flow Task\take no repeated.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\take no repeated.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\take no repeated.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\take no repeated.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\take no repeated.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -9066,7 +9066,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
               refId="Package\Data Flow Task.Paths[Case 11]"
               endId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
               name="Case 1"
-              startId="Package\Data Flow Task\Conditional Split 1.Outputs[Case 1]" />
+              startId="Package\Data Flow Task\check date.Outputs[Case 1]" />
             <path
               refId="Package\Data Flow Task.Paths[Case 2]"
               endId="Package\Data Flow Task\USD.Inputs[Derived Column Input]"
@@ -9074,9 +9074,9 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
               startId="Package\Data Flow Task\USD or CRC.Outputs[Case 2]" />
             <path
               refId="Package\Data Flow Task.Paths[Conditional Split Default Output]"
-              endId="Package\Data Flow Task\Conditional Split 1.Inputs[Conditional Split Input]"
+              endId="Package\Data Flow Task\check date.Inputs[Conditional Split Input]"
               name="Conditional Split Default Output"
-              startId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Default Output]" />
+              startId="Package\Data Flow Task\take no repeated.Outputs[Conditional Split Default Output]" />
             <path
               refId="Package\Data Flow Task.Paths[Derived Column Output]"
               endId="Package\Data Flow Task\To Date.Inputs[Derived Column Input]"
@@ -9089,9 +9089,9 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
               startId="Package\Data Flow Task\To Date.Outputs[Derived Column Output]" />
             <path
               refId="Package\Data Flow Task.Paths[Derived Column Output5]"
-              endId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]"
+              endId="Package\Data Flow Task\look repeated.Inputs[Lookup Input]"
               name="Derived Column Output"
-              startId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+              startId="Package\Data Flow Task\Calculate price.Outputs[Derived Column Output]" />
             <path
               refId="Package\Data Flow Task.Paths[Derived Column Output2]"
               endId="Package\Data Flow Task\commas.Inputs[Input 0]"
@@ -9134,9 +9134,9 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
               startId="Package\Data Flow Task\Get Client Id.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Data Flow Task.Paths[Lookup Match Output5]"
-              endId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+              endId="Package\Data Flow Task\take no repeated.Inputs[Conditional Split Input]"
               name="Lookup Match Output"
-              startId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output]" />
+              startId="Package\Data Flow Task\look repeated.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Data Flow Task.Paths[MongoDBSourceOutput2]"
               endId="Package\Data Flow Task\Union All 1.Inputs[Union All Input 2]"
@@ -9164,7 +9164,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
               startId="Package\Data Flow Task\Union All 1.Outputs[Union All Output 1]" />
             <path
               refId="Package\Data Flow Task.Paths[Union All Output 11]"
-              endId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+              endId="Package\Data Flow Task\Calculate price.Inputs[Derived Column Input]"
               name="Union All Output 1"
               startId="Package\Data Flow Task\Union All.Outputs[Union All Output 1]" />
           </paths>
@@ -12082,93 +12082,93 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
         <NodeLayout
           Size="116,42"
           Id="Package\Data Flow Task\To Date"
-          TopLeft="499,233" />
+          TopLeft="513,233" />
         <NodeLayout
-          Size="161,42"
+          Size="130,42"
           Id="Package\Data Flow Task\MongoDB Shard2"
-          TopLeft="399,33" />
+          TopLeft="303,51" />
         <NodeLayout
           Size="135,43"
           Id="Package\Data Flow Task\USD or CRC"
-          TopLeft="440,307" />
+          TopLeft="454,307" />
         <NodeLayout
           Size="130,42"
           Id="Package\Data Flow Task\Union All 1"
-          TopLeft="24,152" />
+          TopLeft="38,152" />
         <NodeLayout
           Size="171,42"
           Id="Package\Data Flow Task\Get Sales Person Id"
-          TopLeft="45,306" />
+          TopLeft="59,306" />
         <NodeLayout
           Size="98,42"
           Id="Package\Data Flow Task\CRC"
-          TopLeft="513,374" />
+          TopLeft="527,374" />
         <NodeLayout
-          Size="161,42"
+          Size="130,42"
           Id="Package\Data Flow Task\MongoDB Shard1"
-          TopLeft="214,33" />
+          TopLeft="162,51" />
         <NodeLayout
           Size="135,42"
           Id="Package\Data Flow Task\Get Time Id"
-          TopLeft="186,230" />
+          TopLeft="200,230" />
         <NodeLayout
           Size="99,42"
           Id="Package\Data Flow Task\USD"
-          TopLeft="403,374" />
+          TopLeft="417,374" />
         <NodeLayout
           Size="138,42"
           Id="Package\Data Flow Task\Get Client Id"
-          TopLeft="30,231" />
+          TopLeft="44,231" />
         <NodeLayout
           Size="180,42"
           Id="Package\Data Flow Task\OLE DB Destination 1"
-          TopLeft="275,507" />
+          TopLeft="297,499" />
         <NodeLayout
           Size="182,42"
           Id="Package\Data Flow Task\Get Exchange Rate Id"
-          TopLeft="238,306" />
+          TopLeft="252,306" />
         <NodeLayout
           Size="122,42"
           Id="Package\Data Flow Task\To String"
-          TopLeft="177,154" />
+          TopLeft="191,154" />
         <NodeLayout
           Size="132,42"
           Id="Package\Data Flow Task\To Decimal"
-          TopLeft="479,155" />
+          TopLeft="493,155" />
         <NodeLayout
-          Size="161,42"
+          Size="130,42"
           Id="Package\Data Flow Task\MongoDB Shard0"
-          TopLeft="41,31" />
+          TopLeft="23,51" />
         <NodeLayout
           Size="134,42"
           Id="Package\Data Flow Task\Get Item Id"
-          TopLeft="341,230" />
+          TopLeft="355,230" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[MongoDBSourceOutput2]"
-          TopLeft="294.5,75">
+          TopLeft="176,93">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-205.5,77"
+              EndConnector="-73,59"
               Start="0,0"
-              End="-205.5,69.5">
+              End="-73,51.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.5" />
+                    End="0,18.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,24.5"
-                    Point2="0,28.5"
-                    Point3="-4,28.5" />
+                    Point1="0,18.5"
+                    Point2="0,22.5"
+                    Point3="-4,22.5" />
                   <mssgle:LineSegment
-                    End="-201.5,28.5" />
+                    End="-69,22.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-201.5,28.5"
-                    Point2="-205.5,28.5"
-                    Point3="-205.5,32.5" />
+                    Point1="-69,22.5"
+                    Point2="-73,22.5"
+                    Point3="-73,26.5" />
                   <mssgle:LineSegment
-                    End="-205.5,69.5" />
+                    End="-73,51.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -12179,18 +12179,18 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[MongoDBSourceOutput1]"
-          TopLeft="60,73">
+          TopLeft="53.75,93">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,79"
+              EndConnector="0,59"
               Start="0,0"
-              End="0,71.5">
+              End="0,51.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,71.5" />
+                    End="0,51.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -12201,30 +12201,30 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[MongoDBSourceOutput]"
-          TopLeft="479.5,75">
+          TopLeft="315,93">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-360,77"
+              EndConnector="-155,59"
               Start="0,0"
-              End="-360,69.5">
+              End="-155,51.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,46.3015075376884" />
+                    End="0,34.5427135678392" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,46.3015075376884"
-                    Point2="0,50.3015075376884"
-                    Point3="-4,50.3015075376884" />
+                    Point1="0,34.5427135678392"
+                    Point2="0,38.5427135678392"
+                    Point3="-4,38.5427135678392" />
                   <mssgle:LineSegment
-                    End="-356,50.3015075376884" />
+                    End="-151,38.5427135678392" />
                   <mssgle:CubicBezierSegment
-                    Point1="-356,50.3015075376884"
-                    Point2="-360,50.3015075376884"
-                    Point3="-360,54.3015075376884" />
+                    Point1="-151,38.5427135678392"
+                    Point2="-155,38.5427135678392"
+                    Point3="-155,42.5427135678392" />
                   <mssgle:LineSegment
-                    End="-360,69.5" />
+                    End="-155,51.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -12235,7 +12235,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output4]"
-          TopLeft="100.25,273">
+          TopLeft="114.25,273">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -12259,7 +12259,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output3]"
-          TopLeft="358,306">
+          TopLeft="372,306">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -12295,7 +12295,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output2]"
-          TopLeft="157.666666666667,306">
+          TopLeft="171.666666666667,306">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -12331,7 +12331,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output1]"
-          TopLeft="387,230">
+          TopLeft="401,230">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -12367,7 +12367,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output]"
-          TopLeft="232.333333333333,230">
+          TopLeft="246.333333333333,230">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -12403,7 +12403,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Derived Column Output1]"
-          TopLeft="499,252.5">
+          TopLeft="513,252.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -12425,7 +12425,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Derived Column Output]"
-          TopLeft="545,197">
+          TopLeft="559,197">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -12447,7 +12447,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Case 2]"
-          TopLeft="484.916666666667,350">
+          TopLeft="498.916666666667,350">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -12471,7 +12471,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Case 1]"
-          TopLeft="561.75,350">
+          TopLeft="575.75,350">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -12495,7 +12495,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Union All Output 1]"
-          TopLeft="154,174">
+          TopLeft="168,174">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -12518,10 +12518,10 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
         <NodeLayout
           Size="118,42"
           Id="Package\Data Flow Task\commas"
-          TopLeft="323,155" />
+          TopLeft="337,155" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Derived Column Output2]"
-          TopLeft="299,175.5">
+          TopLeft="313,175.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -12543,7 +12543,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Output 0]"
-          TopLeft="441,176">
+          TopLeft="455,176">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -12564,16 +12564,16 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="113,42"
-          Id="Package\Data Flow Task\Lookup"
-          TopLeft="44,389" />
+          Size="143,42"
+          Id="Package\Data Flow Task\look repeated"
+          TopLeft="66,369" />
         <NodeLayout
           Size="121,42"
           Id="Package\Data Flow Task\Union All"
-          TopLeft="416,440" />
+          TopLeft="430,440" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Derived Column Output3]"
-          TopLeft="455.083333333333,416">
+          TopLeft="469.083333333333,416">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -12595,7 +12595,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Derived Column Output4]"
-          TopLeft="520.666666666667,416">
+          TopLeft="534.666666666667,416">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -12616,12 +12616,12 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="155,42"
-          Id="Package\Data Flow Task\Conditional Split"
-          TopLeft="40,457" />
+          Size="130,42"
+          Id="Package\Data Flow Task\take no repeated"
+          TopLeft="80,437" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output5]"
-          TopLeft="117.5,431">
+          TopLeft="141.25,411">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -12644,35 +12644,35 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="154,42"
-          Id="Package\Data Flow Task\Derived Column"
-          TopLeft="204,389" />
+          Size="148,42"
+          Id="Package\Data Flow Task\Calculate price"
+          TopLeft="234,373" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Union All Output 11]"
-          TopLeft="416,461">
+          TopLeft="438.25,440">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-58,-51"
+              EndConnector="-130.25,-25"
               Start="0,0"
-              End="-50.5,-51">
+              End="-130.25,-17.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-25,0" />
+                    End="0,-4.69272237196765" />
                   <mssgle:CubicBezierSegment
-                    Point1="-25,0"
-                    Point2="-29,0"
-                    Point3="-29,-4" />
+                    Point1="0,-4.69272237196765"
+                    Point2="0,-8.69272237196765"
+                    Point3="-4,-8.69272237196765" />
                   <mssgle:LineSegment
-                    End="-29,-47" />
+                    End="-126.25,-8.69272237196765" />
                   <mssgle:CubicBezierSegment
-                    Point1="-29,-47"
-                    Point2="-29,-51"
-                    Point3="-33,-51" />
+                    Point1="-126.25,-8.69272237196765"
+                    Point2="-130.25,-8.69272237196765"
+                    Point3="-130.25,-12.6927223719676" />
                   <mssgle:LineSegment
-                    End="-50.5,-51" />
+                    End="-130.25,-17.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -12683,18 +12683,18 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Derived Column Output5]"
-          TopLeft="204,410">
+          TopLeft="234,392">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-47,0"
+              EndConnector="-25,0"
               Start="0,0"
-              End="-39.5,0">
+              End="-17.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-39.5,0" />
+                    End="-17.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -12704,66 +12704,54 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="164,42"
-          Id="Package\Data Flow Task\Conditional Split 1"
-          TopLeft="48,542" />
+          Size="130,42"
+          Id="Package\Data Flow Task\check date"
+          TopLeft="78,502" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Conditional Split Default Output]"
-          TopLeft="128.75,499">
+          TopLeft="144,479">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,43"
+              EndConnector="0,23"
               Start="0,0"
-              End="0,35.5">
+              End="0,15.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.5" />
+                    End="0,15.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-70.61390625,11.9208984375,141.2278125,11.658203125"
+              BoundingBox="-70.61390625,1.9208984375,141.2278125,11.658203125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Case 11]"
-          TopLeft="212,563">
+          TopLeft="208,521.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="63,-35"
+              EndConnector="89,0"
               Start="0,0"
-              End="55.5,-35">
+              End="81.5,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="27.5,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="27.5,0"
-                    Point2="31.5,0"
-                    Point3="31.5,-4" />
-                  <mssgle:LineSegment
-                    End="31.5,-31" />
-                  <mssgle:CubicBezierSegment
-                    Point1="31.5,-31"
-                    Point2="31.5,-35"
-                    Point3="35.5,-35" />
-                  <mssgle:LineSegment
-                    End="55.5,-35" />
+                    End="81.5,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="16.2819140625,1,30.436171875,9.5537109375"
+              BoundingBox="25.5319140625,5,30.436171875,9.5537109375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -13072,7 +13060,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\Lookup">
+    design-time-name="Package\Data Flow Task\look repeated">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
