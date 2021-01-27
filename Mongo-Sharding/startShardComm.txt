@@ -1,0 +1,7 @@
+-CREA EL CLUSTER CONSOLA 1
+mongo --nodb
+cluster = new ShardingTest({shards : 3, chunksize : 1, name: 'Shard'})
+
+-CIERRE CONSOLA 1
+cluster.stop()
+

@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="125"
-  DTS:VersionGUID="{381E8002-1789-4031-8838-ACC2BB6FDF51}">
+  DTS:VersionBuild="126"
+  DTS:VersionGUID="{0C482360-E182-4C4D-9497-2B9F59C26EFE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -95,7 +95,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA/q23ADwSe0WcT6cGDrkThAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADiy17i1iEraGA+VU8K9mYzwmJZTcrBXAnQQmHK8fupkAAAAAAOgAAAAAIAACAAAAB2uJcb1oYMQFzp9UI4YbH7huvmCvHbHf+m2IWAIHj5hiAAAAChFPCKjGnkiTuqQnQdbM58SDO/2Ob7/DuWmMgOsc/UsUAAAAA2NF2OhIHOLtb6UgftxusZyAeQV1GsH9i8YkTyHMoWDvg9BDwObkvuP8Qe7SEPZ9LewYAenGHyhdYRR4tQHDD/</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA/q23ADwSe0WcT6cGDrkThAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAC86fa5niatW4o6W8+0RFVZuniRG8LjRU7uwjspHXlAjAAAAAAOgAAAAAIAACAAAAC/hniGNwy9rW3O55RuKCPyXbsbga2swNAE/dx4kqee4CAAAACBf5E6qZmh5aGa2vQLLeZeo4BBNcEmTNY2CKHnt3YkK0AAAADiAWCvLaLledVHIhERXU0PN7bN+FDCl5qZ5WgG9F2tkir2Wl1zW+DR1VJGiphw5UvHDLCRI5IHmU92qneQeKcZ</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -12429,26 +12429,14 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="12,36"
+              EndConnector="0,36"
               Start="0,0"
-              End="12,28.5">
+              End="0,28.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,14"
-                    Point2="0,18"
-                    Point3="4,18" />
-                  <mssgle:LineSegment
-                    End="8,18" />
-                  <mssgle:CubicBezierSegment
-                    Point1="8,18"
-                    Point2="12,18"
-                    Point3="12,22" />
-                  <mssgle:LineSegment
-                    End="12,28.5" />
+                    End="0,28.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
