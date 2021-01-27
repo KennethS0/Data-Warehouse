@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="73"
-  DTS:VersionGUID="{7D9811EE-43EF-4C91-A4B6-C9941B6512FD}">
+  DTS:VersionBuild="75"
+  DTS:VersionGUID="{3FC7CFE8-A128-4BAE-A16A-90069D068541}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -32,7 +32,7 @@
           ConnectByProxy="False">
           <Password
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZEesLlMJA0WNkk8Dvuo//AAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAKfou7rH8IaItJx16+OZXRZZ2SaYKUWFEDfltRDc+wcgAAAAAOgAAAAAIAACAAAAAxu2YkGDEEPm80TqRtlcW+oQb3GPaihvqRBkllh6MNTCAAAAC6vrbNYv5E2O6njXWGQYeWV/lNKi2sGCkm/P5VfHRqYkAAAADIOA/xPNsQ+ASE/JJ3Tmv0b8I5kreeeeYHpHYXoIGOzm77QzUB0DMGAFxQPEqZycUZRg+L/bV8nIHA0gGyDXWE</Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZEesLlMJA0WNkk8Dvuo//AAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAKKen7CgvBOX5H5HEzDo4jT/pR5s72ZR6asvDumDqKMgAAAAAOgAAAAAIAACAAAACmWI6ko8qt+kMbNoIJHfVthOSzYPUufwkYhrb/ByKhVyAAAADLFyjCzmp3p4xZywnT7f6kHJvYOHtSk5vVqVjzgYdY10AAAACLZn4L/LAgSZnO1NXVnBFeFoWl6j+w7DiSYbkgVV4ZKGH7d6NhW1EC9lwQkfAVbLCmyZsE2UG1RFvVfbORl+jA</Password>
         </ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -47,7 +47,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZEesLlMJA0WNkk8Dvuo//AAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACs2Flu52s0sEAPwMPPBWRkxtSutZ5DnOvmHgcp8uF3HQAAAAAOgAAAAAIAACAAAABxqzKNrrtcx7xdpI0XnU8u/7GHmPAsPQjIxTHAlMxIIyAAAACi5+2ETN5/zUX1OFVjOEOSUNLerXnDiJIyYo1MHIg4TkAAAADNk0hbHoAO1jQ/Y898ESluoDpZu0+kZAP6AN1+ZJYhSEueRyps5sTLwerUSvGTKEiDQYvvtBiKwdZTpf/UaUXU</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZEesLlMJA0WNkk8Dvuo//AAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAA2fcP3pbxgd4BAoE/9elf5YExyaQlsaaja+Hn/QLNpkgAAAAAOgAAAAAIAACAAAADp64NduGHGMecLqVF4fHaNx0EFV8g2EZcBXyBh7iuwoCAAAADWiKfi09cl5ZhDgNdFTHcKM9s+U9Zv1dLAeMUGz83gDkAAAABMFFdtd7tg/EPsrTrG/F4mmdP4SrhoAZ/MKNvgjBvnjxbSGvKLT/yWdOnPKVAyj4hdsxShIR39XZL3Zgx00MVX</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -3257,8 +3257,8 @@ where [refTable].[aditional_id] = ?</property>
                       refId="Package\Data Insertion\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[CRC_TOTAL]"
                       cachedDataType="numeric"
                       cachedName="CRC_TOTAL"
-                      cachedPrecision="31"
-                      cachedScale="4"
+                      cachedPrecision="38"
+                      cachedScale="8"
                       externalMetadataColumnId="Package\Data Insertion\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sales_total]"
                       lineageId="Package\Data Insertion\CRC Calc.Outputs[Derived Column Output].Columns[CRC_TOTAL]" />
                     <inputColumn
@@ -3271,8 +3271,10 @@ where [refTable].[aditional_id] = ?</property>
                       lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[untaxed_item_total]" />
                     <inputColumn
                       refId="Package\Data Insertion\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[CRC_TAX]"
-                      cachedDataType="r8"
+                      cachedDataType="numeric"
                       cachedName="CRC_TAX"
+                      cachedPrecision="38"
+                      cachedScale="8"
                       externalMetadataColumnId="Package\Data Insertion\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sales_tax]"
                       lineageId="Package\Data Insertion\CRC Calc.Outputs[Derived Column Output].Columns[CRC_TAX]" />
                     <inputColumn
@@ -3299,8 +3301,10 @@ where [refTable].[aditional_id] = ?</property>
                       lineageId="Package\Data Insertion\Merge Join.Outputs[Merge Join Output].Columns[amount]" />
                     <inputColumn
                       refId="Package\Data Insertion\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[CRC_PROFIT]"
-                      cachedDataType="r8"
+                      cachedDataType="numeric"
                       cachedName="CRC_PROFIT"
+                      cachedPrecision="38"
+                      cachedScale="8"
                       externalMetadataColumnId="Package\Data Insertion\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sales_profit]"
                       lineageId="Package\Data Insertion\CRC Calc.Outputs[Derived Column Output].Columns[CRC_PROFIT]" />
                     <inputColumn
@@ -3990,303 +3994,65 @@ where [refTable].[date_value] = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="177,42"
+          Id="Package\Data Insertion\OLE DB Destination"
+          TopLeft="378.333333333333,980" />
+        <NodeLayout
           Size="127,42"
           Id="Package\Data Insertion\USD Calc"
           TopLeft="399,882.5" />
         <NodeLayout
-          Size="199,42"
-          Id="Package\Data Insertion\EXCHANGE RATE Data"
-          TopLeft="867.333333333333,460" />
+          Size="144,42"
+          Id="Package\Data Insertion\ITEM Lookup"
+          TopLeft="437.666666666667,343.666666666667" />
         <NodeLayout
-          Size="128,42"
-          Id="Package\Data Insertion\CRC Calc"
-          TopLeft="916.916666666667,898.333333333333" />
+          Size="159,42"
+          Id="Package\Data Insertion\Conditional Split"
+          TopLeft="662.222222222222,757.777777777778" />
         <NodeLayout
-          Size="125,42"
-          Id="Package\Data Insertion\Atlas Info"
-          TopLeft="438.666666666667,21.1666666666667" />
+          Size="158,42"
+          Id="Package\Data Insertion\DATA Date Sort"
+          TopLeft="424.666666666667,534.666666666667" />
+        <NodeLayout
+          Size="133,42"
+          Id="Package\Data Insertion\Merge Join"
+          TopLeft="674.444444444445,655.555555555556" />
         <NodeLayout
           Size="148,42"
           Id="Package\Data Insertion\Items to Table"
           TopLeft="427.777777777778,100.777777777778" />
         <NodeLayout
-          Size="157,42"
-          Id="Package\Data Insertion\CLIENT Lookup"
-          TopLeft="430.666666666667,179.666666666667" />
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[JsonParserTransformOutput]"
-          TopLeft="505.472222222222,142.777777777778">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,36.8888888888889"
-              Start="0,0"
-              End="0,29.3888888888889">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,29.3888888888889" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,6.69444444444444,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="144,42"
-          Id="Package\Data Insertion\TIME Lookup"
-          TopLeft="438.666666666667,261.666666666667" />
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[Lookup Match Output]"
-          TopLeft="509.916666666667,221.666666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,40"
-              Start="0,0"
-              End="0,32.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,32.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,10.4453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="144,42"
-          Id="Package\Data Insertion\ITEM Lookup"
-          TopLeft="437.666666666667,343.666666666667" />
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[Lookup Match Output1]"
-          TopLeft="510.166666666667,303.666666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,40"
-              Start="0,0"
-              End="0,32.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,32.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,10.4453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="125,42"
+          Id="Package\Data Insertion\Date Sort"
+          TopLeft="906.666666666667,540" />
         <NodeLayout
           Size="178,42"
           Id="Package\Data Insertion\SALESMAN Lookup"
           TopLeft="416.666666666667,441.666666666667" />
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[Lookup Match Output2]"
-          TopLeft="507.666666666667,385.666666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,56"
-              Start="0,0"
-              End="0,48.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,48.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,18.4453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <NodeLayout
-          Size="158,42"
-          Id="Package\Data Insertion\DATA Date Sort"
-          TopLeft="424.666666666667,534.666666666667" />
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[Lookup Match Output3]"
-          TopLeft="504.666666666667,483.666666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,51"
-              Start="0,0"
-              End="0,43.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,43.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,15.9453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="157,42"
+          Id="Package\Data Insertion\CLIENT Lookup"
+          TopLeft="430.666666666667,179.666666666667" />
         <NodeLayout
-          Size="125,42"
-          Id="Package\Data Insertion\Date Sort"
-          TopLeft="906.666666666667,540" />
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[OLE DB Source Output]"
-          TopLeft="968,502">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,38.0000000000004"
-              Start="0,0"
-              End="0,30.5000000000004">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,30.5000000000004" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="177,42"
-          Id="Package\Data Insertion\OLE DB Destination"
-          TopLeft="378.333333333333,980" />
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[Derived Column Output]"
-          TopLeft="464.666666666667,924.5">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,55.5"
-              Start="0,0"
-              End="0,48">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,48" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="128,42"
+          Id="Package\Data Insertion\CRC Calc"
+          TopLeft="916.916666666667,898.333333333333" />
         <NodeLayout
           Size="186,42"
           Id="Package\Data Insertion\OLE DB Destination 1"
           TopLeft="883.333333333333,990" />
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[Derived Column Output1]"
-          TopLeft="978.625,940.333333333333">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,49.6666666666666"
-              Start="0,0"
-              End="0,42.1666666666666">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,42.1666666666666" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[MongoDBSourceOutput]"
-          TopLeft="501.472222222222,63.1666666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,37.6111111111111"
-              Start="0,0"
-              End="0,30.1111111111111">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,30.1111111111111" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <NodeLayout
-          Size="133,42"
-          Id="Package\Data Insertion\Merge Join"
-          TopLeft="674.444444444445,655.555555555556" />
-        <EdgeLayout
-          Id="Package\Data Insertion.Paths[Sort Output]"
-          TopLeft="503.666666666667,576.666666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="216.444444444445,78.888888888889"
-              Start="0,0"
-              End="216.444444444445,71.388888888889">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,42.7706785537396" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,42.7706785537396"
-                    Point2="0,46.7706785537396"
-                    Point3="4,46.7706785537396" />
-                  <mssgle:LineSegment
-                    End="212.444444444445,46.7706785537396" />
-                  <mssgle:CubicBezierSegment
-                    Point1="212.444444444445,46.7706785537396"
-                    Point2="216.444444444445,46.7706785537396"
-                    Point3="216.444444444445,50.7706785537396" />
-                  <mssgle:LineSegment
-                    End="216.444444444445,71.388888888889" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          Size="199,42"
+          Id="Package\Data Insertion\EXCHANGE RATE Data"
+          TopLeft="867.333333333333,460" />
+        <NodeLayout
+          Size="125,42"
+          Id="Package\Data Insertion\Atlas Info"
+          TopLeft="438.666666666667,21.1666666666667" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Data Insertion\TIME Lookup"
+          TopLeft="438.666666666667,261.666666666667" />
         <EdgeLayout
           Id="Package\Data Insertion.Paths[Sort Output1]"
           TopLeft="969.166666666667,582">
@@ -4321,10 +4087,86 @@ where [refTable].[date_value] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="159,42"
-          Id="Package\Data Insertion\Conditional Split"
-          TopLeft="662.222222222222,757.777777777778" />
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[Sort Output]"
+          TopLeft="503.666666666667,576.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="216.444444444445,78.888888888889"
+              Start="0,0"
+              End="216.444444444445,71.388888888889">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.7706785537396" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,42.7706785537396"
+                    Point2="0,46.7706785537396"
+                    Point3="4,46.7706785537396" />
+                  <mssgle:LineSegment
+                    End="212.444444444445,46.7706785537396" />
+                  <mssgle:CubicBezierSegment
+                    Point1="212.444444444445,46.7706785537396"
+                    Point2="216.444444444445,46.7706785537396"
+                    Point3="216.444444444445,50.7706785537396" />
+                  <mssgle:LineSegment
+                    End="216.444444444445,71.388888888889" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="100.222222222222,51.7706785537396,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[OLE DB Source Output]"
+          TopLeft="968,502">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.0000000000004"
+              Start="0,0"
+              End="0,30.5000000000004">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5000000000004" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[MongoDBSourceOutput]"
+          TopLeft="501.472222222222,63.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.6111111111111"
+              Start="0,0"
+              End="0,30.1111111111111">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.1111111111111" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Insertion.Paths[Merge Join Output]"
           TopLeft="741.333333333333,697.555555555556">
@@ -4339,6 +4181,168 @@ where [refTable].[date_value] = ?</property>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,52.7222222222221" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[Lookup Match Output3]"
+          TopLeft="504.666666666667,483.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51"
+              Start="0,0"
+              End="0,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,15.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[Lookup Match Output2]"
+          TopLeft="507.666666666667,385.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56"
+              Start="0,0"
+              End="0,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,18.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[Lookup Match Output1]"
+          TopLeft="510.166666666667,303.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,10.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[Lookup Match Output]"
+          TopLeft="509.916666666667,221.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,10.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[JsonParserTransformOutput]"
+          TopLeft="505.472222222222,142.777777777778">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.8888888888889"
+              Start="0,0"
+              End="0,29.3888888888889">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.3888888888889" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[Derived Column Output1]"
+          TopLeft="978.625,940.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49.6666666666666"
+              Start="0,0"
+              End="0,42.1666666666666">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.1666666666666" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Insertion.Paths[Derived Column Output]"
+          TopLeft="464.666666666667,924.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55.5"
+              Start="0,0"
+              End="0,48">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4389,144 +4393,39 @@ where [refTable].[date_value] = ?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="214.027777777778,98.5555555555557"
+              EndConnector="214.027777777778,98.555555555555"
               Start="0,0"
-              End="214.027777777778,91.0555555555557">
+              End="214.027777777778,91.055555555555">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,36.0113463401135" />
+                    End="0,36.0113463401132" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,36.0113463401135"
-                    Point2="0,40.0113463401135"
-                    Point3="4,40.0113463401135" />
+                    Point1="0,36.0113463401132"
+                    Point2="0,40.0113463401132"
+                    Point3="4,40.0113463401132" />
                   <mssgle:LineSegment
-                    End="210.027777777778,40.0113463401135" />
+                    End="210.027777777778,40.0113463401132" />
                   <mssgle:CubicBezierSegment
-                    Point1="210.027777777778,40.0113463401135"
-                    Point2="214.027777777778,40.0113463401135"
-                    Point3="214.027777777778,44.0113463401135" />
+                    Point1="210.027777777778,40.0113463401132"
+                    Point2="214.027777777778,40.0113463401132"
+                    Point3="214.027777777778,44.0113463401132" />
                   <mssgle:LineSegment
-                    End="214.027777777778,91.0555555555557" />
+                    End="214.027777777778,91.055555555555" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="97.0387326388889,45.0113463401135,19.9503125,9.5537109375"
+              BoundingBox="97.0387326388892,45.0113463401132,19.9503125,9.5537109375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Insertion\EXCHANGE RATE Data">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Insertion\CLIENT Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DIM_CLIENT]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Insertion\TIME Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DIM_TIME]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Insertion\ITEM Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DIM_ITEM]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Insertion\SALESMAN Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DIM_SALESPERSON]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Data Insertion\OLE DB Destination">
     <Properties>
@@ -4541,6 +4440,75 @@ where [refTable].[date_value] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
+    design-time-name="Package\Data Insertion\ITEM Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DIM_ITEM]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Insertion\SALESMAN Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DIM_SALESPERSON]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Insertion\CLIENT Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DIM_CLIENT]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
     design-time-name="Package\Data Insertion\OLE DB Destination 1">
     <Properties>
       <Property>
@@ -4550,6 +4518,42 @@ where [refTable].[date_value] = ?</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Insertion\EXCHANGE RATE Data">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Insertion\TIME Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DIM_TIME]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

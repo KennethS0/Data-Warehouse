@@ -53,7 +53,7 @@ class SalesForm extends Component {
     // Changes the value of a specific item (FLOAT)
     handleItemFloatChange(index, event) {
         // Allows numbers with only four decimal points
-        const re =  /^\d*\.?(?:\d{1,4})?$/;
+        const re =  /^\-?\d*\.?(?:\d{1,4})?$/;
 
         let items = [...this.state.items]; // Gets every value
         const {name, value} = event.target;
