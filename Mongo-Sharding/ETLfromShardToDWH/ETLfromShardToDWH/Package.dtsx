@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="132"
-  DTS:VersionGUID="{F6E03CE2-5683-4EE0-B296-638A5677873B}">
+  DTS:VersionBuild="136"
+  DTS:VersionGUID="{40DB50B0-E88F-4F95-97FA-D37026CC3DBE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -95,7 +95,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA/q23ADwSe0WcT6cGDrkThAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACBFBkTK3Wfa1JEH5S888wreeno7E4CpbosSY7lVwWkbwAAAAAOgAAAAAIAACAAAAA1Tl339geJPwWwezATejgL1hFlAdL/lM7zIwqcipGZBCAAAACfg5o/zXCNmU8LHtLDaBReWipyNJyGhue1RKnE/q/N40AAAABavOsVcf3IJF3yczqCvVo/SZ2Y/ZKjMVkBqfu9CIaHytmtM8+jItTPnw7yfmaBY7yANFrHhZe5eC5BxpfbrIRL</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA/q23ADwSe0WcT6cGDrkThAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACerN2matpXrJbqOq1ZdPsDskBWxdh/sDWXSmMS0Ud6YQAAAAAOgAAAAAIAACAAAABLEeKuBRGPsLQ1Pa9m2lNDRM1xn09VU3BAkXJoaavkHiAAAAAapgsZ5zgIlUD9z6imMo1UGjfIQs6MwB8Za+XOgL5eSUAAAABr3aWx1hss7f4yA8aPdmjWnVVFf8WbQ2JXlpPcgcAxPdIiSf+eSB1Oq5EzImpYGiGpvSSjxlzDFOUZYQawb5wi</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -1352,6 +1352,80 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       refId="Package\Data Flow Task\CRC.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Data Flow Task\CRC.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input].Columns[client_id]"
+                      cachedDataType="i4"
+                      cachedName="client_id"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\Get Client Id.Outputs[Lookup Match Output].Columns[client_id]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[REPLACENULL](#{Package\Data Flow Task\Get Client Id.Outputs[Lookup Match Output].Columns[client_id]},"-1")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">REPLACENULL(client_id,"-1")</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -4737,7 +4811,7 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[OLE DB Destination 1]</property>
+                  name="OpenRowset">[dbo].[FACT_SALES]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -4780,8 +4854,8 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Destination 1.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JKJG1F9.DW_TEST]"
-                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JKJG1F9.DW_TEST]"
+                  connectionManagerID="Package.ConnectionManagers[tcp:rocket-bd2.database.windows.net,1433.ROCKET-BD2.rocket-admin]"
+                  connectionManagerRefId="Package.ConnectionManagers[tcp:rocket-bd2.database.windows.net,1433.ROCKET-BD2.rocket-admin]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -4891,43 +4965,43 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
                       refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sales_total]"
                       dataType="numeric"
                       name="sales_total"
-                      precision="28"
+                      precision="20"
                       scale="4" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sales_total_usd]"
                       dataType="numeric"
                       name="sales_total_usd"
-                      precision="28"
+                      precision="20"
                       scale="4" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sales_tax]"
                       dataType="numeric"
                       name="sales_tax"
-                      precision="28"
+                      precision="20"
                       scale="4" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sales_tax_usd]"
                       dataType="numeric"
                       name="sales_tax_usd"
-                      precision="28"
+                      precision="20"
                       scale="4" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sales_product_amount]"
                       dataType="numeric"
                       name="sales_product_amount"
-                      precision="28"
+                      precision="20"
                       scale="4" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sales_profit]"
                       dataType="numeric"
                       name="sales_profit"
-                      precision="28"
+                      precision="20"
                       scale="4" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sales_profit_usd]"
                       dataType="numeric"
                       name="sales_profit_usd"
-                      precision="28"
+                      precision="20"
                       scale="4" />
                     <externalMetadataColumn
                       refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[time_id]"
@@ -4950,202 +5024,11 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
                       dataType="i4"
                       name="exchange_rate_id" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[_id]"
-                      codePage="1252"
-                      dataType="str"
-                      length="48"
-                      name="_id" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Factura]"
-                      dataType="wstr"
-                      length="18"
-                      name="Factura" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Fecha]"
-                      dataType="wstr"
-                      length="16"
-                      name="Fecha" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[FechaVencimiento]"
-                      dataType="wstr"
-                      length="16"
-                      name="FechaVencimiento" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Cliente]"
-                      dataType="wstr"
-                      length="10"
-                      name="Cliente" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Producto]"
-                      dataType="wstr"
-                      length="14"
-                      name="Producto" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Cantidad]"
-                      dataType="wstr"
-                      length="12"
-                      name="Cantidad" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Moneda]"
-                      dataType="wstr"
-                      length="6"
-                      name="Moneda" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Precio]"
-                      dataType="wstr"
-                      length="20"
-                      name="Precio" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Total]"
-                      dataType="wstr"
-                      length="20"
-                      name="Total" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[AlmacÃ©n]"
-                      dataType="wstr"
-                      length="12"
-                      name="AlmacÃ©n" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Vendedor]"
-                      dataType="wstr"
-                      length="4"
-                      name="Vendedor" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TotalUSD]"
-                      dataType="wstr"
-                      length="12"
-                      name="TotalUSD" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Impuesto]"
-                      dataType="wstr"
-                      length="18"
-                      name="Impuesto" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ImpuestoUSD]"
-                      dataType="wstr"
-                      length="10"
-                      name="ImpuestoUSD" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Tipo de cambio]"
-                      dataType="wstr"
-                      length="12"
-                      name="Tipo de cambio" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Ganacia]"
-                      dataType="wstr"
-                      length="22"
-                      name="Ganacia" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[GananciaUSD]"
-                      dataType="wstr"
-                      length="14"
-                      name="GananciaUSD" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[CantidadStr]"
-                      dataType="wstr"
-                      length="100"
-                      name="CantidadStr" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ClienteStr]"
-                      dataType="wstr"
-                      length="100"
-                      name="ClienteStr" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[FechaStr]"
-                      dataType="wstr"
-                      length="100"
-                      name="FechaStr" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[FechaVencimientoStr]"
-                      dataType="wstr"
-                      length="100"
-                      name="FechaVencimientoStr" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[GanaciaStr]"
-                      dataType="wstr"
-                      length="100"
-                      name="GanaciaStr" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ImpuestoStr]"
-                      dataType="wstr"
-                      length="100"
-                      name="ImpuestoStr" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[PrecioStr]"
-                      dataType="wstr"
-                      length="100"
-                      name="PrecioStr" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ProductoStr]"
-                      dataType="wstr"
-                      length="100"
-                      name="ProductoStr" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TotalStr]"
-                      dataType="wstr"
-                      length="100"
-                      name="TotalStr" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[MonedaStr]"
-                      dataType="wstr"
-                      length="100"
-                      name="MonedaStr" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[FacturaStr]"
-                      dataType="wstr"
-                      length="100"
-                      name="FacturaStr" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[GananciaUSDStr]"
-                      dataType="wstr"
-                      length="100"
-                      name="GananciaUSDStr" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ImpuestoUSDStr]"
-                      dataType="wstr"
-                      length="100"
-                      name="ImpuestoUSDStr" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TotalUSDStr]"
-                      dataType="wstr"
-                      length="100"
-                      name="TotalUSDStr" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[VendedorStr]"
-                      dataType="wstr"
-                      length="100"
-                      name="VendedorStr" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Tipo de cambioStr]"
-                      dataType="wstr"
-                      length="100"
-                      name="Tipo de cambioStr" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
-                      dataType="dbDate"
-                      name="Date" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[dollar_sell_crc]"
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sales_price]"
                       dataType="numeric"
-                      name="dollar_sell_crc"
+                      name="sales_price"
                       precision="20"
                       scale="4" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[dollar_purchase_crc]"
-                      dataType="numeric"
-                      name="dollar_purchase_crc"
-                      precision="20"
-                      scale="4" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[sales_price_cal]"
-                      dataType="numeric"
-                      name="sales_price_cal"
-                      precision="38"
-                      scale="9" />
-                    <externalMetadataColumn
-                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[client_idDB]"
-                      dataType="i4"
-                      name="client_idDB" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -5873,13 +5756,13 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">(DT_WSTR,50)#{Package\Data Flow Task\Union All 1.Outputs[Union All Output 1].Columns[Moneda]}</property>
+                          name="Expression">(DT_WSTR,50)[REPLACENULL](#{Package\Data Flow Task\Union All 1.Outputs[Union All Output 1].Columns[Moneda]},"CRC")</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">(DT_WSTR,50)Moneda</property>
+                          name="FriendlyExpression">(DT_WSTR,50)REPLACENULL(Moneda,"CRC")</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -8951,11 +8834,11 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
                   name="Conditional Split Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\USD or CRC.Inputs[Conditional Split Input].Columns[MonedaStr]"
+                      refId="Package\Data Flow Task\USD or CRC.Inputs[Conditional Split Input].Columns[sales_currency]"
                       cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="MonedaStr"
-                      lineageId="Package\Data Flow Task\To String.Outputs[Derived Column Output].Columns[MonedaStr]" />
+                      cachedLength="50"
+                      cachedName="sales_currency"
+                      lineageId="Package\Data Flow Task\To String.Outputs[Derived Column Output].Columns[sales_currency]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
@@ -8975,13 +8858,13 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">[REPLACENULL](#{Package\Data Flow Task\To String.Outputs[Derived Column Output].Columns[MonedaStr]},"CRC") == "CRC"</property>
+                      name="Expression">[REPLACENULL](#{Package\Data Flow Task\To String.Outputs[Derived Column Output].Columns[sales_currency]},"CRC") == "CRC"</property>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the friendly version of the expression. This expression version uses column names."
                       expressionType="Notify"
-                      name="FriendlyExpression">REPLACENULL(MonedaStr,"CRC") == "CRC"</property>
+                      name="FriendlyExpression">REPLACENULL(sales_currency,"CRC") == "CRC"</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
@@ -9003,13 +8886,13 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">[REPLACENULL](#{Package\Data Flow Task\To String.Outputs[Derived Column Output].Columns[MonedaStr]},"USD") == "USD"</property>
+                      name="Expression">[REPLACENULL](#{Package\Data Flow Task\To String.Outputs[Derived Column Output].Columns[sales_currency]},"USD") == "USD"</property>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the friendly version of the expression. This expression version uses column names."
                       expressionType="Notify"
-                      name="FriendlyExpression">REPLACENULL(MonedaStr,"USD") == "USD"</property>
+                      name="FriendlyExpression">REPLACENULL(sales_currency,"USD") == "USD"</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
@@ -9078,16 +8961,6 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
               name="Conditional Split Default Output"
               startId="Package\Data Flow Task\take no repeated.Outputs[Conditional Split Default Output]" />
             <path
-              refId="Package\Data Flow Task.Paths[Derived Column Output]"
-              endId="Package\Data Flow Task\To Date.Inputs[Derived Column Input]"
-              name="Derived Column Output"
-              startId="Package\Data Flow Task\To Decimal.Outputs[Derived Column Output]" />
-            <path
-              refId="Package\Data Flow Task.Paths[Derived Column Output1]"
-              endId="Package\Data Flow Task\Get Item Id.Inputs[Lookup Input]"
-              name="Derived Column Output"
-              startId="Package\Data Flow Task\To Date.Outputs[Derived Column Output]" />
-            <path
               refId="Package\Data Flow Task.Paths[Derived Column Output5]"
               endId="Package\Data Flow Task\look repeated.Inputs[Lookup Input]"
               name="Derived Column Output"
@@ -9108,13 +8981,23 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
               name="Derived Column Output"
               startId="Package\Data Flow Task\To String.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Data Flow Task.Paths[Lookup Match Output4]"
-              endId="Package\Data Flow Task\take no repeated.Inputs[Conditional Split Input]"
-              name="Lookup Match Output"
-              startId="Package\Data Flow Task\look repeated.Outputs[Lookup Match Output]" />
+              refId="Package\Data Flow Task.Paths[Derived Column Output6]"
+              endId="Package\Data Flow Task\Get Sales Person Id.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Derived Column Output1]"
+              endId="Package\Data Flow Task\Get Item Id.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\Data Flow Task\To Date.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Derived Column Output]"
+              endId="Package\Data Flow Task\To Date.Inputs[Derived Column Input]"
+              name="Derived Column Output"
+              startId="Package\Data Flow Task\To Decimal.Outputs[Derived Column Output]" />
             <path
               refId="Package\Data Flow Task.Paths[Lookup Match Output5]"
-              endId="Package\Data Flow Task\Get Sales Person Id.Inputs[Lookup Input]"
+              endId="Package\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
               name="Lookup Match Output"
               startId="Package\Data Flow Task\Get Client Id.Outputs[Lookup Match Output]" />
             <path
@@ -9133,6 +9016,11 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
               name="Lookup Match Output"
               startId="Package\Data Flow Task\Get Item Id.Outputs[Lookup Match Output]" />
             <path
+              refId="Package\Data Flow Task.Paths[Lookup Match Output4]"
+              endId="Package\Data Flow Task\take no repeated.Inputs[Conditional Split Input]"
+              name="Lookup Match Output"
+              startId="Package\Data Flow Task\look repeated.Outputs[Lookup Match Output]" />
+            <path
               refId="Package\Data Flow Task.Paths[Lookup Match Output]"
               endId="Package\Data Flow Task\Get Client Id.Inputs[Lookup Input]"
               name="Lookup Match Output"
@@ -9143,15 +9031,15 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
               name="MongoDBSourceOutput"
               startId="Package\Data Flow Task\MongoDB Shard0.Outputs[MongoDBSourceOutput]" />
             <path
-              refId="Package\Data Flow Task.Paths[MongoDBSourceOutput]"
-              endId="Package\Data Flow Task\Union All 1.Inputs[Union All Input 3]"
-              name="MongoDBSourceOutput"
-              startId="Package\Data Flow Task\MongoDB Shard2.Outputs[MongoDBSourceOutput]" />
-            <path
               refId="Package\Data Flow Task.Paths[MongoDBSourceOutput2]"
               endId="Package\Data Flow Task\Union All 1.Inputs[Union All Input 2]"
               name="MongoDBSourceOutput"
               startId="Package\Data Flow Task\MongoDB Shard1.Outputs[MongoDBSourceOutput]" />
+            <path
+              refId="Package\Data Flow Task.Paths[MongoDBSourceOutput]"
+              endId="Package\Data Flow Task\Union All 1.Inputs[Union All Input 3]"
+              name="MongoDBSourceOutput"
+              startId="Package\Data Flow Task\MongoDB Shard2.Outputs[MongoDBSourceOutput]" />
             <path
               refId="Package\Data Flow Task.Paths[Output 0]"
               endId="Package\Data Flow Task\To Decimal.Inputs[Derived Column Input]"
@@ -18687,28 +18575,66 @@ where [refTable].[item_id] = ? and [refTable].[time_id] = ? and [refTable].[clie
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Data Flow Task\Derived Column"
+          TopLeft="18,308" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output5]"
-          TopLeft="257.5,273.888888888889">
+          TopLeft="254.333333333333,273.888888888889">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,32.1111111111111"
+              EndConnector="-159.333333333333,34.1111111111111"
               Start="0,0"
-              End="0,24.6111111111111">
+              End="-159.333333333333,26.6111111111111">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,24.6111111111111" />
+                    End="0,13.0555555555555" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.0555555555555"
+                    Point2="0,17.0555555555555"
+                    Point3="-4,17.0555555555555" />
+                  <mssgle:LineSegment
+                    End="-155.333333333333,17.0555555555555" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-155.333333333333,17.0555555555555"
+                    Point2="-159.333333333333,17.0555555555555"
+                    Point3="-159.333333333333,21.0555555555555" />
+                  <mssgle:LineSegment
+                    End="-159.333333333333,26.6111111111111" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,6.50086805555554,96.3827734375,11.609375"
+              BoundingBox="-127.858053385417,22.0555555555555,96.3827734375,11.609375"
               RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Derived Column Output6]"
+          TopLeft="172,328">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="30.3333333333335,0"
+              Start="0,0"
+              End="22.8333333333335,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="22.8333333333335,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
