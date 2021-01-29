@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">DESKTOP-T525H9P</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAoBlmKgcBvESNwESsAn1OLgAAAAACAAAAAAAQZgAAAAEAACAAAAB2vWWL5/IpwCuV3urd89UEERjiTeiBAKqgKYbSHUU4LwAAAAAOgAAAAAIAACAAAACFxJexrMj5DkvJYQx0hyi/IBX+r9EIMgtCTgryDMjIjpAAAACHvNhhzExr/QvaYSCzvNnR+maQndXP39ndyhA8CgWxESgz3KQwBtutiyy+AekJBuGoYNwMmsf/k0GVkZ2XtGz9VwWBOCWgWJblwSSt19D/NfyXoD+vzw+Pmd3z6ZaYHDJjxg/gtUxJVSuk+wHiwqvlhsTQaxTC+Ql5cU2M4D89Hzr769w3vcTKtmnJSDEe4VFAAAAAHsaKtxvOoqzc0JNFa01Aa37BN7T6NhBpVUhbRpEFT/PdOp47ClGbrsQZB0ssz2W0VIn7WMOAA4qsgETq+pr3Xg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAoBlmKgcBvESNwESsAn1OLgAAAAACAAAAAAAQZgAAAAEAACAAAAD2+jD5JCgPStR77YCpPYPm5NFvYgA2EPLL8t4rYSjp/wAAAAAOgAAAAAIAACAAAAAJU2t6CBkaN0ovDjT3ZyzAQJC1RtllvgLveGjEmz6nA5AAAAB9c7CRySRCDECw9Eskuv/40qpCaq+TrFLJgUoL+iXOJLmkk6IzT5yXlYde5Tza3WY6YMjQMNGp1qvVmwYpKt6DIAHuxmmrFO1T46+eNKs+XhxmOahDoF1I+Pz83oyEehVn6u1iQdLRLOZOyFNDuInMpuEFTtQDTgLZAIJ+5nUqw3dfunqQhlmTz8YocF/vYxxAAAAA25GVFiZfuasc3IRreycMqfxFMJ+vCDAAYGqZQBn4EBrTYHkbI4uoOLePcaWOHiWLS9JBWIXAeioYMu0hCU6LKQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -42,10 +42,10 @@
                 <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">2</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">15</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{1AC6E3D3-5BE8-439B-B802-191A2955A234}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{39214710-CB24-48E4-A9DF-626253A9337B}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
@@ -196,7 +196,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">Data Source=tcp:rocket-bd2.database.windows.net,1433;User ID=rocket-admin;Initial Catalog=ROCKET-BD2;Provider=MSOLEDBSQL.1;Persist Security Info=False;Initial File Name=;Server SPN=;Authentication=;Access Token=;Auto Translate=False;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Data Source=tcp:rocket-bd2-v2.database.windows.net,1433;User ID=bases_admin;Initial Catalog=ROCKET-BD2;Provider=MSOLEDBSQL.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package-{17257252-DF06-44C6-B75B-DB9E57022587}tcp:rocket-bd2.database.windows.net,1433.ROCKET-BD2.rocket-admin;</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -270,7 +270,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">tcp:rocket-bd2.database.windows.net,1433</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">tcp:rocket-bd2-v2.database.windows.net,1433</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
@@ -285,7 +285,7 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">rocket-admin</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">bases_admin</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>

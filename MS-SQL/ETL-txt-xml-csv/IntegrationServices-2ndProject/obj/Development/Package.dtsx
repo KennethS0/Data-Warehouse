@@ -12,8 +12,8 @@
   DTS:LocaleID="5130"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="175"
-  DTS:VersionGUID="{77490067-5357-4724-96DE-B67452D15C0E}">
+  DTS:VersionBuild="196"
+  DTS:VersionGUID="{712262BD-514E-439F-9A76-810C79033AE5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -35,7 +35,17 @@
       DTS:ObjectName="Excel Connection Manager">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\Documentos\Ing en Computacion\Semestre IV\Bases de Datos ll\Progra 2\Codigo\DB2-Final-Project\MS-SQL\Read-Files\New-Files\excel-test-format1.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\Documentos\Ing en Computacion\Semestre IV\Bases de Datos ll\Progra 2\Codigo\DB2-Final-Project\MS-SQL\Read-Files\EXCEL_000-100.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 1]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{18CB2226-115B-4F1E-B644-79E74BA1F792}"
+      DTS:ObjectName="Excel Connection Manager 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\Documentos\Ing en Computacion\Semestre IV\Bases de Datos ll\Progra 2\Codigo\DB2-Final-Project\MS-SQL\Read-Files\EXCEL_000-100.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -346,7 +356,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Excel File Processed"
           DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <FileSystemData
@@ -366,7 +376,7 @@
           DTS:LocaleID="-1"
           DTS:ObjectName="Insert Excel File Name into DB SQL Task"
           DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1474,21 +1484,6 @@
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].ExternalColumns[GananciaUSD]"
                           dataType="r8"
                           name="GananciaUSD" />
-                        <externalMetadataColumn
-                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].ExternalColumns[F18]"
-                          dataType="wstr"
-                          length="255"
-                          name="F18" />
-                        <externalMetadataColumn
-                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].ExternalColumns[F19]"
-                          dataType="wstr"
-                          length="255"
-                          name="F19" />
-                        <externalMetadataColumn
-                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source.Outputs[Excel Source Output].ExternalColumns[F20]"
-                          dataType="wstr"
-                          length="255"
-                          name="F20" />
                       </externalMetadataColumns>
                     </output>
                     <output
@@ -2087,6 +2082,96 @@
                   </outputs>
                 </component>
                 <component
+                  refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Precio Calculado"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Precio Calculado"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Precio Calculado.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Precio Calculado.Inputs[Derived Column Input].Columns[Cantidad_numeric]"
+                          cachedDataType="numeric"
+                          cachedName="Cantidad_numeric"
+                          cachedPrecision="20"
+                          cachedScale="4"
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Outputs[Data Conversion Output].Columns[Cantidad_numeric]" />
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Precio Calculado.Inputs[Derived Column Input].Columns[Precio_numeric]"
+                          cachedDataType="numeric"
+                          cachedName="Precio_numeric"
+                          cachedPrecision="20"
+                          cachedScale="4"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Outputs[Data Conversion Output].Columns[Precio_numeric]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">#{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Outputs[Data Conversion Output].Columns[Total_numeric]} / #{Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Outputs[Data Conversion Output].Columns[Cantidad_numeric]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">Total_numeric / Cantidad_numeric</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Precio Calculado.Inputs[Derived Column Input].Columns[Total_numeric]"
+                          cachedDataType="numeric"
+                          cachedName="Total_numeric"
+                          cachedPrecision="20"
+                          cachedScale="4"
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Outputs[Data Conversion Output].Columns[Total_numeric]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Precio Calculado.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Precio Calculado.Inputs[Derived Column Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Precio Calculado.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Precio Calculado.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Precio Calculado.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Precio Calculado.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Precio Calculado.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Precio Calculado.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
                   refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Script C# reemplace punto excepto el último"
                   componentClassID="Microsoft.ManagedComponentHost"
                   contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;12"
@@ -2440,15 +2525,10 @@ public class ScriptMain : UserComponent
         /*
          * Add your code here
          */
-        Row.Preciosincomas = ReplaceDotExceptLast(Row.Preciosincomas);
-        Row.Cantidadsincomas = ReplaceDotExceptLast(Row.Cantidadsincomas);
+        
         Row.Totalsincomas = ReplaceDotExceptLast(Row.Totalsincomas);
-        Row.TotalUSDsincomas = ReplaceDotExceptLast(Row.TotalUSDsincomas);
-        Row.Impuestosincomas = ReplaceDotExceptLast(Row.Impuestosincomas);
-        Row.ImpuestoUSDsincomas = ReplaceDotExceptLast(Row.ImpuestoUSDsincomas);
-        Row.TipoCambiosincomas = ReplaceDotExceptLast(Row.TipoCambiosincomas);
-        Row.Gananciasincomas = ReplaceDotExceptLast(Row.Gananciasincomas.Replace(" ",""));
-        Row.GananciaUSDsincomas = ReplaceDotExceptLast(Row.GananciaUSDsincomas);
+        Row.Gananciasincomas = ReplaceDotExceptLast(Row.Gananciasincomas.Replace(" ", String.Empty));
+        
     }
 
     public string ReplaceDotExceptLast(string value)
@@ -2489,7 +2569,7 @@ public class Input0Buffer: ScriptBuffer
     {
     }
 
-    public String Cantidadsincomas
+    public String Totalsincomas
     {
         get
         {
@@ -2500,7 +2580,7 @@ public class Input0Buffer: ScriptBuffer
             this[0] = value;
         }
     }
-    public bool Cantidadsincomas_IsNull
+    public bool Totalsincomas_IsNull
     {
         get
         {
@@ -2519,7 +2599,7 @@ public class Input0Buffer: ScriptBuffer
         }
     }
 
-    public String Preciosincomas
+    public String Gananciasincomas
     {
         get
         {
@@ -2530,7 +2610,7 @@ public class Input0Buffer: ScriptBuffer
             this[1] = value;
         }
     }
-    public bool Preciosincomas_IsNull
+    public bool Gananciasincomas_IsNull
     {
         get
         {
@@ -2541,216 +2621,6 @@ public class Input0Buffer: ScriptBuffer
             if (value)
             {
                 SetNull(1);
-            }
-            else
-            {
-                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
-            }
-        }
-    }
-
-    public String Totalsincomas
-    {
-        get
-        {
-            return Buffer.GetString(BufferColumnIndexes[2]);
-        }
-        set
-        {
-            this[2] = value;
-        }
-    }
-    public bool Totalsincomas_IsNull
-    {
-        get
-        {
-            return IsNull(2);
-        }
-        set
-        {
-            if (value)
-            {
-                SetNull(2);
-            }
-            else
-            {
-                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
-            }
-        }
-    }
-
-    public String TotalUSDsincomas
-    {
-        get
-        {
-            return Buffer.GetString(BufferColumnIndexes[3]);
-        }
-        set
-        {
-            this[3] = value;
-        }
-    }
-    public bool TotalUSDsincomas_IsNull
-    {
-        get
-        {
-            return IsNull(3);
-        }
-        set
-        {
-            if (value)
-            {
-                SetNull(3);
-            }
-            else
-            {
-                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
-            }
-        }
-    }
-
-    public String Impuestosincomas
-    {
-        get
-        {
-            return Buffer.GetString(BufferColumnIndexes[4]);
-        }
-        set
-        {
-            this[4] = value;
-        }
-    }
-    public bool Impuestosincomas_IsNull
-    {
-        get
-        {
-            return IsNull(4);
-        }
-        set
-        {
-            if (value)
-            {
-                SetNull(4);
-            }
-            else
-            {
-                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
-            }
-        }
-    }
-
-    public String ImpuestoUSDsincomas
-    {
-        get
-        {
-            return Buffer.GetString(BufferColumnIndexes[5]);
-        }
-        set
-        {
-            this[5] = value;
-        }
-    }
-    public bool ImpuestoUSDsincomas_IsNull
-    {
-        get
-        {
-            return IsNull(5);
-        }
-        set
-        {
-            if (value)
-            {
-                SetNull(5);
-            }
-            else
-            {
-                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
-            }
-        }
-    }
-
-    public String TipoCambiosincomas
-    {
-        get
-        {
-            return Buffer.GetString(BufferColumnIndexes[6]);
-        }
-        set
-        {
-            this[6] = value;
-        }
-    }
-    public bool TipoCambiosincomas_IsNull
-    {
-        get
-        {
-            return IsNull(6);
-        }
-        set
-        {
-            if (value)
-            {
-                SetNull(6);
-            }
-            else
-            {
-                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
-            }
-        }
-    }
-
-    public String GananciaUSDsincomas
-    {
-        get
-        {
-            return Buffer.GetString(BufferColumnIndexes[7]);
-        }
-        set
-        {
-            this[7] = value;
-        }
-    }
-    public bool GananciaUSDsincomas_IsNull
-    {
-        get
-        {
-            return IsNull(7);
-        }
-        set
-        {
-            if (value)
-            {
-                SetNull(7);
-            }
-            else
-            {
-                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
-            }
-        }
-    }
-
-    public String Gananciasincomas
-    {
-        get
-        {
-            return Buffer.GetString(BufferColumnIndexes[8]);
-        }
-        set
-        {
-            this[8] = value;
-        }
-    }
-    public bool Gananciasincomas_IsNull
-    {
-        get
-        {
-            return IsNull(8);
-        }
-        set
-        {
-            if (value)
-            {
-                SetNull(8);
             }
             else
             {
@@ -2887,7 +2757,7 @@ public class Variables
     <msb:CodeName>SC_308514e4c71e41319e86f7082e225139</msb:CodeName>
     <msb:Language>msBuild</msb:Language>
     <msb:DisplayName>SC_308514e4c71e41319e86f7082e225139</msb:DisplayName>
-    <msb:ProjectId>{653751D6-4ACD-4D15-A73B-A3724D2EB25C}</msb:ProjectId>
+    <msb:ProjectId>{D53B52BD-1777-4012-A01F-E81D1BB949AE}</msb:ProjectId>
   </msb:PropertyGroup>
   <msb:ItemGroup>
     <msb:Project Include="SC_308514e4c71e41319e86f7082e225139.csproj" />
@@ -3034,158 +2904,122 @@ namespace SC_308514e4c71e41319e86f7082e225139.Properties {
                         <arrayElement
                           dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
-ZGUuDQ0KJAAAAAAAAABQRQAATAEDANF/D2AAAAAAAAAAAOAAIiALATAAABwAAAAIAAAAAAAAfjsA
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAKrmEWAAAAAAAAAAAOAAIiALATAAABQAAAAIAAAAAAAAsjMA
 AAAgAAAAQAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACAAAAAAgAAAAAAAAMAYIUAABAA
-ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAACw7AABPAAAAAEAAAEgEAAAAAAAAAAAAAAAAAAAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAGAzAABPAAAAAEAAAEgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAhBsAAAAgAAAAHAAAAAIA
-AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAEgEAAAAQAAAAAYAAAAeAAAAAAAAAAAAAAAAAABAAABA
-LnJlbG9jAAAMAAAAAGAAAAACAAAAJAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAABg
-OwAAAAAAAEgAAAACAAUAkCQAAOQVAAABAAAAAAAAAHQ6AAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKBAAAAoqHgIoEQAACioTMAUAsgAAAAAAAAADAgNvCwAA
-BigEAAAGbwwAAAYDAgNvBwAABigEAAAGbwgAAAYDAgNvDwAABigEAAAGbxAAAAYDAgNvEwAABigE
-AAAGbxQAAAYDAgNvFwAABigEAAAGbxgAAAYDAgNvGwAABigEAAAGbxwAAAYDAgNvHwAABigEAAAG
-byAAAAYDAgNvJwAABnIBAABwcgUAAHBvEgAACigEAAAGbygAAAYDAgNvIwAABigEAAAGbyQAAAYq
-AAATMAMANAAAAAEAABEDHy5vEwAACgoGFjElAxYGbxQAAApyBwAAcHIFAABwbxIAAAoDBm8VAAAK
-KBYAAAoQAQMqHgIoLQAABioqAgMEBSgXAAAKKlICexgAAAoCexkAAAoWlG8aAAAKKiYCFgMoGwAA
-CioiAhYoHAAACipaAywIAhYoHQAACipyCwAAcHMeAAAKelICexgAAAoCexkAAAoXlG8aAAAKKiYC
-FwMoGwAACioiAhcoHAAACipaAywIAhcoHQAACipyCwAAcHMeAAAKelICexgAAAoCexkAAAoYlG8a
-AAAKKiYCGAMoGwAACioiAhgoHAAACipaAywIAhgoHQAACipyCwAAcHMeAAAKelICexgAAAoCexkA
-AAoZlG8aAAAKKiYCGQMoGwAACioiAhkoHAAACipaAywIAhkoHQAACipyCwAAcHMeAAAKelICexgA
-AAoCexkAAAoalG8aAAAKKiYCGgMoGwAACioiAhooHAAACipaAywIAhooHQAACipyCwAAcHMeAAAK
-elICexgAAAoCexkAAAoblG8aAAAKKiYCGwMoGwAACioiAhsoHAAACipaAywIAhsoHQAACipyCwAA
-cHMeAAAKelICexgAAAoCexkAAAoclG8aAAAKKiYCHAMoGwAACioiAhwoHAAACipaAywIAhwoHQAA
-CipyCwAAcHMeAAAKelICexgAAAoCexkAAAodlG8aAAAKKiYCHQMoGwAACioiAh0oHAAACipaAywI
-Ah0oHQAACipyCwAAcHMeAAAKelICexgAAAoCexkAAAoelG8aAAAKKiYCHgMoGwAACioiAh4oHAAA
-CipaAywIAh4oHQAACipyCwAAcHMeAAAKeh4CKB8AAAoqHgIoIAAACip+AighAAAKAgJzMQAABn0B
-AAAEAgJzMgAABn0CAAAEKpIEcqgAAHAabyIAAAosFQIFAgMoIwAACg4EcwYAAAZvLwAABipKKwcC
-A28wAAAGA28rAAAGLfEqBio6AigkAAAKAgN9AwAABCo6AigkAAAKAgN9BAAABCoeAigkAAAKKq5+
-BQAABC0ecrgAAHDQBwAAAiglAAAKbyYAAApzJwAACoAFAAAEfgUAAAQqGn4GAAAEKh4CgAYAAAQq
-Gn4HAAAEKh4CKCgAAAoqLnM4AAAGgAcAAAQqQlNKQgEAAQAAAAAADAAAAHY0LjAuMzAzMTkAAAAA
-BQBsAAAA0AgAACN+AAA8CQAArAkAACNTdHJpbmdzAAAAAOgSAAAsAQAAI1VTABQUAAAQAAAAI0dV
-SUQAAAAkFAAAwAEAACNCbG9iAAAAAAAAAAIAAAFXFaIBCQEAAAD6ATMAFgAAAQAAAB8AAAAIAAAA
-BwAAADkAAAAgAAAAKAAAABAAAAABAAAAAwAAABUAAAAoAAAAAQAAAAQAAAABAAAAAAALAwEAAAAA
-AAYA7AHIBwYAgALIBwYAOAG1Bw8APAgAAAYAZQGKBQYAzwGKBQYAsAGKBQYAZwKKBQYADAKKBQYA
-JQKKBQYAfAGKBQYAlwHHAgoAQAKFAAoABwaFAA4A+AWFAAoA0wWFAAoACQmFAAYAzAhCBQYAGwG1
-BwYAGAboBwYAxwV1BRIA6wD1AhIATAH1AhIA0wBgBQYAAAHIBwYA5AJCBQYAnAVCBQYAtgVCBQYA
-pgBCBQYAVwBCBQYAowmKBQAAAAAlAAAAAAABAAEAAQAQAFUFAAAQAAEAAQABABAA6wUAADkAAQAG
-AAEAEADrCAAARQABAC0AAQAQALkIAABJAAMAMQABABAAeggAAEkABAAyAAAAEADvB0sISQAFADMA
-AAEQAKkISwhhAAcANwAGALkIjgAGAHoIkgABAPkIlgABAPkIlgARAEkFmgARAMMAngARAEcAogBQ
-IAAAAADGAJ4CBgABAFggAAAAAMYAqQIGAAEAYCAAAAAAxgCACaYAAQAgIQAAAACGADYJrAACAGAh
-AAAAAIYYKAYGAAMAaCEAAAAAhhgoBjsAAwBzIQAAAACGCOkGsQAGAIghAAAAAIYI/gYQAAYAkiEA
-AAAAhggfBFgABwCbIQAAAACGCDsEtQAHALIhAAAAAIYIZQexAAgAxyEAAAAAhgh4BxAACADRIQAA
-AACGCMUEWAAJANohAAAAAIYI3wS1AAkA8SEAAAAAhggTB7EACgAGIgAAAACGCCUHEAAKABAiAAAA
-AIYIVwRYAAsAGSIAAAAAhghwBLUACwAwIgAAAACGCGUGsQAMAEUiAAAAAIYIegYQAAwATyIAAAAA
-hghxA1gADQBYIgAAAACGCI0DtQANAG8iAAAAAIYIiwexAA4AhCIAAAAAhgigBxAADgCOIgAAAACG
-CPkEWAAPAJciAAAAAIYIFQW1AA8AriIAAAAAhgiPBrEAEADDIgAAAACGCKcGEAAQAM0iAAAAAIYI
-qQNYABEA1iIAAAAAhgjIA7UAEQDtIgAAAACGCDcHsQASAAIjAAAAAIYITgcQABIADCMAAAAAhgiJ
-BFgAEwAVIwAAAACGCKcEtQATACwjAAAAAIYINQaxABQAQSMAAAAAhghNBhAAFABLIwAAAACGCDMD
-WAAVAFQjAAAAAIYIUgO1ABUAayMAAAAAhgi/BrEAFgCAIwAAAACGCNQGEAAWAIojAAAAAIYI5wNY
-ABcAkyMAAAAAhggDBLUAFwCqIwAAAACGAJcJWAAYALIjAAAAAIYA0whYABgAuiMAAAAAhhgoBgYA
-GADaIwAAAADGAHMJugAYAP8jAAAAAMYBbAmmABwAEiQAAAAAxgGACaYAHQAUJAAAAACGGCgGxAAe
-ACMkAAAAAIYYKAbEAB8AMiQAAAAAgxgoBgYAIAA6JAAAAACTCBQGygAgAGYkAAAAAJMIqwDPACAA
-bSQAAAAAkwi3ANQAIAB1JAAAAACWCN8I2gAhAHwkAAAAAIYYKAYGACEAhCQAAAAAkRguBt8AIQAA
-AAEAmwkAAAEAtQIAAAEADQYAAAIAhAgAAAMA4QUAAAEAtQIAAAEAtQIAAAEAtQIAAAEAtQIAAAEA
-tQIAAAEAtQIAAAEAtQIAAAEAtQIAAAEAtQIAAAEAtQIAAAEAtQIAAAEAtQIAAAEAtQIAAAEAtQIA
-AAEAtQIAAAEAtQIAAAEAtQIAAAEAtQIAAAEALgAAAAIAewAAAAMADQYAAAQA4QUAAAEADQYAAAEA
-mwkAAAEADwkAAAEADwkAAAEAtQIJACgGAQARACgGBgAZACgGCgApACgGEAAxACgGEAA5ACgGEABB
-ACgGEABJACgGEABRACgGEABZACgGEABhACgGEABpACgGBgCZACgGBgC5ACgGFQDJACgGBgCJAJ4C
-BgCJAKkCBgDRAD8AGwDRALsCJQDRAOsCKgDRAOsCMADRAMUINQBxACgGOwBxAA0GRQBxAIQISQB5
-AOECMABxADkFTQBxACoFUwBxADEFAQDZACgGEABxAJcJWABxANMIWACJACgGBgDRALIIXACJAJgI
-YwCRACgGBgDpAGkAaQDpAJ8JcAChACgGdQDBACgGBgAuAAsA+gAuABMAAwEuABsAIgEuACMAKwEu
-ACsAVAEuADMAVAEuADsAVAEuAEMAKwEuAEsAWgEuAFMAVAEuAFsAcQFDAGMAuwHhAHsAuwHjAGsA
-uwFpAnMAIgGJAnMAIgEhAAMAAQAHABMACAAVAAAAAgfjAAAAPwTnAAAAfAfjAAAA4wTnAAAAKQfj
-AAAAdATnAAAAfgbjAAAAkQPnAAAApAfjAAAAGQXnAAAAqwbjAAAAzAPnAAAAUgfjAAAAqwTnAAAA
-UQbjAAAAVgPnAAAA2AbjAAAABwTnAAAAGAbrAAAAywDwAAAA4wj1AAIABwADAAEACAADAAIACQAF
-AAEACgAFAAIACwAHAAEADAAHAAIADQAJAAEADgAJAAIADwALAAEAEAALAAIAEQANAAEAEgANAAIA
-EwAPAAEAFAAPAAIAFQARAAEAFgARAAIAFwATAAEAGAATAAIAGQAVAAEAGgAVAAIAGwAXAAEAHAAX
-AAIAHQAZAAEAHgAZAAIAHwAbAAEAIAAbAAIAIQAdAAEAIgAdAAIAIwAfAAEAJAAfAAIAJQAhAAEA
-JgAhAAIAJwAjAAEAKAAjAAIAKQAlAAEAKgAlAAIANAAnAAIANQApAAEANgApAAIANwArAASAAAAB
-AAAAAAAAAAAAAAAAAAEAAAAEAAAAAAAAAAAAAAB8ADYAAAAAAA8AAAAAAAAAAAAAAIUAGQkAAAAA
-DwAAAAAAAAAAAAAAhQBLCQAAAAAEAAAAAAAAAAAAAAB8AEIFAAAAAAAAAAABAAAA+QcAAAAAAFND
-XzMwODUxNGU0YzcxZTQxMzE5ZTg2ZjcwODJlMjI1MTM5ADxNb2R1bGU+AElucHV0SUQAbXNjb3Js
-aWIAUmVwbGFjZQBkZWZhdWx0SW5zdGFuY2UAUnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21I
-YW5kbGUASW5wdXROYW1lAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlBpcGVsaW5lAFR5cGUAZ2V0
-X0N1bHR1cmUAc2V0X0N1bHR1cmUAcmVzb3VyY2VDdWx0dXJlAEFwcGxpY2F0aW9uU2V0dGluZ3NC
-YXNlAEVkaXRvckJyb3dzYWJsZVN0YXRlAENvbXBpbGVyR2VuZXJhdGVkQXR0cmlidXRlAERlYnVn
-Z2VyTm9uVXNlckNvZGVBdHRyaWJ1dGUARGVidWdnYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2Fi
-bGVBdHRyaWJ1dGUAQXNzZW1ibHlUaXRsZUF0dHJpYnV0ZQBBc3NlbWJseVRyYWRlbWFya0F0dHJp
-YnV0ZQBUYXJnZXRGcmFtZXdvcmtBdHRyaWJ1dGUAQXNzZW1ibHlDb25maWd1cmF0aW9uQXR0cmli
-dXRlAEFzc2VtYmx5RGVzY3JpcHRpb25BdHRyaWJ1dGUAQ29tcGlsYXRpb25SZWxheGF0aW9uc0F0
-dHJpYnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1
-dGUAU1NJU1NjcmlwdENvbXBvbmVudEVudHJ5UG9pbnRBdHRyaWJ1dGUAQXNzZW1ibHlDb21wYW55
-QXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmlsaXR5QXR0cmlidXRlAFByZUV4ZWN1dGUAUG9zdEV4
-ZWN1dGUAdmFsdWUATGFzdEluZGV4T2YAU3lzdGVtLlJ1bnRpbWUuVmVyc2lvbmluZwBHZXRTdHJp
-bmcAU3Vic3RyaW5nAFN5c3RlbS5Db21wb25lbnRNb2RlbABTQ18zMDg1MTRlNGM3MWU0MTMxOWU4
-NmY3MDgyZTIyNTEzOS5kbGwAZ2V0X0dhbmFuY2lhVVNEc2luY29tYXNfSXNOdWxsAHNldF9HYW5h
-bmNpYVVTRHNpbmNvbWFzX0lzTnVsbABnZXRfVG90YWxVU0RzaW5jb21hc19Jc051bGwAc2V0X1Rv
-dGFsVVNEc2luY29tYXNfSXNOdWxsAGdldF9JbXB1ZXN0b1VTRHNpbmNvbWFzX0lzTnVsbABzZXRf
-SW1wdWVzdG9VU0RzaW5jb21hc19Jc051bGwAZ2V0X0dhbmFuY2lhc2luY29tYXNfSXNOdWxsAHNl
-dF9HYW5hbmNpYXNpbmNvbWFzX0lzTnVsbABnZXRfQ2FudGlkYWRzaW5jb21hc19Jc051bGwAc2V0
-X0NhbnRpZGFkc2luY29tYXNfSXNOdWxsAGdldF9Ub3RhbHNpbmNvbWFzX0lzTnVsbABzZXRfVG90
-YWxzaW5jb21hc19Jc051bGwAZ2V0X1RpcG9DYW1iaW9zaW5jb21hc19Jc051bGwAc2V0X1RpcG9D
-YW1iaW9zaW5jb21hc19Jc051bGwAZ2V0X1ByZWNpb3NpbmNvbWFzX0lzTnVsbABzZXRfUHJlY2lv
-c2luY29tYXNfSXNOdWxsAGdldF9JbXB1ZXN0b3NpbmNvbWFzX0lzTnVsbABzZXRfSW1wdWVzdG9z
-aW5jb21hc19Jc051bGwAU2V0TnVsbABzZXRfSXRlbQBTeXN0ZW0AcmVzb3VyY2VNYW4AU2NyaXB0
-TWFpbgBTeXN0ZW0uQ29uZmlndXJhdGlvbgBTeXN0ZW0uR2xvYmFsaXphdGlvbgBTeXN0ZW0uUmVm
-bGVjdGlvbgBJbnZhbGlkT3BlcmF0aW9uRXhjZXB0aW9uAFN0cmluZ0NvbXBhcmlzb24AQ3VsdHVy
-ZUluZm8AT3V0cHV0TmFtZU1hcABPdXRwdXRNYXAASW5wdXQwQnVmZmVyAFBpcGVsaW5lQnVmZmVy
-AFNjcmlwdEJ1ZmZlcgBnZXRfUmVzb3VyY2VNYW5hZ2VyAC5jdG9yAC5jY3RvcgBnZXRfR2FuYW5j
-aWFVU0RzaW5jb21hcwBzZXRfR2FuYW5jaWFVU0RzaW5jb21hcwBnZXRfVG90YWxVU0RzaW5jb21h
-cwBzZXRfVG90YWxVU0RzaW5jb21hcwBnZXRfSW1wdWVzdG9VU0RzaW5jb21hcwBzZXRfSW1wdWVz
-dG9VU0RzaW5jb21hcwBnZXRfR2FuYW5jaWFzaW5jb21hcwBzZXRfR2FuYW5jaWFzaW5jb21hcwBn
-ZXRfQ2FudGlkYWRzaW5jb21hcwBzZXRfQ2FudGlkYWRzaW5jb21hcwBnZXRfVG90YWxzaW5jb21h
-cwBzZXRfVG90YWxzaW5jb21hcwBnZXRfVGlwb0NhbWJpb3NpbmNvbWFzAHNldF9UaXBvQ2FtYmlv
-c2luY29tYXMAZ2V0X1ByZWNpb3NpbmNvbWFzAHNldF9QcmVjaW9zaW5jb21hcwBnZXRfSW1wdWVz
-dG9zaW5jb21hcwBzZXRfSW1wdWVzdG9zaW5jb21hcwBTeXN0ZW0uRGlhZ25vc3RpY3MAU3lzdGVt
-LlJ1bnRpbWUuQ29tcGlsZXJTZXJ2aWNlcwBTeXN0ZW0uUmVzb3VyY2VzAFNDXzMwODUxNGU0Yzcx
-ZTQxMzE5ZTg2ZjcwODJlMjI1MTM5LlByb3BlcnRpZXMuUmVzb3VyY2VzLnJlc291cmNlcwBEZWJ1
-Z2dpbmdNb2RlcwBTQ18zMDg1MTRlNGM3MWU0MTMxOWU4NmY3MDgyZTIyNTEzOS5Qcm9wZXJ0aWVz
-AFZhcmlhYmxlcwBCdWZmZXJDb2x1bW5JbmRleGVzAEdldENvbHVtbkluZGV4ZXMAU2V0dGluZ3MA
-RXF1YWxzAENvbm5lY3Rpb25zAENvbmNhdABPYmplY3QARW5kT2ZSb3dzZXQAZ2V0X0RlZmF1bHQA
-VXNlckNvbXBvbmVudABQYXJlbnRDb21wb25lbnQAU2NyaXB0Q29tcG9uZW50AE1pY3Jvc29mdC5T
-cWxTZXJ2ZXIuVHhTY3JpcHQAUmVwbGFjZURvdEV4Y2VwdExhc3QATWljcm9zb2Z0LlNxbFNlcnZl
-ci5QaXBlbGluZUhvc3QASW5wdXQwX1Byb2Nlc3NJbnB1dABJbnB1dDBfUHJvY2Vzc0lucHV0Um93
-AE5leHRSb3cAZ2V0X0Fzc2VtYmx5AAADIAAAAQADLgAAgJtJAHMATgB1AGwAbAAgAHAAcgBvAHAA
-ZQByAHQAeQAgAGMAYQBuAG4AbwB0ACAAYgBlACAAcwBlAHQAIAB0AG8AIABGAGEAbABzAGUALgAg
-AEEAcwBzAGkAZwBuACAAYQAgAHYAYQBsAHUAZQAgAHQAbwAgAHQAaABlACAAYwBvAGwAdQBtAG4A
-IABpAG4AcwB0AGUAYQBkAC4AAA9JAG4AcAB1AHQAIAAwAABxUwBDAF8AMwAwADgANQAxADQAZQA0
-AGMANwAxAGUANAAxADMAMQA5AGUAOAA2AGYANwAwADgAMgBlADIAMgA1ADEAMwA5AC4AUAByAG8A
-cABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAAAAAOkUkPduU6NDnp9flti3pJMABCAB
-AQgDIAABBSABARERBCABAQ4FIAEBEVkFIAIODg4DBwEIBCABCAMFIAIOCAgEIAEOCAUAAg4ODgkg
-AwESPR0IEkEDBhI9AwYdCAUgAgEIHAQgAQIIAyAAAgYgAgIOEXEFIAEdCAgGAAESdRF5BCAAEn0G
-IAIBDhJ9CLd6XFYZNOCJCImEXc2AgMyRAwYSFAMGEhgDBhJFAwYSUQMGElUDBhIgBSABARIMBCAB
-Dg4DIAAOBCABAQIJIAQBCA4SPRJBBSABARJFBAAAElEEAAASVQUAAQESVQQAABIgAwAAAQMoAA4D
-KAACBAgAElEECAASVQQIABIgCAEACAAAAAAAHgEAAQBUAhZXcmFwTm9uRXhjZXB0aW9uVGhyb3dz
-AQgBAAIAAAAAACgBACNTQ18zMDg1MTRlNGM3MWU0MTMxOWU4NmY3MDgyZTIyNTEzOQAABQEAAAAA
-FgEAEUNvcHlyaWdodCBAICAyMDIxAABJAQAaLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjcBAFQO
-FEZyYW1ld29ya0Rpc3BsYXlOYW1lEi5ORVQgRnJhbWV3b3JrIDQuNwQBAAAAtAAAAM7K774BAAAA
-kQAAAGxTeXN0ZW0uUmVzb3VyY2VzLlJlc291cmNlUmVhZGVyLCBtc2NvcmxpYiwgVmVyc2lvbj00
-LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkj
-U3lzdGVtLlJlc291cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQCAAAAAAAAAAAAAABQQURQQURQtAAA
-AFQ7AAAAAAAAAAAAAG47AAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgOwAAAAAAAAAAAAAAAF9D
-b3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAuBMAAAAgAAAAFAAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAEgEAAAAQAAAAAYAAAAWAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAHAAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAACU
+MwAAAAAAAEgAAAACAAUAUCIAAFgQAAABAAAAAAAAAKgyAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CKBAAAAoqHgIoEQAACirSAwIDbwcAAAYoBAAABm8IAAAG
+AwIDbwsAAAZyAQAAcH4SAAAKbxMAAAooBAAABm8MAAAGKgAAABMwAwA0AAAAAQAAEQMfLm8UAAAK
+CgYWMSUDFgZvFQAACnIFAABwcgkAAHBvEwAACgMGbxYAAAooFwAAChABAyoeAigRAAAGKioCAwQF
+KBgAAAoqUgJ7GQAACgJ7GgAAChaUbxsAAAoqJgIWAygcAAAKKiICFigdAAAKKloDLAgCFigeAAAK
+KnILAABwcx8AAAp6UgJ7GQAACgJ7GgAACheUbxsAAAoqJgIXAygcAAAKKiICFygdAAAKKloDLAgC
+FygeAAAKKnILAABwcx8AAAp6HgIoIAAACioeAighAAAKKn4CKCIAAAoCAnMVAAAGfQEAAAQCAnMW
+AAAGfQIAAAQqkgRyqAAAcBpvIwAACiwVAgUCAygkAAAKDgRzBgAABm8TAAAGKkorBwIDbxQAAAYD
+bw8AAAYt8SoGKjoCKCUAAAoCA30DAAAEKjoCKCUAAAoCA30EAAAEKh4CKCUAAAoqrn4FAAAELR5y
+uAAAcNAHAAACKCYAAApvJwAACnMoAAAKgAUAAAR+BQAABCoafgYAAAQqHgKABgAABCoafgcAAAQq
+HgIoKQAACioucxwAAAaABwAABCoAQlNKQgEAAQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAA
+AAYAACN+AABsBgAA7AYAACNTdHJpbmdzAAAAAFgNAAAsAQAAI1VTAIQOAAAQAAAAI0dVSUQAAACU
+DgAAxAEAACNCbG9iAAAAAAAAAAIAAAFXFaIBCQEAAAD6ATMAFgAAAQAAAB8AAAAIAAAABwAAAB0A
+AAASAAAAKQAAABAAAAABAAAAAwAAAAcAAAAMAAAAAQAAAAQAAAABAAAAAAALAwEAAAAAAAYA7AEC
+BQYAgAICBQYAOAHvBA8AdgUAAAYAZQH2AwYAzwH2AwYAsAH2AwYAZwL2AwYADAL2AwYAJQL2AwYA
+fAH2AwYAlwHHAgoAQAKFAAoAcwSFAA4AZASFAAoAPwSFAAoAQwaFAAYABgauAwYAGwHvBAYAhAQi
+BQYAMwThAxIA6wD1AhIATAH1AhIA0wDMAwYAAAECBQYA5AKuAwYACASuAwYAIgSuAwYApgCuAwYA
+VwCuAwYA3Qb2AwAAAAAlAAAAAAABAAEAAQAQAMEDAAAQAAEAAQABABAAVwQAADkAAQAGAAEAEAAl
+BgAARQABABEAAQAQAPMFAABJAAMAFQABABAAtAUAAEkABAAWAAAAEAApBYUFSQAFABcAAAEQAOMF
+hQVhAAcAGwAGAPMFkQAGALQFlQABADMGmQABADMGmQARALUDnQARAMMAoQARAEcApQBQIAAAAADG
+AJ4CBgABAFggAAAAAMYAqQIGAAEAYCAAAAAAxgC6BqkAAQCYIAAAAACGAHAGrwACANggAAAAAIYY
+lAQGAAMA4CAAAAAAhhiUBD4AAwDrIAAAAACGCMsEtAAGAAAhAAAAAIYI3QQQAAYACiEAAAAAhghr
+A1sABwATIQAAAACGCIQDuAAHACohAAAAAIYIoQS0AAgAPyEAAAAAhgi2BBAACABJIQAAAACGCDMD
+WwAJAFIhAAAAAIYITwO4AAkAaSEAAAAAhgDRBlsACgBxIQAAAACGAA0GWwAKAHkhAAAAAIYYlAQG
+AAoAmSEAAAAAxgCtBr0ACgC+IQAAAADGAaYGqQAOANEhAAAAAMYBugapAA8A0yEAAAAAhhiUBMcA
+EADiIQAAAACGGJQExwARAPEhAAAAAIMYlAQGABIA+SEAAAAAkwiABM0AEgAlIgAAAACTCKsA0gAS
+ACwiAAAAAJMItwDXABIANCIAAAAAlggZBt0AEwA7IgAAAACGGJQEBgATAEMiAAAAAJEYmgTiABMA
+AAABANUGAAABALUCAAABAHkEAAACAL4FAAADAE0EAAABALUCAAABALUCAAABALUCAAABALUCAAAB
+AC4AAAACAHsAAAADAHkEAAAEAE0EAAABAHkEAAABANUGAAABAEkGAAABAEkGAAABALUCCQCUBAEA
+EQCUBAYAGQCUBAoAKQCUBBAAMQCUBBAAOQCUBBAAQQCUBBAASQCUBBAAUQCUBBAAWQCUBBAAYQCU
+BBAAaQCUBAYAmQCUBAYAuQCUBBUAyQCUBAYAiQCeAgYAiQCpAgYA0QDmBhsA0QA/AB4A0QC7AigA
+0QDrAi0A0QDrAjMA0QD/BTgAcQCUBD4AcQB5BEgAcQC+BUwAeQDhAjMAcQClA1AAcQCWA1YAcQCd
+AwEA2QCUBBAAcQDRBlsAcQANBlsAiQCUBAYA0QDsBV8AiQDSBWYAkQCUBAYA6QBpAGwA6QDZBnMA
+oQCUBHgAwQCUBAYALgALAP0ALgATAAYBLgAbACUBLgAjAC4BLgArAFcBLgAzAFcBLgA7AFcBLgBD
+AC4BLgBLAF0BLgBTAFcBLgBbAHQBQwBjAL4BqQBzACUByQBzACUB4QB7AL4B4wBrAL4BJAADAAEA
+BwAFAAgABwAAAOEE5gAAAIgD6gAAALoE5gAAAFMD6gAAAIQE7gAAAMsA8wAAAB0G+AACAAcAAwAB
+AAgAAwACAAkABQABAAoABQACAAsABwABAAwABwACAA0ACQABAA4ACQACABgACwACABkADQABABoA
+DQACABsADwAEgAAAAQAAAAAAAAAAAAAAAAABAAAABAAAAAAAAAAAAAAAfwA2AAAAAAAPAAAAAAAA
+AAAAAACIAFMGAAAAAA8AAAAAAAAAAAAAAIgAhQYAAAAABAAAAAAAAAAAAAAAfwCuAwAAAAAAAAAA
+AQAAADMFAAAAAAAAAFNDXzMwODUxNGU0YzcxZTQxMzE5ZTg2ZjcwODJlMjI1MTM5ADxNb2R1bGU+
+AElucHV0SUQAbXNjb3JsaWIAUmVwbGFjZQBkZWZhdWx0SW5zdGFuY2UAUnVudGltZVR5cGVIYW5k
+bGUAR2V0VHlwZUZyb21IYW5kbGUASW5wdXROYW1lAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlBp
+cGVsaW5lAFR5cGUAZ2V0X0N1bHR1cmUAc2V0X0N1bHR1cmUAcmVzb3VyY2VDdWx0dXJlAEFwcGxp
+Y2F0aW9uU2V0dGluZ3NCYXNlAEVkaXRvckJyb3dzYWJsZVN0YXRlAENvbXBpbGVyR2VuZXJhdGVk
+QXR0cmlidXRlAERlYnVnZ2VyTm9uVXNlckNvZGVBdHRyaWJ1dGUARGVidWdnYWJsZUF0dHJpYnV0
+ZQBFZGl0b3JCcm93c2FibGVBdHRyaWJ1dGUAQXNzZW1ibHlUaXRsZUF0dHJpYnV0ZQBBc3NlbWJs
+eVRyYWRlbWFya0F0dHJpYnV0ZQBUYXJnZXRGcmFtZXdvcmtBdHRyaWJ1dGUAQXNzZW1ibHlDb25m
+aWd1cmF0aW9uQXR0cmlidXRlAEFzc2VtYmx5RGVzY3JpcHRpb25BdHRyaWJ1dGUAQ29tcGlsYXRp
+b25SZWxheGF0aW9uc0F0dHJpYnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlD
+b3B5cmlnaHRBdHRyaWJ1dGUAU1NJU1NjcmlwdENvbXBvbmVudEVudHJ5UG9pbnRBdHRyaWJ1dGUA
+QXNzZW1ibHlDb21wYW55QXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmlsaXR5QXR0cmlidXRlAFBy
+ZUV4ZWN1dGUAUG9zdEV4ZWN1dGUAdmFsdWUATGFzdEluZGV4T2YAU3lzdGVtLlJ1bnRpbWUuVmVy
+c2lvbmluZwBHZXRTdHJpbmcAU3Vic3RyaW5nAFN5c3RlbS5Db21wb25lbnRNb2RlbABTQ18zMDg1
+MTRlNGM3MWU0MTMxOWU4NmY3MDgyZTIyNTEzOS5kbGwAZ2V0X0dhbmFuY2lhc2luY29tYXNfSXNO
+dWxsAHNldF9HYW5hbmNpYXNpbmNvbWFzX0lzTnVsbABnZXRfVG90YWxzaW5jb21hc19Jc051bGwA
+c2V0X1RvdGFsc2luY29tYXNfSXNOdWxsAFNldE51bGwAc2V0X0l0ZW0AU3lzdGVtAHJlc291cmNl
+TWFuAFNjcmlwdE1haW4AU3lzdGVtLkNvbmZpZ3VyYXRpb24AU3lzdGVtLkdsb2JhbGl6YXRpb24A
+U3lzdGVtLlJlZmxlY3Rpb24ASW52YWxpZE9wZXJhdGlvbkV4Y2VwdGlvbgBTdHJpbmdDb21wYXJp
+c29uAEN1bHR1cmVJbmZvAE91dHB1dE5hbWVNYXAAT3V0cHV0TWFwAElucHV0MEJ1ZmZlcgBQaXBl
+bGluZUJ1ZmZlcgBTY3JpcHRCdWZmZXIAZ2V0X1Jlc291cmNlTWFuYWdlcgAuY3RvcgAuY2N0b3IA
+Z2V0X0dhbmFuY2lhc2luY29tYXMAc2V0X0dhbmFuY2lhc2luY29tYXMAZ2V0X1RvdGFsc2luY29t
+YXMAc2V0X1RvdGFsc2luY29tYXMAU3lzdGVtLkRpYWdub3N0aWNzAFN5c3RlbS5SdW50aW1lLkNv
+bXBpbGVyU2VydmljZXMAU3lzdGVtLlJlc291cmNlcwBTQ18zMDg1MTRlNGM3MWU0MTMxOWU4NmY3
+MDgyZTIyNTEzOS5Qcm9wZXJ0aWVzLlJlc291cmNlcy5yZXNvdXJjZXMARGVidWdnaW5nTW9kZXMA
+U0NfMzA4NTE0ZTRjNzFlNDEzMTllODZmNzA4MmUyMjUxMzkuUHJvcGVydGllcwBWYXJpYWJsZXMA
+QnVmZmVyQ29sdW1uSW5kZXhlcwBHZXRDb2x1bW5JbmRleGVzAFNldHRpbmdzAEVxdWFscwBDb25u
+ZWN0aW9ucwBDb25jYXQAT2JqZWN0AEVuZE9mUm93c2V0AGdldF9EZWZhdWx0AFVzZXJDb21wb25l
+bnQAUGFyZW50Q29tcG9uZW50AFNjcmlwdENvbXBvbmVudABNaWNyb3NvZnQuU3FsU2VydmVyLlR4
+U2NyaXB0AFJlcGxhY2VEb3RFeGNlcHRMYXN0AE1pY3Jvc29mdC5TcWxTZXJ2ZXIuUGlwZWxpbmVI
+b3N0AElucHV0MF9Qcm9jZXNzSW5wdXQASW5wdXQwX1Byb2Nlc3NJbnB1dFJvdwBOZXh0Um93AGdl
+dF9Bc3NlbWJseQBFbXB0eQAAAyAAAAMuAAABAICbSQBzAE4AdQBsAGwAIABwAHIAbwBwAGUAcgB0
+AHkAIABjAGEAbgBuAG8AdAAgAGIAZQAgAHMAZQB0ACAAdABvACAARgBhAGwAcwBlAC4AIABBAHMA
+cwBpAGcAbgAgAGEAIAB2AGEAbAB1AGUAIAB0AG8AIAB0AGgAZQAgAGMAbwBsAHUAbQBuACAAaQBu
+AHMAdABlAGEAZAAuAAAPSQBuAHAAdQB0ACAAMAAAcVMAQwBfADMAMAA4ADUAMQA0AGUANABjADcA
+MQBlADQAMQAzADEAOQBlADgANgBmADcAMAA4ADIAZQAyADIANQAxADMAOQAuAFAAcgBvAHAAZQBy
+AHQAaQBlAHMALgBSAGUAcwBvAHUAcgBjAGUAcwAAAABva8e4pBucSp5Gw99Mq4cmAAQgAQEIAyAA
+AQUgAQEREQQgAQEOBSABARFZAgYOBSACDg4OAwcBCAQgAQgDBSACDggIBCABDggFAAIODg4JIAMB
+Ej0dCBJBAwYSPQMGHQgFIAIBCBwEIAECCAMgAAIGIAICDhFxBSABHQgIBgABEnUReQQgABJ9BiAC
+AQ4SfQi3elxWGTTgiQiJhF3NgIDMkQMGEhQDBhIYAwYSRQMGElEDBhJVAwYSIAUgAQESDAQgAQ4O
+AyAADgQgAQECCSAEAQgOEj0SQQUgAQESRQQAABJRBAAAElUFAAEBElUEAAASIAMAAAEDKAAOAygA
+AgQIABJRBAgAElUECAASIAgBAAgAAAAAAB4BAAEAVAIWV3JhcE5vbkV4Y2VwdGlvblRocm93cwEI
+AQACAAAAAAAoAQAjU0NfMzA4NTE0ZTRjNzFlNDEzMTllODZmNzA4MmUyMjUxMzkAAAUBAAAAABYB
+ABFDb3B5cmlnaHQgQCAgMjAyMQAASQEAGi5ORVRGcmFtZXdvcmssVmVyc2lvbj12NC43AQBUDhRG
+cmFtZXdvcmtEaXNwbGF5TmFtZRIuTkVUIEZyYW1ld29yayA0LjcEAQAAAAC0AAAAzsrvvgEAAACR
+AAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQu
+MC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNT
+eXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAA
+iDMAAAAAAAAAAAAAojMAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJQzAAAAAAAAAAAAAAAAX0Nv
+ckRsbE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB
-ABAAAAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABIAAAA
-WEAAAOwDAAAAAAAAAAAAAOwDNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAAAAC9
-BO/+AAABAAAAAQAAAAAAAAABAAAAAAA/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAAAAEA
-VgBhAHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4AAAAA
-AAAAsARMAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAAAoAwAAAQAwADAAMAAwADAA
-NABiADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABhAG4AeQBO
-AGEAbQBlAAAAAAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAAAFMA
-QwBfADMAMAA4ADUAMQA0AGUANABjADcAMQBlADQAMQAzADEAOQBlADgANgBmADcAMAA4ADIAZQAy
-ADIANQAxADMAOQAAADAACAABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgAwAC4A
-MAAAAHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBDAF8AMwAwADgANQAxADQAZQA0
-AGMANwAxAGUANAAxADMAMQA5AGUAOAA2AGYANwAwADgAMgBlADIAMgA1ADEAMwA5AC4AZABsAGwA
-AABIABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8AcAB5AHIAaQBnAGgAdAAg
-AEAAIAAgADIAMAAyADEAAAAqAAEAAQBMAGUAZwBhAGwAVAByAGEAZABlAG0AYQByAGsAcwAAAAAA
-AAAAAHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkAbABlAG4AYQBtAGUAAABTAEMAXwAzADAAOAA1
-ADEANABlADQAYwA3ADEAZQA0ADEAMwAxADkAZQA4ADYAZgA3ADAAOAAyAGUAMgAyADUAMQAzADkA
-LgBkAGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQATgBhAG0AZQAAAAAAUwBDAF8AMwAwADgANQAx
-ADQAZQA0AGMANwAxAGUANAAxADMAMQA5AGUAOAA2AGYANwAwADgAMgBlADIAMgA1ADEAMwA5AAAA
-NAAIAAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgAwAC4AMAAAADgACAAB
-AEEAcwBzAGUAbQBiAGwAeQAgAFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADAALgAwAAAAAAAAAAAA
+AAAAAQAQAAAAGAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAA
+SAAAAFhAAADsAwAAAAAAAAAAAADsAzQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAA
+AAAAvQTv/gAAAQAAAAEAAAAAAAAAAQAAAAAAPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQA
+AAABAFYAYQByAEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBu
+AAAAAAAAALAETAMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAKAMAAAEAMAAwADAA
+MAAwADQAYgAwAAAAGgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAACIAAQABAEMAbwBtAHAAYQBu
+AHkATgBhAG0AZQAAAAAAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwByAGkAcAB0AGkAbwBuAAAA
+AABTAEMAXwAzADAAOAA1ADEANABlADQAYwA3ADEAZQA0ADEAMwAxADkAZQA4ADYAZgA3ADAAOAAy
+AGUAMgAyADUAMQAzADkAAAAwAAgAAQBGAGkAbABlAFYAZQByAHMAaQBvAG4AAAAAADEALgAwAC4A
+MAAuADAAAABwACgAAQBJAG4AdABlAHIAbgBhAGwATgBhAG0AZQAAAFMAQwBfADMAMAA4ADUAMQA0
+AGUANABjADcAMQBlADQAMQAzADEAOQBlADgANgBmADcAMAA4ADIAZQAyADIANQAxADMAOQAuAGQA
+bABsAAAASAASAAEATABlAGcAYQBsAEMAbwBwAHkAcgBpAGcAaAB0AAAAQwBvAHAAeQByAGkAZwBo
+AHQAIABAACAAIAAyADAAMgAxAAAAKgABAAEATABlAGcAYQBsAFQAcgBhAGQAZQBtAGEAcgBrAHMA
+AAAAAAAAAAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwAZQBuAGEAbQBlAAAAUwBDAF8AMwAw
+ADgANQAxADQAZQA0AGMANwAxAGUANAAxADMAMQA5AGUAOAA2AGYANwAwADgAMgBlADIAMgA1ADEA
+MwA5AC4AZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUAAAAAAFMAQwBfADMAMAA4
+ADUAMQA0AGUANABjADcAMQBlADQAMQAzADEAOQBlADgANgBmADcAMAA4ADIAZQAyADIANQAxADMA
+OQAAADQACAABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AMAAuADAAAAA4
+AAgAAQBBAHMAcwBlAG0AYgBsAHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgAwAC4AMAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -3193,7 +3027,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAwAAACAOwAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAMAAAAtDMAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -3202,7 +3036,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
                       </arrayElements>
                     </property>
                     <property
@@ -3238,7 +3072,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                       dataType="System.String"
                       description="Checksum to match component metedata against compiled codes."
                       name="MetadataChecksum140"
-                      typeConverter="NOTBROWSABLE">80</property>
+                      typeConverter="NOTBROWSABLE">3F</property>
                     <property
                       dataType="System.String"
                       name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
@@ -3250,57 +3084,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                       name="Input 0">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Script C# reemplace punto excepto el último.Inputs[Input 0].Columns[Cantidad_sin_comas]"
-                          cachedDataType="wstr"
-                          cachedLength="255"
-                          cachedName="Cantidad_sin_comas"
-                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[Cantidad_sin_comas]"
-                          usageType="readWrite" />
-                        <inputColumn
-                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Script C# reemplace punto excepto el último.Inputs[Input 0].Columns[Precio_sin_comas]"
-                          cachedDataType="wstr"
-                          cachedLength="255"
-                          cachedName="Precio_sin_comas"
-                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[Precio_sin_comas]"
-                          usageType="readWrite" />
-                        <inputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Script C# reemplace punto excepto el último.Inputs[Input 0].Columns[Total_sin_comas]"
                           cachedDataType="wstr"
                           cachedLength="255"
                           cachedName="Total_sin_comas"
                           lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[Total_sin_comas]"
-                          usageType="readWrite" />
-                        <inputColumn
-                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Script C# reemplace punto excepto el último.Inputs[Input 0].Columns[TotalUSD_sin_comas]"
-                          cachedDataType="r8"
-                          cachedName="TotalUSD_sin_comas"
-                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[TotalUSD_sin_comas]"
-                          usageType="readWrite" />
-                        <inputColumn
-                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Script C# reemplace punto excepto el último.Inputs[Input 0].Columns[Impuesto_sin_comas]"
-                          cachedDataType="wstr"
-                          cachedLength="255"
-                          cachedName="Impuesto_sin_comas"
-                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[Impuesto_sin_comas]"
-                          usageType="readWrite" />
-                        <inputColumn
-                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Script C# reemplace punto excepto el último.Inputs[Input 0].Columns[ImpuestoUSD_sin_comas]"
-                          cachedDataType="r8"
-                          cachedName="ImpuestoUSD_sin_comas"
-                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[ImpuestoUSD_sin_comas]"
-                          usageType="readWrite" />
-                        <inputColumn
-                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Script C# reemplace punto excepto el último.Inputs[Input 0].Columns[TipoCambio_sin_comas]"
-                          cachedDataType="wstr"
-                          cachedLength="255"
-                          cachedName="TipoCambio_sin_comas"
-                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[TipoCambio_sin_comas]"
-                          usageType="readWrite" />
-                        <inputColumn
-                          refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Script C# reemplace punto excepto el último.Inputs[Input 0].Columns[GananciaUSD_sin_comas]"
-                          cachedDataType="r8"
-                          cachedName="GananciaUSD_sin_comas"
-                          lineageId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output].Columns[GananciaUSD_sin_comas]"
                           usageType="readWrite" />
                         <inputColumn
                           refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Script C# reemplace punto excepto el último.Inputs[Input 0].Columns[Ganancia_sin_comas]"
@@ -3326,7 +3114,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
               <paths>
                 <path
                   refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Data Conversion Output]"
-                  endId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  endId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Precio Calculado.Inputs[Derived Column Input]"
                   name="Data Conversion Output"
                   startId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics.Outputs[Data Conversion Output]" />
                 <path
@@ -3336,6 +3124,11 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
                   startId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas.Outputs[Derived Column Output]" />
                 <path
                   refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Derived Column Output1]"
+                  endId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Precio Calculado.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Derived Column Output2]"
                   endId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Script C# reemplace punto excepto el último.Inputs[Input 0]"
                   name="Derived Column Output"
                   startId="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str.Outputs[Derived Column Output]" />
@@ -10799,65 +10592,47 @@ ELSE
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="171,42"
-          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination"
-          TopLeft="328,380" />
+          Size="289,42"
+          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Script C# reemplace punto excepto el último"
+          TopLeft="260,227" />
         <NodeLayout
           Size="245,42"
           Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Data Conversion strings y numerics"
-          TopLeft="285,303" />
-        <NodeLayout
-          Size="155,42"
-          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str"
-          TopLeft="323,162" />
-        <NodeLayout
-          Size="289,42"
-          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Script C# reemplace punto excepto el último"
-          TopLeft="262,229" />
-        <NodeLayout
-          Size="223,42"
-          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas"
-          TopLeft="286,93" />
+          TopLeft="281,324" />
         <NodeLayout
           Size="139,42"
           Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source"
-          TopLeft="321,27" />
-        <EdgeLayout
-          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Output 0]"
-          TopLeft="407,271">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,32"
-              Start="0,0"
-              End="0,24.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,24.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          TopLeft="324,3" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination"
+          TopLeft="316,473" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Formateo de Str"
+          TopLeft="322,144" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Columnas derivadas sin comas"
+          TopLeft="288,74" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Precio Calculado"
+          TopLeft="328,394" />
         <EdgeLayout
           Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Excel Source Output]"
-          TopLeft="394,69">
+          TopLeft="396.5,45">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,24"
+              EndConnector="0,29"
               Start="0,0"
-              End="0,16.5">
+              End="0,21.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.5" />
+                    End="0,21.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10868,18 +10643,18 @@ ELSE
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Derived Column Output1]"
-          TopLeft="403.5,204">
+          TopLeft="403.75,436">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,25"
+              EndConnector="0,37"
               Start="0,0"
-              End="0,17.5">
+              End="0,29.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.5" />
+                    End="0,29.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10890,18 +10665,18 @@ ELSE
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Derived Column Output]"
-          TopLeft="399,135">
+          TopLeft="399.5,116">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,27"
+              EndConnector="0,28"
               Start="0,0"
-              End="0,19.5">
+              End="0,20.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.5" />
+                    End="0,20.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10912,18 +10687,62 @@ ELSE
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Data Conversion Output]"
-          TopLeft="410.5,345">
+          TopLeft="404.75,366">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,35"
+              EndConnector="0,28"
               Start="0,0"
-              End="0,27.5">
+              End="0,20.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,27.5" />
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Derived Column Output2]"
+          TopLeft="402,186">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File.Paths[Output 0]"
+          TopLeft="404,269">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55"
+              Start="0,0"
+              End="0,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10936,7 +10755,7 @@ ELSE
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination">
+    design-time-name="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -10949,7 +10768,7 @@ ELSE
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\Excel Source">
+    design-time-name="Package\Foreach Loop Container Read Excel Files From Input Folder\Load New Excel File\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -10965,15 +10784,7 @@ ELSE
     design-time-name="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\OLE DB Destination"
-          TopLeft="217,439" />
-        <NodeLayout
-          Size="289,42"
-          Id="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Script C# reemplace punto excepto el último"
-          TopLeft="156,154" />
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="327,42"
           Id="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Columnas Derivadas Formateo de numeros sin coma"
@@ -10983,17 +10794,25 @@ ELSE
           Id="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Conversión de Precio derivado"
           TopLeft="191,370" />
         <NodeLayout
-          Size="332,42"
-          Id="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Conversion Columnas Derivadas sin coma a NUMERIC"
-          TopLeft="131,227" />
-        <NodeLayout
-          Size="232,42"
-          Id="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Columna Derivada para el Precio"
-          TopLeft="182,296" />
+          Size="171,42"
+          Id="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\OLE DB Destination"
+          TopLeft="217,439" />
         <NodeLayout
           Size="167,42"
           Id="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Flat File Source txt"
           TopLeft="220,2" />
+        <NodeLayout
+          Size="332,42"
+          Id="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Conversion Columnas Derivadas sin coma a NUMERIC"
+          TopLeft="131,227" />
+        <NodeLayout
+          Size="289,42"
+          Id="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Script C# reemplace punto excepto el último"
+          TopLeft="156,154" />
+        <NodeLayout
+          Size="232,42"
+          Id="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File\Columna Derivada para el Precio"
+          TopLeft="182,296" />
         <EdgeLayout
           Id="Package\Foreach Loop Container Read Flat Files from Input Folder\Load New Flat File.Paths[Output 0]"
           TopLeft="298.75,196">
@@ -11101,9 +10920,7 @@ ELSE
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,1.75,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -11148,23 +10965,19 @@ ELSE
     design-time-name="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\OLE DB Destination"
-          TopLeft="296.5,436.5" />
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="134,42"
           Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\XML Source"
           TopLeft="317,86" />
         <NodeLayout
-          Size="290,42"
-          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\Script C# reemplace punto excepto el último"
-          TopLeft="230,296" />
-        <NodeLayout
           Size="208,42"
           Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\Derived Columns sin comas"
           TopLeft="275,227" />
+        <NodeLayout
+          Size="290,42"
+          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\Script C# reemplace punto excepto el último"
+          TopLeft="230,296" />
         <NodeLayout
           Size="244,42"
           Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\Data Conversion fechas y numerics"
@@ -11173,52 +10986,10 @@ ELSE
           Size="284,42"
           Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\Data Conversion para convertir datos en str"
           TopLeft="239,158" />
-        <EdgeLayout
-          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File.Paths[Data Conversion Output1]"
-          TopLeft="380.5,407">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,29.5"
-              Start="0,0"
-              End="0,22">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,22" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,3,16,16"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File.Paths[Data Conversion Output]"
-          TopLeft="380,200">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,27"
-              Start="0,0"
-              End="0,19.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,19.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File\OLE DB Destination"
+          TopLeft="296.5,436.5" />
         <EdgeLayout
           Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File.Paths[Output 0]"
           TopLeft="377,338">
@@ -11266,6 +11037,50 @@ ELSE
         <EdgeLayout
           Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File.Paths[Derived Column Output]"
           TopLeft="377,269">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27"
+              Start="0,0"
+              End="0,19.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File.Paths[Data Conversion Output1]"
+          TopLeft="380.5,407">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.5"
+              Start="0,0"
+              End="0,22">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Foreach Loop Container Read XML Files from Input folder\Load New XML File.Paths[Data Conversion Output]"
+          TopLeft="380,200">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"

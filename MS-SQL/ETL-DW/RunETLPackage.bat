@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\DTEXEC.exe" /File "D:\Documentos\Ing en Computacion\Semestre IV\Bases de Datos ll\Progra 2\Codigo\DB2-Final-Project\MS-SQL\ETL-DW\ETL-MS-DW-AZURE\Package.dtsx"
